@@ -8,29 +8,16 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      color: #333;
-      background: url('08014da3-9c99-4572-bd60-59162690aad8.png') no-repeat center center fixed;
+      background: url('fondo.png') no-repeat center center fixed;
       background-size: cover;
+      color: #333;
     }
-
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5); /* oscurece la imagen */
-      z-index: -1;
-    }
-
     header {
       background-color: #1e5631;
       color: white;
       padding: 1rem 2rem;
       text-align: center;
     }
-
     nav {
       background-color: #144423;
       display: flex;
@@ -38,35 +25,30 @@
       gap: 2rem;
       padding: 0.5rem 0;
     }
-
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
     }
-
     nav a:hover {
       text-decoration: underline;
     }
-
     section {
       max-width: 900px;
       margin: 2rem auto;
-      padding: 1rem 2rem;
-      background-color: rgba(255,255,255,0.95);
+      padding: 1.5rem;
+      background-color: rgba(255, 255, 255, 0.85);
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
     }
-
     h2 {
       color: #1e5631;
     }
-
     footer {
       text-align: center;
       margin-top: 4rem;
       padding: 1rem;
-      background-color: #f0f0f0;
+      background-color: rgba(255, 255, 255, 0.85);
       color: #777;
     }
   </style>
@@ -120,4 +102,3 @@
 
 </body>
 </html>
-
