@@ -15,6 +15,11 @@
       background-repeat: no-repeat;
     }
 
+    .contenido {
+      background-color: rgba(255, 255, 255, 0.96); /* capa que envuelve TODO */
+      min-height: 100vh;
+    }
+
     header {
       background-color: rgba(255, 102, 0, 0.85);
       padding: 20px;
@@ -48,7 +53,7 @@
     }
 
     .seccion {
-      background-color: rgba(255, 255, 255, 0.95); /* Fondo blanco semitransparente */
+      background-color: rgba(255, 255, 255, 0.95);
       margin-bottom: 30px;
       padding: 20px;
       border-radius: 10px;
@@ -73,5 +78,68 @@
       border-radius: 5px;
     }
 
-    .btn-con
+    .btn-contacto:hover {
+      background-color: #1c3f1c;
+    }
 
+    .mapa-contenedor {
+      max-width: 1000px;
+      margin: 0 auto;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="contenido">
+    <header>
+      <h1>DigiAgro</h1>
+      <p>🚜 Optimizamos procesos para un agro más ágil y digital.</p>
+    </header>
+
+    <nav>
+      <a href="#servicios">Servicios</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#mapa">Mapa del Agro</a>
+    </nav>
+
+    <section id="servicios" class="seccion">
+      <h2>Servicios</h2>
+      <ul>
+        <li>Automatización de trámites en SENASA</li>
+        <li>Análisis financieros</li>
+        <li>Apps a su propia medida</li>
+        <li>Informes de precios internacionales</li>
+        <li>Estadísticas de Importación</li>
+      </ul>
+    </section>
+
+    <section id="nosotros" class="seccion">
+      <h2>Nosotros</h2>
+      <p>DigiAgro es una startup enfocada en la transformación digital del agro. Combinamos experiencia en operaciones con tecnología para ofrecer soluciones simples, eficientes y accesibles.</p>
+    </section>
+
+    <section id="contacto" class="seccion">
+      <h2>Contacto</h2>
+      <p>¿Querés más información o tenés una consulta? Completá nuestro formulario y te responderemos a la brevedad:</p>
+      <a href="https://forms.office.com/" target="_blank" class="btn-contacto">📋 Ir al formulario de contacto</a>
+    </section>
+
+    <section id="mapa" class="seccion">
+      <h2>🗺️ Mapa del Agro</h2>
+      <p>Visualizá los puntos clave del agro digital: distribuidores, zonas productivas y más.</p>
+      <div class="mapa-contenedor">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=..." <!-- Reemplazá por el mapa real -->
+          width="100%"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
