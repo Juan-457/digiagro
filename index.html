@@ -1,79 +1,128 @@
-<style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-image: url('fondo.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-  }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DigiAgro</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('fondo.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+    }
 
-  header {
-    background-color: rgba(255, 102, 0, 0.5);
-    padding: 20px;
-    text-align: center;
-    color: white;
-  }
+    header {
+      background-color: rgba(255, 102, 0, 0.9); /* naranja con transparencia */
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+    }
 
-  header h1 {
-    margin: 0;
-  }
+    header h1 {
+      margin: 0;
+    }
 
-  nav {
-    background-color: rgba(42, 92, 42, 0.9);
-    padding: 10px;
-    text-align: center;
-  }
+    header p {
+      margin: 0.3rem 0;
+      font-size: 0.9rem;
+    }
 
-  nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
-  }
+    nav {
+      background-color: #0b3f22;
+      display: flex;
+      justify-content: center;
+      padding: 0.5rem 0;
+    }
 
-  nav a:hover {
-    text-decoration: underline;
-  }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 1.5rem;
+    }
 
-  section {
-    padding: 40px 20px;
-  }
+    nav a:hover {
+      text-decoration: underline;
+    }
 
-  .seccion {
-  background-color: rgba(255, 255, 255, 0.95); /* blanco con 95% opacidad */
-  margin-bottom: 30px;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+    section {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background-color: rgba(255, 255, 255, 0.95); /* blanco con transparencia leve */
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
 
-  .seccion h2 {
-    color: #2a5c2a;
-    margin-bottom: 10px;
-  }
+    h2 {
+      color: #1e5631;
+    }
 
-  .btn-contacto {
-    display: inline-block;
-    background-color: #2a5c2a;
-    color: white;
-    padding: 10px 20px;
-    margin-top: 10px;
-    text-decoration: none;
-    border-radius: 5px;
-  }
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding: 1rem;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
 
-  .btn-contacto:hover {
-    background-color: #1c3f1c;
-  }
+    .btn {
+      background-color: #1e5631;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+    }
 
-  .mapa-contenedor {
-    max-width: 1000px;
-    margin: 0 auto;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-</style>
+    .btn:hover {
+      background-color: #144427;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DigiAgro</h1>
+    <p>🌱 Optimizamos procesos para un agro más ágil y digital.</p>
+  </header>
+
+  <nav>
+    <a href="#servicios">Servicios</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <section id="servicios">
+    <h2>Servicios</h2>
+    <ul>
+      <li>Automatización de trámites en SENASA</li>
+      <li>Análisis financieros</li>
+      <li>Apps a su propia medida</li>
+      <li>Informes de precios internacionales</li>
+      <li>Estadísticas de Importación</li>
+    </ul>
+  </section>
+
+  <section id="nosotros">
+    <h2>Nosotros</h2>
+    <p>DigiAgro es una startup enfocada en la transformación digital del agro. Combinamos experiencia en operaciones con tecnología para ofrecer soluciones simples, eficientes y accesibles.</p>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p>¿Querés más información o tenés una consulta? Completá nuestro formulario y te responderemos a la brevedad:</p>
+    <a href="https://forms.office.com/r/V6AEeACu5g" class="btn">📩 Ir al formulario de contacto</a>
+  </section>
+
+  <footer>
+    © 2025 DigiAgro - Todos los derechos reservados.
+  </footer>
+</body>
+</html>
+
