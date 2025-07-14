@@ -1,134 +1,79 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DigiAgro</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('fondo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  }
 
-    header {
-      background-color: #ff6600;
-      padding: 20px;
-      text-align: center;
-      color: white;
-    }
+  header {
+    background-color: rgba(255, 102, 0, 0.85);
+    padding: 20px;
+    text-align: center;
+    color: white;
+  }
 
-    header h1 {
-      margin: 0;
-    }
+  header h1 {
+    margin: 0;
+  }
 
-    nav {
-      background-color: #2a5c2a;
-      padding: 10px;
-      text-align: center;
-    }
+  nav {
+    background-color: rgba(42, 92, 42, 0.9);
+    padding: 10px;
+    text-align: center;
+  }
 
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+  nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+  }
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+  nav a:hover {
+    text-decoration: underline;
+  }
 
-    section {
-      padding: 40px 20px;
-    }
+  section {
+    padding: 40px 20px;
+  }
 
-    .seccion {
-      background-color: #f9f9f9;
-      margin-bottom: 30px;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 1000px;
-      margin-left: auto;
-      margin-right: auto;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+  .seccion {
+    background-color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 
-    .seccion h2 {
-      color: #2a5c2a;
-      margin-bottom: 10px;
-    }
+  .seccion h2 {
+    color: #2a5c2a;
+    margin-bottom: 10px;
+  }
 
-    .btn-contacto {
-      display: inline-block;
-      background-color: #2a5c2a;
-      color: white;
-      padding: 10px 20px;
-      margin-top: 10px;
-      text-decoration: none;
-      border-radius: 5px;
-    }
+  .btn-contacto {
+    display: inline-block;
+    background-color: #2a5c2a;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+  }
 
-    .btn-contacto:hover {
-      background-color: #1c3f1c;
-    }
+  .btn-contacto:hover {
+    background-color: #1c3f1c;
+  }
 
-    .mapa-contenedor {
-      max-width: 1000px;
-      margin: 0 auto;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>DigiAgro</h1>
-    <p>🚜 Optimizamos procesos para un agro más ágil y digital.</p>
-  </header>
-
-  <nav>
-    <a href="#servicios">Servicios</a>
-    <a href="#nosotros">Nosotros</a>
-    <a href="#contacto">Contacto</a>
-    <a href="#mapa">Mapa del Agro</a>
-  </nav>
-
-  <section id="servicios" class="seccion">
-    <h2>Servicios</h2>
-    <ul>
-      <li>Automatización de trámites en SENASA</li>
-      <li>Análisis financieros</li>
-      <li>Apps a su propia medida</li>
-      <li>Informes de precios internacionales</li>
-      <li>Estadísticas de Importación</li>
-    </ul>
-  </section>
-
-  <section id="nosotros" class="seccion">
-    <h2>Nosotros</h2>
-    <p>DigiAgro es una startup enfocada en la transformación digital del agro. Combinamos experiencia en operaciones con tecnología para ofrecer soluciones simples, eficientes y accesibles.</p>
-  </section>
-
-  <section id="contacto" class="seccion">
-    <h2>Contacto</h2>
-    <p>¿Querés más información o tenés una consulta? Completá nuestro formulario y te responderemos a la brevedad:</p>
-    <a href="https://forms.office.com/" target="_blank" class="btn-contacto">📋 Ir al formulario de contacto</a>
-  </section>
-
-  <section id="mapa" class="seccion">
-    <h2>🗺️ Mapa del Agro</h2>
-    <p>Visualizá los puntos clave del agro digital: distribuidores, zonas productivas y más.</p>
-    <div class="mapa-contenedor">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=..." <!-- Reemplazá por el mapa real -->
-        width="100%"
-        height="450"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
-  </section>
-</body>
-</html>
-
+  .mapa-contenedor {
+    max-width: 1000px;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+</style>
