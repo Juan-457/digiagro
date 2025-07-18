@@ -16,14 +16,33 @@
     }
 
     .contenido {
-  background-color: transparent;
-}
+      background-color: transparent;
+    }
 
     header {
       background-color: rgba(255, 102, 0, 0.85);
       padding: 20px;
       text-align: center;
       color: white;
+      animation: fadeInHeader 2s ease-out;
+    }
+
+    @keyframes fadeInHeader {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      height: 60px;
+      vertical-align: middle;
+      margin-right: 15px;
+      animation: bounceIn 1.5s ease-in-out;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
     }
 
     nav {
@@ -48,13 +67,19 @@
     }
 
     .seccion {
-  max-width: 700px;               /* o el valor que prefieras */
-  margin: 60px auto;              /* esto centra horizontalmente */
-  background-color: rgba(255, 255, 255, 0.90);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+      max-width: 700px;
+      margin: 60px auto;
+      background-color: rgba(255, 255, 255, 0.90);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      animation: fadeInContent 2s ease;
+    }
+
+    @keyframes fadeInContent {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     .seccion h2 {
       color: #2a5c2a;
@@ -64,7 +89,8 @@
 <body>
   <div class="contenido">
     <header>
-      <h1>DigiAgro</h1>
+      <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo">
+      <h1 style="display: inline;">DigiAgro</h1>
       <p>🚜Optimizamos procesos para un agro más ágil y digital.🚜</p>
     </header>
 
@@ -78,9 +104,9 @@
 
     <section class="seccion">
       <h2>💡 Bienvenido a DigiAgro</h2>
-    <p>En DigiAgro conectamos el agro con la tecnología para que tomes mejores decisiones, automatices tus procesos y optimices cada etapa de tu trabajo.</p>
-    <p>Somos una startup enfocada en transformar la gestión agrícola con herramientas digitales simples, efectivas y a tu medida.</p>
-    <p>🌱 Explorá nuestras secciones para descubrir cómo podemos ayudarte.</p>
+      <p>En DigiAgro conectamos el agro con la tecnología para que tomes mejores decisiones, automatices tus procesos y optimices cada etapa de tu trabajo.</p>
+      <p>Somos una startup enfocada en transformar la gestión agrícola con herramientas digitales simples, efectivas y a tu medida.</p>
+      <p>🌱 Explorá nuestras secciones para descubrir cómo podemos ayudarte.</p>
     </section>
   </div>
 </body>
