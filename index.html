@@ -33,27 +33,15 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .logo {
-      height: 60px;
-      vertical-align: middle;
-      margin-right: 15px;
-      animation: bounceIn 1.5s ease-in-out;
-    }
-
-    @keyframes bounceIn {
-      0% { transform: scale(0.8); opacity: 0; }
-      50% { transform: scale(1.1); opacity: 1; }
-      100% { transform: scale(1); }
-    }
-
-    /* Logo mini sticky */
+    /* Logo sticky (más grande ahora) */
     .logo-sticky {
       position: fixed;
       top: 10px;
       left: 10px;
-      height: 40px;
+      height: 70px; /* Aumentado */
       z-index: 999;
-      opacity: 0.8;
+      opacity: 0.9;
+      transition: transform 0.3s ease;
     }
 
     .logo-sticky:hover {
@@ -71,9 +59,9 @@
     .marquesina p {
       display: inline-block;
       padding-left: 100%;
-      animation: scrollText 12s linear infinite;
+      animation: scrollText 20s linear infinite; /* Más lento */
       font-weight: bold;
-      font-size: 16px;
+      font-size: 18px; /* Aumentado (antes era 16px) */
     }
 
     @keyframes scrollText {
@@ -123,12 +111,12 @@
   </style>
 </head>
 <body>
-  <img src="DigiAgro.png" alt="Logo Sticky" class="logo-sticky">
+  <!-- ✅ Logo visible fijo (solo este queda) -->
+  <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
 
   <div class="contenido">
     <header>
-      <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo">
-      <h1 style="display: inline;">DigiAgro</h1>
+      <h1>DigiAgro</h1>
       <div class="marquesina">
         <p>🚜 Optimizamos procesos para un agro más ágil y digital. 🚜</p>
       </div>
@@ -151,3 +139,4 @@
   </div>
 </body>
 </html>
+
