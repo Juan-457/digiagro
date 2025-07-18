@@ -15,15 +15,58 @@
       background-repeat: no-repeat;
     }
 
-     .contenido {
-  background-color: transparent;
-}
+    .contenido {
+      background-color: transparent;
+    }
 
     header {
       background-color: rgba(255, 102, 0, 0.95);
       padding: 20px;
       text-align: center;
       color: white;
+      animation: fadeInHeader 2s ease-out;
+      position: relative;
+    }
+
+    @keyframes fadeInHeader {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ✅ Texto desplazable */
+    .marquesina {
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+    }
+
+    .marquesina p {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scrollText 20s linear infinite;
+      font-weight: bold;
+      font-size: 21px;
+    }
+
+    @keyframes scrollText {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* ✅ Logo sticky abajo a la derecha */
+    .logo-sticky {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      height: 70px;
+      opacity: 0.6;
+      z-index: 999;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .logo-sticky:hover {
+      opacity: 1;
+      transform: scale(1.05);
     }
 
     nav {
@@ -48,12 +91,18 @@
     }
 
     .seccion {
-      background-color: rgba(255, 255, 255, 0.80);
+      background-color: rgba(255, 255, 255, 0.85);
       margin: 60px auto;
       padding: 20px;
       border-radius: 10px;
       max-width: 1000px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      animation: fadeInContent 2s ease;
+    }
+
+    @keyframes fadeInContent {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .seccion h2 {
@@ -62,10 +111,16 @@
   </style>
 </head>
 <body>
+
+  <!-- ✅ Logo visible fijo -->
+  <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
+
   <div class="contenido">
     <header>
       <h1>DigiAgro</h1>
-      <p>🚜 Optimizamos procesos para un agro más ágil y digital.🚜</p>
+      <div class="marquesina">
+        <p>🚜 Optimizamos procesos para un agro más ágil y digital. 🚜</p>
+      </div>
     </header>
 
     <nav>
@@ -78,11 +133,12 @@
 
     <section class="seccion">
       <h2>Nosotros</h2>
-<p>DigiAgro es una startup enfocada en la digitalización del agro.</p>
-<p>Combinamos conocimiento operativo con tecnología para ofrecer soluciones simples, eficientes y accesibles.</p>
-<p>Nuestro propósito es transformar procesos clave de la cadena agroindustrial, ayudando a productores, distribuidores y empresas a tomar decisiones más rápidas e inteligentes.</p>
-<p>Creemos que la innovación es el camino para un agro más ágil, conectado y sostenible.</p>
+      <p>DigiAgro es una startup enfocada en la digitalización del agro.</p>
+      <p>Combinamos conocimiento operativo con tecnología para ofrecer soluciones simples, eficientes y accesibles.</p>
+      <p>Nuestro propósito es transformar procesos clave de la cadena agroindustrial, ayudando a productores, distribuidores y empresas a tomar decisiones más rápidas e inteligentes.</p>
+      <p>Creemos que la innovación es el camino para un agro más ágil, conectado y sostenible.</p>
     </section>
   </div>
 </body>
 </html>
+
