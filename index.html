@@ -35,12 +35,13 @@
       z-index: -1;
     }
 
-    header h1, .marquesina {
+    header h1 {
       position: relative;
       z-index: 1;
       text-align: center;
       color: white;
       animation: fadeInHeader 2s ease-out;
+      margin-top: 40px;
     }
 
     @keyframes fadeInHeader {
@@ -48,7 +49,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ✅ Logo sticky abajo a la derecha */
     .logo-sticky {
       position: fixed;
       bottom: 10px;
@@ -64,25 +64,24 @@
       transform: scale(1.05);
     }
 
-    /* ✅ Texto desplazable más grande */
+    /* ✅ Marquesina fija abajo y centrada */
     .marquesina {
-      overflow: hidden;
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
       white-space: nowrap;
-      box-sizing: border-box;
-      margin-top: 10px;
+      z-index: 2;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 5px 15px;
+      border-radius: 5px;
     }
 
     .marquesina p {
-      display: inline-block;
-      padding-left: 100%;
-      animation: scrollText 20s linear infinite;
+      margin: 0;
       font-weight: bold;
       font-size: 21px;
-    }
-
-    @keyframes scrollText {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
+      color: white;
     }
 
     nav {
@@ -162,3 +161,4 @@
   </div>
 </body>
 </html>
+
