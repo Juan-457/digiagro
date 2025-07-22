@@ -20,12 +20,28 @@
     }
 
     header {
-      background-color: rgba(255, 102, 0, 0.95);
-      padding: 20px;
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+    }
+
+    header video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    header h1 {
+      position: relative;
+      z-index: 1;
       text-align: center;
       color: white;
       animation: fadeInHeader 2s ease-out;
-      position: relative;
+      margin-top: 40px;
     }
 
     @keyframes fadeInHeader {
@@ -33,27 +49,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ✅ Texto desplazable */
-    .marquesina {
-      overflow: hidden;
-      white-space: nowrap;
-      box-sizing: border-box;
-    }
-
-    .marquesina p {
-      display: inline-block;
-      padding-left: 100%;
-      animation: scrollText 20s linear infinite;
-      font-weight: bold;
-      font-size: 21px;
-    }
-
-    @keyframes scrollText {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
-
-    /* ✅ Logo sticky abajo a la derecha */
     .logo-sticky {
       position: fixed;
       bottom: 10px;
@@ -67,6 +62,26 @@
     .logo-sticky:hover {
       opacity: 1;
       transform: scale(1.05);
+    }
+
+    /* ✅ Marquesina fija abajo y centrada */
+    .marquesina {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      z-index: 2;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 5px 15px;
+      border-radius: 5px;
+    }
+
+    .marquesina p {
+      margin: 0;
+      font-weight: bold;
+      font-size: 21px;
+      color: white;
     }
 
     nav {
@@ -128,6 +143,13 @@
 
   <div class="contenido">
     <header>
+      <!-- 🎥 Video de fondo -->
+      <video autoplay muted loop playsinline>
+        <source src="productor.mp4" type="video/mp4">
+        Tu navegador no soporta videos HTML5.
+      </video>
+
+      <!-- 🧾 Contenido encima del video -->
       <h1>DigiAgro</h1>
       <div class="marquesina">
         <p>🚜 Optimizamos procesos para un agro más ágil y digital. 🚜</p>
@@ -149,10 +171,7 @@
       <div class="mapa-contenedor">
         <iframe 
           title="MAPA DEL AGRO" 
-          width="100%" 
-          height="1400" 
           src="https://app.powerbi.com/view?r=eyJrIjoiNmYwODIxMzMtMWNmOC00Y2JmLTk0M2YtZTRkMDQ4YzJjMjQ4IiwidCI6IjUyNDM4MzJlLTVhODEtNGYzZC05NjU2LWQ5ZjViODM2NGEyMyIsImMiOjR9" 
-          frameborder="0" 
           allowFullScreen="true">
         </iframe>
       </div>
@@ -160,4 +179,3 @@
   </div>
 </body>
 </html>
-
