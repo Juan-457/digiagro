@@ -42,6 +42,7 @@
       color: white;
       animation: fadeInHeader 2s ease-out;
       margin-top: 40px;
+      font-size: 36px; /* ✅ Aumentado en 5pt aproximadamente */
     }
 
     @keyframes fadeInHeader {
@@ -64,7 +65,6 @@
       transform: scale(1.05);
     }
 
-    /* ✅ Marquesina fija abajo y centrada */
     .marquesina {
       position: absolute;
       bottom: 10px;
@@ -85,10 +85,10 @@
     }
 
     nav {
-  background-color: #6b4f2c; /* Marrón cálido */
-  padding: 10px;
-  text-align: center;
-}
+      background-color: #6b4f2c;
+      padding: 10px;
+      text-align: center;
+    }
 
     nav a {
       color: white;
@@ -102,12 +102,15 @@
     }
 
     section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 420px); /* 100vh menos header + nav */
       padding: 40px 20px;
     }
 
     .seccion {
       max-width: 700px;
-      margin: 60px auto;
       background-color: rgba(255, 255, 255, 0.85);
       padding: 20px;
       border-radius: 10px;
@@ -126,18 +129,14 @@
   </style>
 </head>
 <body>
-  <!-- ✅ Logo fijo abajo a la derecha -->
   <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
 
   <div class="contenido">
     <header>
-      <!-- 🎥 Video de fondo -->
       <video autoplay muted loop playsinline>
         <source src="productor.mp4" type="video/mp4">
         Tu navegador no soporta videos HTML5.
       </video>
-
-      <!-- 🧾 Contenido encima del video -->
       <h1>DigiAgro</h1>
       <div class="marquesina">
         <p>🚜 Optimizamos procesos para un agro más ágil y digital. 🚜</p>
@@ -152,14 +151,15 @@
       <a href="mapa.html">Mapa del Agro</a>
     </nav>
 
-    <section class="seccion">
-       <h2>💡 Bienvenido a DigiAgro  💡</h2>
-  <p>En <strong>DigiAgro</strong> conectamos el agro con la tecnología para que tomes mejores decisiones, automatices tus procesos y optimices cada etapa de tu trabajo.</p>
-  <p>Somos una <strong>startup enfocada en transformar la gestión agrícola</strong> con herramientas digitales simples, efectivas y a tu medida.</p>
-  <p>🌱 Explorá nuestras secciones para descubrir cómo podemos ayudarte.</p>
-  <p>✨ Porque en DigiAgro <strong>creamos soluciones digitales que hacen tu vida más fácil</strong>, para que puedas enfocarte en lo que realmente importa: Tu negocio.</p>
+    <section>
+      <div class="seccion">
+        <h2>💡 Bienvenido a DigiAgro  💡</h2>
+        <p>En <strong>DigiAgro</strong> conectamos el agro con la tecnología para que tomes mejores decisiones, automatices tus procesos y optimices cada etapa de tu trabajo.</p>
+        <p>Somos una <strong>startup enfocada en transformar la gestión agrícola</strong> con herramientas digitales simples, efectivas y a tu medida.</p>
+        <p>🌱 Explorá nuestras secciones para descubrir cómo podemos ayudarte.</p>
+        <p>✨ Porque en DigiAgro <strong>creamos soluciones digitales que hacen tu vida más fácil</strong>, para que puedas enfocarte en lo que realmente importa: Tu negocio.</p>
+      </div>
     </section>
   </div>
 </body>
 </html>
-
