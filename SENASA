@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SENASA | DigiAgro</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+    .container {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #2a5c2a;
+    }
+    iframe {
+      margin-top: 30px;
+      width: 90%;
+      max-width: 800px;
+      height: 450px;
+      border: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📄 Videos tutoriales SENASA</h1>
+    <p>Aprendé cómo utilizar DigiAgro para realizar trámites con SENASA paso a paso.</p>
+
+    <!-- 🔽 Pegá aquí tu iframe de YouTube 🔽 -->
+    <iframe src="https://www.youtube.com/embed/TU-CODIGO-AQUI"
+      title="Video SENASA DigiAgro"
+      allowfullscreen>
+    </iframe>
+  </div>
+</body>
+</html>
