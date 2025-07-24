@@ -102,30 +102,59 @@
     }
 
     section {
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1100px;
+      gap: 30px;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .texto {
+      flex: 1 1 400px;
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .texto h2 {
+      color: #2a5c2a;
+    }
+
+    .texto ul {
+      padding-left: 20px;
+    }
+
+    .videos {
+      flex: 1 1 300px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
+      gap: 20px;
     }
 
     .video-container {
-      max-width: 800px;
-      margin-bottom: 40px;
       background-color: rgba(255, 255, 255, 0.85);
-      padding: 20px;
+      padding: 15px;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
-    .video-container h2 {
-      font-size: 20px;
+    .video-container h3 {
+      font-size: 16px;
       color: #2a5c2a;
       margin-bottom: 10px;
     }
 
     iframe {
       width: 100%;
-      height: 400px;
+      height: 180px;
       border: none;
       border-radius: 8px;
     }
@@ -155,16 +184,34 @@
     </nav>
 
     <section>
-      <div class="video-container">
-        <h2>📦 Nunca fue tan fácil informar un despacho como con DigiAgro</h2>
-        <iframe src="https://www.youtube.com/embed/6nw4V_pHQus" allowfullscreen></iframe>
-      </div>
+      <div class="flex-container">
 
-      <div class="video-container">
-        <h2>🏷️ Consultar los stocks de SENASA por depósito</h2>
-        <iframe src="https://www.youtube.com/embed/4G8PF9yNvFA" allowfullscreen></iframe>
+        <div class="texto">
+          <h2>📋 Informes SENASA fáciles y rápidos</h2>
+          <p>En DigiAgro desarrollamos soluciones que simplifican la gestión con SENASA:</p>
+          <ul>
+            <li>✅ Informá tus despachos en pocos clics.</li>
+            <li>✅ Consultá tus stocks por depósito de forma automática.</li>
+            <li>✅ Todo integrado y sin complicaciones.</li>
+          </ul>
+          <p>Con nuestras herramientas digitales, la gestión agropecuaria nunca fue tan eficiente.</p>
+        </div>
+
+        <div class="videos">
+          <div class="video-container">
+            <h3>🚚 Nunca fue tan facil Informar un despacho como con DigiAgro</h3>
+            <iframe src="https://www.youtube.com/embed/6nw4V_pHQus" allowfullscreen></iframe>
+          </div>
+
+          <div class="video-container">
+            <h3>📦 Consultar stocks de SENASA por depósito en segundos</h3>
+            <iframe src="https://www.youtube.com/embed/4G8PF9yNvFA" allowfullscreen></iframe>
+          </div>
+        </div>
+
       </div>
     </section>
   </div>
 </body>
 </html>
+
