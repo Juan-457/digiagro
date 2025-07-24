@@ -3,40 +3,168 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SENASA | DigiAgro</title>
+  <title>DigiAgro | SENASA</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
+      background-image: url('fondo.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
     }
-    .container {
-      padding: 40px 20px;
+
+    .contenido {
+      background-color: transparent;
+    }
+
+    header {
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+    }
+
+    header video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    header h1 {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: white;
+      animation: fadeInHeader 2s ease-out;
+      margin-top: 40px;
+      font-size: 50px;
+    }
+
+    @keyframes fadeInHeader {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo-sticky {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      height: 70px;
+      opacity: 0.6;
+      z-index: 999;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .logo-sticky:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    .marquesina {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      z-index: 2;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 5px 15px;
+      border-radius: 5px;
+    }
+
+    .marquesina p {
+      margin: 0;
+      font-weight: bold;
+      font-size: 21px;
+      color: white;
+    }
+
+    nav {
+      background-color: #6b4f2c;
+      padding: 10px;
       text-align: center;
     }
-    h1 {
-      color: #2a5c2a;
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
     }
-    iframe {
-      margin-top: 30px;
-      width: 90%;
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .video-container {
       max-width: 800px;
-      height: 450px;
+      margin-bottom: 40px;
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-container h2 {
+      font-size: 20px;
+      color: #2a5c2a;
+      margin-bottom: 10px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 400px;
       border: none;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>📄 Videos tutoriales SENASA</h1>
-    <p>Aprendé cómo utilizar DigiAgro para realizar trámites con SENASA paso a paso.</p>
+  <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
 
-    <!-- 🔽 Pegá aquí tu iframe de YouTube 🔽 -->
-    <iframe src="https://www.youtube.com/embed/4G8PF9yNvFA"
-      title="Video SENASA DigiAgro"
-      allowfullscreen>
-    </iframe>
+  <div class="contenido">
+    <header>
+      <video autoplay muted loop playsinline>
+        <source src="productor.mp4" type="video/mp4">
+        Tu navegador no soporta videos HTML5.
+      </video>
+      <h1>DigiAgro</h1>
+      <div class="marquesina">
+        <p>🚜 Optimizamos procesos para un agro más ágil y digital. 🚜</p>
+      </div>
+    </header>
+
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="senasa.html">SENASA</a>
+    </nav>
+
+    <section>
+      <div class="video-container">
+        <h2>📦 Nunca fue tan fácil informar un despacho como con DigiAgro</h2>
+        <iframe src="https://www.youtube.com/embed/6nw4V_pHQus" allowfullscreen></iframe>
+      </div>
+
+      <div class="video-container">
+        <h2>🏷️ Consultar los stocks de SENASA por depósito</h2>
+        <iframe src="https://www.youtube.com/embed/4G8PF9yNvFA" allowfullscreen></iframe>
+      </div>
+    </section>
   </div>
 </body>
 </html>
