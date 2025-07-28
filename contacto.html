@@ -23,6 +23,11 @@
       position: relative;
       height: 300px;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
     }
 
     header video {
@@ -38,10 +43,11 @@
     header h1 {
       position: relative;
       z-index: 1;
-      text-align: center;
       color: white;
       animation: fadeInHeader 2s ease-out;
       margin-top: 40px;
+      font-size: 50px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
     }
 
     @keyframes fadeInHeader {
@@ -64,7 +70,6 @@
       transform: scale(1.05);
     }
 
-    /* ✅ Marquesina fija abajo y centrada */
     .marquesina {
       position: absolute;
       bottom: 10px;
@@ -84,11 +89,11 @@
       color: white;
     }
 
-      nav {
-  background-color: #6b4f2c; /* Marrón cálido */
-  padding: 10px;
-  text-align: center;
-}
+    nav {
+      background-color: #6b4f2c;
+      padding: 10px;
+      text-align: center;
+    }
 
     nav a {
       color: white;
@@ -137,22 +142,35 @@
     .btn-contacto:hover {
       background-color: #1c3f1c;
     }
+
+    /* 📱 Ajustes mobile */
+    @media (max-width: 600px) {
+      header {
+        height: 380px;
+      }
+
+      header h1 {
+        font-size: 36px;
+        margin-top: 60px;
+      }
+
+      .marquesina p {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- ✅ Logo fijo abajo a la derecha -->
   <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
 
   <div class="contenido">
     <header>
-      <!-- 🎥 Video de fondo -->
       <video autoplay muted loop playsinline>
         <source src="productor.mp4" type="video/mp4">
         Tu navegador no soporta videos HTML5.
       </video>
 
-      <!-- 🧾 Contenido encima del video -->
       <h1>DigiAgro</h1>
       <div class="marquesina">
         <p>🚜 Optimizamos procesos para un agro más ágil y digital. 🚜</p>
@@ -170,10 +188,11 @@
     <section class="seccion">
       <h2>Contacto</h2>
       <p>¿Querés más información o tenés una consulta?</p>
-      <p>📨Escribinos a Info@digiagro.com.ar</p>
-      <p>Tambien podes contactarnos directo a nuestro WhatsApp y rápidamente te responderemos:</p>
+      <p>📨 Escribinos a <strong>info@digiagro.com.ar</strong></p>
+      <p>También podés contactarnos directo a nuestro WhatsApp y rápidamente te responderemos:</p>
       <a href="https://wa.me/5491151188747?text=Hola%2C+quiero+más+información+sobre+los+servicios+de+Digiagro" target="_blank" class="btn-contacto">💬 Escribinos por WhatsApp</a>
     </section>
   </div>
 </body>
 </html>
+
