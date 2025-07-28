@@ -23,6 +23,11 @@
       position: relative;
       height: 300px;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
     }
 
     header video {
@@ -38,11 +43,11 @@
     header h1 {
       position: relative;
       z-index: 1;
-      text-align: center;
       color: white;
       animation: fadeInHeader 2s ease-out;
       margin-top: 40px;
       font-size: 50px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
     }
 
     @keyframes fadeInHeader {
@@ -158,6 +163,22 @@
       border: none;
       border-radius: 8px;
     }
+
+    /* 📱 Ajustes mobile */
+    @media (max-width: 600px) {
+      header {
+        height: 380px;
+      }
+
+      header h1 {
+        font-size: 36px;
+        margin-top: 60px;
+      }
+
+      .marquesina p {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -192,15 +213,15 @@
           <ul>
             <li>✅ Informá tus despachos en pocos clics.</li>
             <li>✅ Consultá tus stocks por depósito de forma automática.</li>
-            <li>✅ Recibí envios de tus proveedores o devoluciones</li>
+            <li>✅ Recibí envíos de tus proveedores o devoluciones</li>
             <li>✅ Adaptado para tus necesidades de negocios.</li>
           </ul>
-          <p>Con nuestras herramientas digitales, la gestión agropecuaria nunca fue tan facil y eficiente.</p>
+          <p>Con nuestras herramientas digitales, la gestión agropecuaria nunca fue tan fácil y eficiente.</p>
         </div>
 
         <div class="videos">
           <div class="video-container">
-            <h3>🚚 Nunca fue tan facil Informar un despacho como con DigiAgro</h3>
+            <h3>🚚 Nunca fue tan fácil informar un despacho como con DigiAgro</h3>
             <iframe src="https://www.youtube.com/embed/6nw4V_pHQus" allowfullscreen></iframe>
           </div>
 
@@ -215,4 +236,5 @@
   </div>
 </body>
 </html>
+
 
