@@ -23,6 +23,11 @@
       position: relative;
       height: 300px;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
     }
 
     header video {
@@ -38,7 +43,6 @@
     header h1 {
       position: relative;
       z-index: 1;
-      text-align: center;
       color: white;
       animation: fadeInHeader 2s ease-out;
       margin-top: 40px;
@@ -126,6 +130,21 @@
     .seccion h2 {
       color: #2a5c2a;
     }
+
+    @media (max-width: 600px) {
+      header {
+        height: 380px;
+      }
+
+      header h1 {
+        font-size: 36px;
+        margin-top: 60px;
+      }
+
+      .marquesina p {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -143,17 +162,17 @@
       </div>
     </header>
 
-   <nav>
-  <a href="index.html">Inicio</a>
-  <a href="servicios.html">Servicios</a>
-  <a href="nosotros.html">Nosotros</a>
-  <a href="contacto.html">Contacto</a>
-  <a href="senasa.html">SENASA</a>
-  </nav>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="senasa.html">SENASA</a>
+    </nav>
 
     <section>
       <div class="seccion">
-        <h2>💡 Bienvenido a DigiAgro  💡</h2>
+        <h2>💡 Bienvenido a DigiAgro 💡</h2>
         <p>En <strong>DigiAgro</strong> conectamos el agro con la tecnología para que tomes mejores decisiones, automatices tus procesos y optimices cada etapa de tu trabajo.</p>
         <p>Somos una <strong>startup enfocada en transformar la gestión agrícola</strong> con herramientas digitales simples, efectivas y a tu medida.</p>
         <p>🌱 Explorá nuestras secciones para descubrir cómo podemos ayudarte.</p>
@@ -163,4 +182,3 @@
   </div>
 </body>
 </html>
-
