@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+  <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -15,9 +16,7 @@
       background-repeat: no-repeat;
     }
 
-    .contenido {
-      background-color: transparent;
-    }
+    .contenido { background-color: transparent; }
 
     header {
       position: relative;
@@ -32,17 +31,14 @@
 
     header video {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       object-fit: cover;
       z-index: -1;
     }
 
     header h1 {
-      position: relative;
-      z-index: 1;
+      position: relative; z-index: 1;
       color: white;
       animation: fadeInHeader 2s ease-out;
       margin-top: 40px;
@@ -51,115 +47,82 @@
 
     @keyframes fadeInHeader {
       from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     .logo-sticky {
       position: fixed;
-      bottom: 10px;
-      right: 10px;
+      bottom: 10px; right: 10px;
       height: 70px;
       opacity: 0.6;
       z-index: 999;
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-    .logo-sticky:hover {
-      opacity: 1;
-      transform: scale(1.05);
-    }
+    .logo-sticky:hover { opacity: 1; transform: scale(1.05); }
 
     .marquesina {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      z-index: 2;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 5px 15px;
-      border-radius: 5px;
+      position: absolute; bottom: 10px; left: 50%;
+      transform: translateX(-50%); white-space: nowrap; z-index: 2;
+      background-color: rgba(0,0,0,0.5);
+      padding: 5px 15px; border-radius: 5px;
     }
 
-    .marquesina p {
-      margin: 0;
-      font-weight: bold;
-      font-size: 21px;
-      color: white;
-    }
+    .marquesina p { margin: 0; font-weight: bold; font-size: 21px; color: white; }
 
     nav {
       background-color: #6b4f2c;
-      padding: 10px;
-      text-align: center;
+      padding: 10px; text-align: center;
     }
 
     nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
+      color: white; margin: 0 15px; text-decoration: none; font-weight: bold;
     }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
+    nav a:hover { text-decoration: underline; }
 
     section {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+      display: flex; justify-content: center; align-items: center; flex-direction: column;
       padding: 40px 20px;
     }
 
     .seccion {
       max-width: 700px;
-      background-color: rgba(255, 255, 255, 0.85);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: rgba(255,255,255,0.85);
+      padding: 20px; border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       animation: fadeInContent 2s ease;
     }
 
     @keyframes fadeInContent {
       from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    .seccion h2 {
-      color: #2a5c2a;
-    }
+    .seccion h2 { color: #2a5c2a; }
 
     @media (max-width: 600px) {
-      header {
-        height: 380px;
-      }
-
-      header h1 {
-        font-size: 36px;
-        margin-top: 60px;
-      }
-
-      .marquesina p {
-        font-size: 16px;
-      }
+      header { height: 380px; }
+      header h1 { font-size: 36px; margin-top: 60px; }
+      .marquesina p { font-size: 16px; }
     }
 
-    /* Animaciones para el botón del chat */
+    /* Animación para destacar el botón del chat (mantengo selectores genéricos) */
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(42, 92, 42, 0.6); }
-      70% { box-shadow: 0 0 0 15px rgba(42, 92, 42, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(42, 92, 42, 0); }
+      0%   { box-shadow: 0 0 0 0 rgba(42,92,42,0.6); }
+      70%  { box-shadow: 0 0 0 15px rgba(42,92,42,0); }
+      100% { box-shadow: 0 0 0 0 rgba(42,92,42,0); }
     }
-
-    .n8n-chat-button {
+    /* Intentamos cubrir el botón del widget */
+    .n8n-chat-button,
+    .chat-widget-button,
+    [data-chat-widget-button] {
       animation: pulse 2s infinite;
       transition: transform 0.3s ease, background-color 0.3s ease !important;
     }
-
-    .n8n-chat-button:hover {
-      background-color: #4CAF50 !important; /* verde más brillante */
+    .n8n-chat-button:hover,
+    .chat-widget-button:hover,
+    [data-chat-widget-button]:hover {
+      background-color: #4CAF50 !important;
       transform: scale(1.15) !important;
     }
   </style>
@@ -198,21 +161,31 @@
     </section>
   </div>
 
-  <!-- N8N Chat Widget -->
-  <script src="https://unpkg.com/@n8n/chat@latest/dist/chat.bundle.js"></script>
+  <!-- =======================
+       WIDGET CONFIG (tipo "nocodeveloper")
+       ======================= -->
   <script>
-    window.addEventListener('load', function () {
-      window.N8nChat.init({
-        webhookUrl: 'https://jjg.app.n8n.cloud/webhook/f406671e-c954-4691-b39a-66c90aa2f103/chat',
-        mode: 'window',
-        defaultOpen: false,
-        closeOnEscape: true,
-        theme: {
-          buttonBackgroundColor: '#2a5c2a',
-          buttonTextColor: '#ffffff'
-        }
-      });
-    });
+    window.ChatWidgetConfig = {
+      webhook: {
+        url: 'https://jjg.app.n8n.cloud/webhook/f406671e-c954-4691-b39a-66c90aa2f103/chat',
+        route: 'general'
+      },
+      branding: {
+        logo: 'DigiAgro.png',               // usa tu logo local (o URL absoluta)
+        name: 'DigiAgro',
+        welcomeText: 'Hola 👋, ¿cómo puedo ayudarte?',
+        responseTimeText: 'respondemos rápidamente'
+      },
+      style: {
+        primaryColor: '#854fff',
+        secondaryColor: '#6b3fd4',
+        position: 'right',                  // 'right' o 'left'
+        backgroundColor: '#ffffff',
+        fontColor: '#333333'
+      }
+    };
   </script>
+  <script src="https://nocodeveloper.site/chat.js"></script>
 </body>
 </html>
+
