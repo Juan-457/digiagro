@@ -145,59 +145,6 @@
         font-size: 16px;
       }
     }
-
-    /* --- CHATBOT --- */
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(42, 92, 42, 0.6); }
-      70% { box-shadow: 0 0 0 15px rgba(42, 92, 42, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(42, 92, 42, 0); }
-    }
-
-    #chatbot-toggle {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;   /* 👈 ahora en la izquierda */
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background-color: #2a5c2a;
-      color: white;
-      border: none;
-      font-size: 28px;
-      cursor: pointer;
-      z-index: 1001;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-
-      animation: pulse 2s infinite; /* 👈 efecto glow */
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-
-    #chatbot-toggle:hover {
-      background-color: #4CAF50;  /* verde más brillante */
-      transform: scale(1.15);
-    }
-
-    #chatbot-container {
-      position: fixed;
-      bottom: 90px;
-      left: 20px;   /* 👈 también a la izquierda */
-      width: 350px;
-      height: 500px;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      display: none;
-      z-index: 1000;
-    }
-
-    #chatbot-container iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
   </style>
 </head>
 <body>
@@ -234,20 +181,21 @@
     </section>
   </div>
 
-  <!-- CHATBOT -->
-  <div id="chatbot-container">
-    <iframe src="https://jjg.app.n8n.cloud/webhook/f406671e-c954-4691-b39a-66c90aa2f103/chat"></iframe>
-  </div>
-  <button id="chatbot-toggle">💬</button>
-
+  <!-- N8N Chat Widget -->
+  <script src="https://unpkg.com/@n8n/chat@latest/dist/chat.bundle.js"></script>
   <script>
-    const toggleBtn = document.getElementById("chatbot-toggle");
-    const chatbot = document.getElementById("chatbot-container");
-
-    toggleBtn.addEventListener("click", () => {
-      chatbot.style.display = chatbot.style.display === "none" ? "block" : "none";
+    window.addEventListener('load', function () {
+      window.N8nChat.init({
+        webhookUrl: 'https://jjg.app.n8n.cloud/webhook/f406671e-c954-4691-b39a-66c90aa2f103/chat',
+        mode: 'window',              // "window" = burbuja flotante + panel
+        defaultOpen: false,          // inicia minimizado
+        closeOnEscape: true,
+        theme: {
+          buttonBackgroundColor: '#2a5c2a',
+          buttonTextColor: '#ffffff'
+        }
+      });
     });
   </script>
 </body>
 </html>
-
