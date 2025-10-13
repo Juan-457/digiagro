@@ -131,30 +131,11 @@
     </section>
   </div>
 
-<!-- 1) Cargar la librería -->
-<script defer src="https://unpkg.com/@n8n/chat@latest/dist/chat.bundle.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<script type="module">
+	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
-<!-- 2) Inicializar el chat cuando la página está lista -->
-<script>
-  window.addEventListener('load', function () {
-    createChat({
-      webhookUrl: 'https://jjg.app.n8n.cloud/webhook/f406671e-c954-4691-b39a-66c90aa2f103/chat',
-      webhookConfig: { method: 'POST', headers: {} },
-      mode: 'window',                 // botón flotante/ventana
-      loadPreviousSession: true,
-      showWelcomeScreen: false,
-      defaultLanguage: 'es',
-      initialMessages: ['¡Hola! 👋', 'Soy el asistente de DigiAgro. ¿En qué te ayudo?'],
-      i18n: {
-        es: {
-          title: '¡Hola! 👋',
-          subtitle: 'Escribinos cuando quieras, 24/7.',
-          footer: '',
-          getStarted: 'Nueva conversación',
-          inputPlaceholder: 'Escribe tu consulta...',
-        },
-      },
-      enableStreaming: false,
-    });
-  });
+	createChat({
+		webhookUrl: 'https://jjg.app.n8n.cloud/webhook/8c90edd6-52a3-4069-8afd-d97a9fd86e31/chat'
+	});
 </script>
