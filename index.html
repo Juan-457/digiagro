@@ -136,6 +136,32 @@
 	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
 	createChat({
-		webhookUrl: 'https://jjg.app.n8n.cloud/webhook/8c90edd6-52a3-4069-8afd-d97a9fd86e31/chat'
-	});
+	webhookUrl: 'https://jjg.app.n8n.cloud/webhook/8c90edd6-52a3-4069-8afd-d97a9fd86e31/chat',
+	webhookConfig: {
+		method: 'POST',
+		headers: {}
+	},
+	target: '#n8n-chat',
+	mode: 'window',
+	chatInputKey: 'chatInput',
+	chatSessionKey: 'sessionId',
+	loadPreviousSession: true,
+	metadata: {},
+	showWelcomeScreen: false,
+	defaultLanguage: 'en',
+	initialMessages: [
+		'HOLA! 👋',
+		'Mi nombre es DIGIBOT en que te puedo ayudar hoy?'
+	],
+	i18n: {
+		en: {
+			title: 'Hola! 👋',
+			subtitle: "comienza un chat cuando lo necesites.",
+			footer: '',
+			getStarted: 'New Conversation',
+			inputPlaceholder: 'Escriba su consulta',
+		},
+	},
+	enableStreaming: false,
+});
 </script>
