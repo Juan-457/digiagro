@@ -131,66 +131,30 @@
     </section>
   </div>
 
-  <!-- Raíz opcional por si el script lo usa -->
-  <div id="chat-widget-root"></div>
+<!-- 1) Cargar la librería -->
+<script defer src="https://unpkg.com/@n8n/chat@latest/dist/chat.bundle.js"></script>
 
-  <!-- Config del widget tipo "nocodeveloper" -->
-  <script>
-    window.ChatWidgetConfig = {
-      webhook: {
-        url: 'https://jjg.app.n8n.cloud/webhook/f406671e-c954-4691-b39a-66c90aa2f103/chat',
-        route: 'general'
+<!-- 2) Inicializar el chat cuando la página está lista -->
+<script>
+  window.addEventListener('load', function () {
+    createChat({
+      webhookUrl: 'https://jjg.app.n8n.cloud/webhook/f406671e-c954-4691-b39a-66c90aa2f103/chat',
+      webhookConfig: { method: 'POST', headers: {} },
+      mode: 'window',                 // botón flotante/ventana
+      loadPreviousSession: true,
+      showWelcomeScreen: false,
+      defaultLanguage: 'es',
+      initialMessages: ['¡Hola! 👋', 'Soy el asistente de DigiAgro. ¿En qué te ayudo?'],
+      i18n: {
+        es: {
+          title: '¡Hola! 👋',
+          subtitle: 'Escribinos cuando quieras, 24/7.',
+          footer: '',
+          getStarted: 'Nueva conversación',
+          inputPlaceholder: 'Escribe tu consulta...',
+        },
       },
-      branding: {
-        logo: 'DigiAgro.png',
-        name: 'DigiAgro',
-        welcomeText: 'Hola 👋, ¿cómo puedo ayudarte?',
-        responseTimeText: 'respondemos rápidamente'
-      },
-      style: {
-        primaryColor: '#854fff',
-        secondaryColor: '#6b3fd4',
-        position: 'right',
-        backgroundColor: '#ffffff',
-        fontColor: '#333333'
-      }
-    };
-
-    // Carga del script con fallback a @n8n/chat si no aparece el botón
-    (function() {
-      function initFallbackN8n() {
-        if (window.N8nChat) {
-          window.N8nChat.init({
-            webhookUrl: 'https://jjg.app.n8n.cloud/webhook/f406671e-c954-4691-b39a-66c90aa2f103/chat',
-            mode: 'window',
-            defaultOpen: false,
-            closeOnEscape: true,
-            theme: { buttonBackgroundColor: '#2a5c2a', buttonTextColor: '#ffffff' }
-          });
-          return;
-        }
-        var s = document.createElement('script');
-        s.src = 'https://unpkg.com/@n8n/chat@latest/dist/chat.bundle.js';
-        s.onload = function(){ window.N8nChat && initFallbackN8n(); };
-        document.head.appendChild(s);
-      }
-
-      // 1) Intento widget nocodeveloper
-      var script = document.createElement('script');
-      script.src = 'https://nocodeveloper.site/chat.js';
-      script.async = true;
-      script.onerror = function() {
-        console.warn('chat.js no cargó, activo fallback @n8n/chat');
-        initFallbackN8n();
-      };
-      document.head.appendChild(script);
-
-      // 2) Si a los 2.5s no hay botón, activamos fallback
-      setTimeout(function() {
-        var hasBtn = document.querySelector('.chat-widget-button, .n8n-chat-button, [data-chat-widget-button]');
-        if (!hasBtn) { initFallbackN8n(); }
-      }, 2500);
-    })();
-  </script>
-</body>
-</html>
+      enableStreaming: false,
+    });
+  });
+</script>
