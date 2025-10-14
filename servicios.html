@@ -61,25 +61,53 @@
     }
     .logo-sticky:hover{opacity:1; transform:scale(1.06)}
 
-    /* Navegación responsive */
+    /* ===== Navegación estilo "primera imagen" ===== */
     nav{
-      background:var(--marron); color:#fff; position:sticky; top:0; z-index:900; padding:8px 12px;
+      background:var(--marron);
+      color:#fff;
+      position:sticky; top:0; z-index:900;
+      box-shadow:0 2px 8px rgba(0,0,0,.15);
     }
     .nav-inner{
-      max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:12px;
+      max-width:1100px; margin:0 auto;
+      display:flex; align-items:center; justify-content:center;
+      padding:8px 12px; position:relative; /* para ubicar el botón */
+      gap:12px;
     }
-    .brand{font-weight:800; letter-spacing:.3px}
-    .links{display:flex; gap:18px; flex-wrap:wrap}
-    .links a{color:#fff; text-decoration:none; font-weight:700; padding:10px 8px; border-radius:10px}
-    .links a:hover{text-decoration:underline}
-    .hamburger{display:none; cursor:pointer; border:0; background:transparent; color:#fff; padding:10px; margin-right:-6px}
+    /* En desktop los enlaces van centrados y no hay brand */
+    .links{
+      display:flex; align-items:center; justify-content:center;
+      gap:28px; flex-wrap:wrap; list-style:none; padding:0; margin:0;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .links a{
+      color:#fff; text-decoration:none;
+      padding:12px 8px; border-radius:10px; white-space:nowrap;
+    }
+    .links a:hover{ text-decoration:underline }
+
+    /* Botón hamburguesa (solo móvil) */
+    .hamburger{
+      display:none; cursor:pointer; border:0; background:transparent; color:#fff;
+      padding:10px; position:absolute; right:8px; top:4px;
+    }
     .hamburger svg{width:26px; height:26px}
+
+    /* Menú móvil desplegable */
+    .mobile{
+      display:none; /* se controla por JS y media query */
+      flex-direction:column; gap:6px;
+      padding:10px 16px 14px;
+      background:var(--marron);
+      border-top:1px solid rgba(255,255,255,.15);
+    }
+    .mobile a{
+      padding:10px 0; border-radius:8px;
+    }
 
     /* Sección servicios */
     section{padding:36px 16px; display:flex; justify-content:center}
-    .wrap{
-      width:min(1100px, 100%);
-    }
+    .wrap{ width:min(1100px, 100%) }
     .intro{
       background:var(--bgCard); border-radius:var(--radius); box-shadow:var(--shadow);
       padding:clamp(16px,3.6vw,24px); text-align:center; animation:fadeInContent .7s ease both;
@@ -108,7 +136,7 @@
     }
 
     .cta-row{
-      margin-top: 22px;
+      margin-top:22px;
       display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
     }
     .btn{
@@ -118,21 +146,19 @@
       transition:transform .15s ease, box-shadow .15s ease, background-color .2s ease;
       touch-action:manipulation;
     }
-    .btn-primary{
-      background:var(--verde); color:#fff; box-shadow:0 6px 14px rgba(42,92,42,.22);
-    }
+    .btn-primary{ background:var(--verde); color:#fff; box-shadow:0 6px 14px rgba(42,92,42,.22) }
     .btn-primary:hover{ background:#1c3f1c; transform:translateY(-1px); box-shadow:0 8px 18px rgba(42,92,42,.28) }
-    .btn-outline{
-      background:#fff; color:var(--verde); border:2px solid var(--verde);
-    }
+    .btn-outline{ background:#fff; color:var(--verde); border:2px solid var(--verde) }
     .btn-outline:hover{ background:rgba(42,92,42,.06) }
 
     @keyframes fadeInContent{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-    /* Mobile-first */
+    /* ===== Mobile-first ===== */
     @media (max-width:900px){
-      .links{display:none}
+      /* En móvil: botón visible y enlaces del header ocultos; se usa el menú .mobile */
       .hamburger{display:inline-flex}
+      .nav-inner .links{display:none}
+      .mobile{display:flex}
       .grid{ grid-template-columns: 1fr 1fr }
     }
     @media (max-width:600px){
@@ -166,24 +192,26 @@
       </div>
     </header>
 
+    <!-- ===== Nav centrada (sin brand) ===== -->
     <nav>
-      <div class="nav-inner">
-        <div class="brand">DigiAgro</div>
+      <div class="nav-inner" role="navigation" aria-label="Principal">
+        <ul class="links" id="desktopLinks">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="servicios.html" aria-current="page">Servicios</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="senasa.html">SENASA</a></li>
+        </ul>
+
         <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M3 12h18M3 18h18"/>
           </svg>
         </button>
-        <div class="links" id="desktopLinks">
-          <a href="index.html">Inicio</a>
-          <a href="servicios.html" aria-current="page">Servicios</a>
-          <a href="nosotros.html">Nosotros</a>
-          <a href="contacto.html">Contacto</a>
-          <a href="senasa.html">SENASA</a>
-        </div>
       </div>
-      <!-- Menú móvil -->
-      <div class="links mobile" id="mobileMenu" hidden>
+
+      <!-- Menú móvil (plegado por JS) -->
+      <div class="mobile" id="mobileMenu" hidden>
         <a href="index.html">Inicio</a>
         <a href="servicios.html" aria-current="page">Servicios</a>
         <a href="nosotros.html">Nosotros</a>
