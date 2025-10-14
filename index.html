@@ -189,10 +189,25 @@
     createChat({
       webhookUrl: 'https://jjg.app.n8n.cloud/webhook/8c90edd6-52a3-4069-8afd-d97a9fd86e31/chat',
       webhookConfig: { method: 'POST', headers: {} },
+      target: '#n8n-chat',
       mode: 'window',
-      defaultLanguage: 'es',
+      chatInputKey: 'chatInput',
+      chatSessionKey: 'sessionId',
+      loadPreviousSession: true,
+      metadata: {},
       showWelcomeScreen: false,
+      defaultLanguage: 'es',
       initialMessages: ['¡Hola! 👋','¿En qué te puedo ayudar hoy?'],
+      i18n: {
+        es: {
+          title: 'Soy DIGIBOT 🤖',
+          subtitle: 'Estoy 24/7 para ayudarte',
+          footer: '',
+          getStarted: 'Nueva conversación',
+          inputPlaceholder: 'Escribí tu consulta',
+        },
+      },
+      enableStreaming: false,
     });
 
     // Toggle menú móvil (compatible iOS)
