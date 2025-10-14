@@ -2,175 +2,133 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contacto | DigiAgro</title>
+  <meta name="color-scheme" content="light dark" />
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-image: url('fondo.png');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
+    :root{
+      --verde:#2a5c2a;
+      --marron:#6b4f2c;
+      --bgCard:rgba(255,255,255,.88);
+      --shadow:0 4px 10px rgba(0,0,0,.12);
+      --radius:14px;
+      --safe: env(safe-area-inset-bottom);
     }
 
-    .contenido {
-      background-color: transparent;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height:1.45;
+      background-image:url('fondo.png');
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      background-attachment:fixed;
+      padding-bottom:max(72px, var(--safe)); /* por si hay botones flotantes/chat */
     }
 
-    header {
-      position: relative;
-      height: 300px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
+    /* Header con video */
+    header{
+      position:relative;
+      min-height:48vh; max-height:520px;
+      display:flex; flex-direction:column; justify-content:center; align-items:center;
+      text-align:center; overflow:hidden; isolation:isolate;
+    }
+    header video{
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-1;
+    }
+    header h1{
+      color:#fff; margin:24px 12px 0;
+      font-size:clamp(28px,5vw,56px); font-weight:800;
+      text-shadow:0 2px 14px rgba(0,0,0,.45);
+      animation:fadeInHeader .8s ease-out both;
+    }
+    @keyframes fadeInHeader{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+
+    .marquesina{
+      position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
+      background:rgba(0,0,0,.5); color:#fff; padding:8px 14px; border-radius:999px;
+      backdrop-filter:blur(4px); max-width:92%;
+    }
+    .marquesina p{margin:0; font-weight:700; font-size:clamp(14px,3.2vw,20px)}
+
+    /* Logo pegado (derecha como el original) */
+    .logo-sticky{
+      position:fixed; bottom:14px; right:14px; height:64px; opacity:.7; z-index:1000;
+      transition:transform .2s ease, opacity .2s ease;
+    }
+    .logo-sticky:hover{opacity:1; transform:scale(1.06)}
+
+    /* Navegación responsive */
+    nav{
+      background:var(--marron); color:#fff; position:sticky; top:0; z-index:900; padding:8px 12px;
+    }
+    .nav-inner{
+      max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .brand{font-weight:800; letter-spacing:.3px}
+    .links{display:flex; gap:18px; flex-wrap:wrap}
+    .links a{color:#fff; text-decoration:none; font-weight:700; padding:10px 8px; border-radius:10px}
+    .links a:hover{text-decoration:underline}
+    .hamburger{display:none; cursor:pointer; border:0; background:transparent; color:#fff; padding:10px; margin-right:-6px}
+    .hamburger svg{width:26px; height:26px}
+
+    /* Contenido */
+    section{display:flex; justify-content:center; align-items:center; flex-direction:column; padding:36px 16px}
+    .seccion{
+      width:min(760px,92%); margin:32px auto;
+      background:var(--bgCard); border-radius:var(--radius); box-shadow:var(--shadow);
+      padding:clamp(16px,3.6vw,24px); animation:fadeInContent .7s ease both;
+    }
+    @keyframes fadeInContent{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .seccion h2{color:var(--verde); font-size:clamp(20px,3.6vw,28px); margin-top:0}
+    .seccion p{margin:.4rem 0; font-size:clamp(14px,2.8vw,16px)}
+
+    /* Botón WhatsApp bien "tappable" */
+    .btn-contacto{
+      display:inline-flex; align-items:center; gap:10px;
+      background:var(--verde); color:#fff; text-decoration:none;
+      padding:14px 18px; border-radius:10px; font-weight:800; font-size:clamp(15px,3.2vw,17px);
+      box-shadow:0 6px 14px rgba(42,92,42,.22);
+      transition:transform .15s ease, box-shadow .15s ease, background-color .2s ease;
+      touch-action:manipulation;
+    }
+    .btn-contacto:hover{background:#1c3f1c; transform:translateY(-1px); box-shadow:0 8px 18px rgba(42,92,42,.28)}
+    .btn-contacto:active{transform:translateY(0); box-shadow:0 4px 10px rgba(42,92,42,.2)}
+
+    /* Mobile-first */
+    @media (max-width:900px){
+      .links{display:none}
+      .hamburger{display:inline-flex}
+    }
+    .links.mobile{display:flex; flex-direction:column; gap:6px; padding:8px 0 6px}
+    .links.mobile a{padding:12px; border-radius:8px; background:rgba(255,255,255,.08)}
+
+    @media (max-width:600px){
+      header{min-height:44vh}
+      .logo-sticky{height:50px; bottom:12px; right:12px}
+      .marquesina{bottom:12px}
+      body{background-attachment:scroll} /* evita jitter en iOS */
     }
 
-    header video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-
-    header h1 {
-      position: relative;
-      z-index: 1;
-      color: white;
-      animation: fadeInHeader 2s ease-out;
-      margin-top: 40px;
-      font-size: 50px;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    }
-
-    @keyframes fadeInHeader {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .logo-sticky {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      height: 70px;
-      opacity: 0.6;
-      z-index: 999;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    .logo-sticky:hover {
-      opacity: 1;
-      transform: scale(1.05);
-    }
-
-    .marquesina {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      z-index: 2;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 5px 15px;
-      border-radius: 5px;
-    }
-
-    .marquesina p {
-      margin: 0;
-      font-weight: bold;
-      font-size: 21px;
-      color: white;
-    }
-
-    nav {
-      background-color: #6b4f2c;
-      padding: 10px;
-      text-align: center;
-    }
-
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    section {
-      padding: 40px 20px;
-    }
-
-    .seccion {
-      max-width: 700px;
-      margin: 60px auto;
-      background-color: rgba(255, 255, 255, 0.85);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      animation: fadeInContent 2s ease;
-    }
-
-    @keyframes fadeInContent {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .seccion h2 {
-      color: #2a5c2a;
-    }
-
-    .btn-contacto {
-      display: inline-block;
-      background-color: #2a5c2a;
-      color: white;
-      padding: 10px 20px;
-      margin-top: 15px;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-
-    .btn-contacto:hover {
-      background-color: #1c3f1c;
-    }
-
-    /* 📱 Ajustes mobile */
-    @media (max-width: 600px) {
-      header {
-        height: 380px;
-      }
-
-      header h1 {
-        font-size: 36px;
-        margin-top: 60px;
-      }
-
-      .marquesina p {
-        font-size: 16px;
-      }
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none !important; transition:none !important; scroll-behavior:auto !important}
     }
   </style>
 </head>
 <body>
 
-  <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
+  <!-- Logo fijo -->
+  <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky" />
 
   <div class="contenido">
     <header>
-      <video autoplay muted loop playsinline>
-        <source src="productor.mp4" type="video/mp4">
+      <video autoplay muted loop playsinline poster="poster.jpg">
+        <source src="productor.mp4" type="video/mp4" />
         Tu navegador no soporta videos HTML5.
       </video>
-
       <h1>DigiAgro</h1>
       <div class="marquesina">
         <p>🚜 Optimizamos procesos para un agro más ágil y digital. 🚜</p>
@@ -178,21 +136,60 @@
     </header>
 
     <nav>
-      <a href="index.html">Inicio</a>
-      <a href="servicios.html">Servicios</a>
-      <a href="nosotros.html">Nosotros</a>
-      <a href="contacto.html">Contacto</a>
-      <a href="senasa.html">SENASA</a>
+      <div class="nav-inner">
+        <div class="brand">DigiAgro</div>
+        <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M3 12h18M3 18h18"/>
+          </svg>
+        </button>
+        <div class="links" id="desktopLinks">
+          <a href="index.html">Inicio</a>
+          <a href="servicios.html">Servicios</a>
+          <a href="nosotros.html">Nosotros</a>
+          <a href="contacto.html" aria-current="page">Contacto</a>
+          <a href="senasa.html">SENASA</a>
+        </div>
+      </div>
+      <!-- Menú móvil -->
+      <div class="links mobile" id="mobileMenu" hidden>
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html" aria-current="page">Contacto</a>
+        <a href="senasa.html">SENASA</a>
+      </div>
     </nav>
 
     <section class="seccion">
       <h2>Contacto</h2>
       <p>¿Querés más información o tenés una consulta?</p>
-      <p>📨 Escribinos a <strong>info@digiagro.com.ar</strong></p>
-      <p>También podés contactarnos directo a nuestro WhatsApp y rápidamente te responderemos:</p>
-      <a href="https://wa.me/5491151188747?text=Hola%2C+quiero+más+información+sobre+los+servicios+de+Digiagro" target="_blank" class="btn-contacto">💬 Escribinos por WhatsApp</a>
+      <p>📨 Escribinos a <a href="mailto:info@digiagro.com.ar">info@digiagro.com.ar</a></p>
+      <p>También podés contactarnos directo a nuestro WhatsApp y te respondemos rápido:</p>
+
+      <!-- CTA WhatsApp (link igual al tuyo, con mejoras de seguridad y tracking mínimo) -->
+      <a class="btn-contacto"
+         href="https://wa.me/5491151188747?text=Hola%2C+quiero+m%C3%A1s+informaci%C3%B3n+sobre+los+servicios+de+DigiAgro"
+         target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp de DigiAgro">
+        💬 Escribinos por WhatsApp
+      </a>
     </section>
   </div>
+
+  <script>
+    // Toggle accesible del menú móvil
+    const btn = document.querySelector('.hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    btn?.addEventListener('click', () => {
+      const isOpen = !mobileMenu.hasAttribute('hidden');
+      if (isOpen) {
+        mobileMenu.setAttribute('hidden','');
+        btn.setAttribute('aria-expanded','false');
+      } else {
+        mobileMenu.removeAttribute('hidden');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  </script>
 </body>
 </html>
-
