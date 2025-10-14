@@ -2,108 +2,195 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DigiAgro</title>
+  <meta name="color-scheme" content="light dark" />
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-image: url('fondo.png');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
+    :root{
+      --verde:#2a5c2a;
+      --marron:#6b4f2c;
+      --bgCard:rgba(255,255,255,.88);
+      --shadow:0 4px 10px rgba(0,0,0,.12);
+      --radius:14px;
+      --safe: env(safe-area-inset-bottom);
     }
 
-    .contenido { background-color: transparent; }
-
-    header {
-      position: relative;
-      height: 300px;
-      overflow: hidden;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center; text-align: center;
-    }
-    header video {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      object-fit: cover; z-index: -1;
-    }
-    header h1 {
-      position: relative; z-index: 1; color: #fff;
-      animation: fadeInHeader 2s ease-out; margin-top: 40px; font-size: 50px;
-    }
-    @keyframes fadeInHeader { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
-
-    .logo-sticky {
-      position: fixed; bottom: 10px; left: 10px; height: 70px; opacity:.6;
-      z-index: 1000; transition: transform .3s ease, opacity .3s ease;
-    }
-    .logo-sticky:hover { opacity:1; transform: scale(1.05); }
-
-    .marquesina {
-      position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
-      white-space: nowrap; z-index: 2; background: rgba(0,0,0,.5);
-      padding: 5px 15px; border-radius: 5px;
-    }
-    .marquesina p { margin:0; font-weight:bold; font-size:21px; color:#fff; }
-
-    nav { background:#6b4f2c; padding:10px; text-align:center; }
-    nav a { color:#fff; margin:0 15px; text-decoration:none; font-weight:bold; }
-    nav a:hover { text-decoration: underline; }
-
-    section { display:flex; justify-content:center; align-items:center; flex-direction:column; padding:40px 20px; }
-
-    .seccion {
-      max-width:700px; background: rgba(255,255,255,.85);
-      padding:20px; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,.1);
-      animation: fadeInContent 2s ease;
-    }
-    @keyframes fadeInContent { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-    .seccion h2 { color:#2a5c2a; }
-
-    @media (max-width: 600px) {
-      header { height: 380px; }
-      header h1 { font-size: 36px; margin-top: 60px; }
-      .marquesina p { font-size: 16px; }
+    /* Reset básico y tipografía fluida */
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height:1.4;
+      background-image:url('fondo.png');
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      background-attachment:fixed;
+      /* espacio por si el chat flota abajo en móviles */
+      padding-bottom: max(72px, var(--safe));
     }
 
-    /* --- Destacar botón del chat y asegurar visibilidad --- */
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(42,92,42,.6); }
-      70% { box-shadow: 0 0 0 15px rgba(42,92,42,0); }
-      100% { box-shadow: 0 0 0 0 rgba(42,92,42,0); }
+    /* Header con video */
+    header{
+      position:relative;
+      min-height: 48vh;
+      max-height: 520px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      overflow:hidden;
+      isolation:isolate; /* asegura z-index correcto */
     }
-    /* Botón (cubrimos posibles selectores del widget) */
+    header video{
+      position:absolute; inset:0;
+      width:100%; height:100%; object-fit:cover;
+      z-index:-1;
+    }
+    header h1{
+      color:#fff; margin: 24px 12px 0;
+      font-size: clamp(28px, 5vw, 56px);
+      font-weight: 800;
+      text-shadow: 0 2px 14px rgba(0,0,0,.45);
+      animation: fadeInHeader 800ms ease-out both;
+    }
+    @keyframes fadeInHeader{
+      from{opacity:0; transform: translateY(-10px)}
+      to{opacity:1; transform: translateY(0)}
+    }
+
+    .marquesina{
+      position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
+      background: rgba(0,0,0,.5);
+      color:#fff; padding:8px 14px; border-radius: 999px;
+      backdrop-filter: blur(4px);
+      max-width: 92%;
+    }
+    .marquesina p{margin:0; font-weight:700; font-size: clamp(14px, 3.2vw, 20px)}
+
+    /* Logo pegado */
+    .logo-sticky{
+      position: fixed; bottom: 14px; left: 14px;
+      height: 64px; opacity:.7; z-index: 1000;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    .logo-sticky:hover{ opacity:1; transform: scale(1.06) }
+
+    /* Navegación responsive */
+    nav{
+      background: var(--marron);
+      color:#fff;
+      position: sticky; top:0; z-index: 900;
+      padding: 8px 12px;
+    }
+    .nav-inner{
+      max-width: 1100px; margin: 0 auto;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .brand{font-weight:800; letter-spacing:.3px}
+    .links{display:flex; gap:18px; flex-wrap:wrap}
+    .links a{
+      color:#fff; text-decoration:none; font-weight:700;
+      padding:10px 8px; border-radius:10px;
+    }
+    .links a:hover{ text-decoration: underline }
+
+    /* Botón hamburguesa */
+    .hamburger{
+      display:none; cursor:pointer; border:0; background:transparent; color:#fff;
+      padding:10px; margin-right: -6px;
+    }
+    .hamburger svg{ width:26px; height:26px }
+
+    /* Contenido */
+    .contenido{ background-color: transparent; }
+    section{
+      display:flex; justify-content:center; align-items:center;
+      flex-direction:column; padding: 36px 16px;
+    }
+    .seccion{
+      width: min(760px, 92%);
+      background: var(--bgCard); border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(16px, 3.6vw, 24px);
+      animation: fadeInContent .7s ease both;
+    }
+    @keyframes fadeInContent{
+      from{opacity:0; transform: translateY(10px)}
+      to{opacity:1; transform: translateY(0)}
+    }
+    .seccion h2{
+      color: var(--verde);
+      font-size: clamp(20px, 3.6vw, 28px);
+      margin-top: 0;
+    }
+    .seccion p{ margin: .4rem 0; font-size: clamp(14px, 2.8vw, 16px) }
+
+    /* Chat: resaltar botón y asegurar z-index */
+    @keyframes pulse{
+      0%{ box-shadow: 0 0 0 0 rgba(42,92,42,.55) }
+      70%{ box-shadow: 0 0 0 16px rgba(42,92,42,0) }
+      100%{ box-shadow: 0 0 0 0 rgba(42,92,42,0) }
+    }
     .n8n-chat-button,
     .chat-widget-button,
-    [data-chat-widget-button] {
-      animation: pulse 2s infinite;
-      transition: transform .3s ease, background-color .3s ease !important;
-      z-index: 2147483647 !important; /* máximo */
-      position: fixed; /* por si viene absolute */
+    [data-chat-widget-button]{
+      animation: pulse 2.2s infinite;
+      transition: transform .25s ease, background-color .25s ease !important;
+      z-index: 2147483647 !important;
+      position: fixed;
     }
     .n8n-chat-button:hover,
     .chat-widget-button:hover,
-    [data-chat-widget-button]:hover {
-      background-color: #4CAF50 !important;
-      transform: scale(1.15) !important;
+    [data-chat-widget-button]:hover{
+      background-color:#4CAF50 !important;
+      transform: scale(1.12) !important;
     }
-    /* Contenedor del widget al frente siempre */
     #chat-widget-root,
     .chat-widget-container,
-    .n8n-chat-container {
+    .n8n-chat-container{
       z-index: 2147483647 !important;
       position: fixed !important;
+    }
+
+    /* Mobile-first tweaks */
+    @media (max-width: 900px){
+      .links{ display:none }          /* oculto menú ancho */
+      .hamburger{ display:inline-flex }
+    }
+    /* Menú móvil desplegable */
+    .links.mobile{
+      display:flex; flex-direction:column; gap:6px; padding: 8px 0 6px;
+    }
+    .links.mobile a{
+      padding: 12px; border-radius: 8px; background: rgba(255,255,255,.08);
+    }
+
+    /* Ajustes móviles fuertes */
+    @media (max-width: 600px){
+      header{ min-height: 44vh; }
+      .logo-sticky{ height: 50px; bottom: 12px; left: 12px }
+      .marquesina{ bottom: 12px; }
+      /* Evitar jitter de fondo fijo en móviles */
+      body{ background-attachment: scroll; }
+    }
+
+    /* Respeta preferencias de usuario */
+    @media (prefers-reduced-motion: reduce){
+      *{ animation: none !important; transition: none !important; scroll-behavior:auto !important }
     }
   </style>
 </head>
 <body>
-  <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
+  <!-- Logo -->
+  <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky" />
 
   <div class="contenido">
     <header>
-      <video autoplay muted loop playsinline>
-        <source src="productor.mp4" type="video/mp4">
+      <video autoplay muted loop playsinline poster="poster.jpg">
+        <source src="productor.mp4" type="video/mp4" />
         Tu navegador no soporta videos HTML5.
       </video>
       <h1>DigiAgro</h1>
@@ -113,11 +200,27 @@
     </header>
 
     <nav>
-      <a href="index.html">Inicio</a>
-      <a href="servicios.html">Servicios</a>
-      <a href="nosotros.html">Nosotros</a>
-      <a href="contacto.html">Contacto</a>
-      <a href="senasa.html">SENASA</a>
+      <div class="nav-inner">
+        <div class="brand">DigiAgro</div>
+        <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <div class="links" id="desktopLinks">
+          <a href="index.html">Inicio</a>
+          <a href="servicios.html">Servicios</a>
+          <a href="nosotros.html">Nosotros</a>
+          <a href="contacto.html">Contacto</a>
+          <a href="senasa.html">SENASA</a>
+        </div>
+      </div>
+      <!-- Menú móvil oculto por defecto -->
+      <div class="links mobile" id="mobileMenu" hidden>
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="senasa.html">SENASA</a>
+      </div>
     </nav>
 
     <section>
@@ -131,37 +234,51 @@
     </section>
   </div>
 
-<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-<script type="module">
-	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+  <!-- Contenedor opcional para overlay (no molesta en mode:'window') -->
+  <div id="n8n-chat"></div>
 
-	createChat({
-	webhookUrl: 'https://jjg.app.n8n.cloud/webhook/8c90edd6-52a3-4069-8afd-d97a9fd86e31/chat',
-	webhookConfig: {
-		method: 'POST',
-		headers: {}
-	},
-	target: '#n8n-chat',
-	mode: 'window',
-	chatInputKey: 'chatInput',
-	chatSessionKey: 'sessionId',
-	loadPreviousSession: true,
-	metadata: {},
-	showWelcomeScreen: false,
-	defaultLanguage: 'en',
-	initialMessages: [
-		'Hola! 👋',
-		'En que te puedo ayudar hoy?'
-	],
-	i18n: {
-		en: {
-			title: '       Soy DIGIBOT 🤖',
-			subtitle: "Estoy las 24 Horas para  ayudarte",
-			footer: '',
-			getStarted: 'New Conversation',
-			inputPlaceholder: 'Escriba su consulta',
-		},
-	},
-	enableStreaming: false,
-});
-</script>
+  <!-- n8n Chat -->
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+  <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+    createChat({
+      webhookUrl: 'https://jjg.app.n8n.cloud/webhook/8c90edd6-52a3-4069-8afd-d97a9fd86e31/chat',
+      webhookConfig: { method: 'POST', headers: {} },
+      target: '#n8n-chat',           // si cambiás a mode:'overlay', ya tenés el div
+      mode: 'window',                // 'window' o 'overlay'
+      chatInputKey: 'chatInput',
+      chatSessionKey: 'sessionId',
+      loadPreviousSession: true,
+      metadata: {},
+      showWelcomeScreen: false,
+      defaultLanguage: 'es',
+      initialMessages: ['Hola! 👋','¿En qué te puedo ayudar hoy?'],
+      i18n: {
+        es: {
+          title: 'Soy DIGIBOT 🤖',
+          subtitle: 'Estoy 24/7 para ayudarte',
+          footer: '',
+          getStarted: 'Nueva conversación',
+          inputPlaceholder: 'Escribí tu consulta…'
+        }
+      },
+      enableStreaming: false,
+    });
+
+    // Toggle del menú móvil accesible
+    const btn = document.querySelector('.hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    btn?.addEventListener('click', () => {
+      const isOpen = !mobileMenu.hasAttribute('hidden');
+      if (isOpen) {
+        mobileMenu.setAttribute('hidden','');
+        btn.setAttribute('aria-expanded','false');
+      } else {
+        mobileMenu.removeAttribute('hidden');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  </script>
+</body>
+</html>
