@@ -5,12 +5,48 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Chat</title>
   <meta name="robots" content="noindex, nofollow" />
-  <meta http-equiv="refresh" content="0;url=https://jjg.app.n8n.cloud/webhook/ccec108a-e30a-48fd-b832-cec3042eda00/chat">
-  <script>
-    // Fallback inmediato por JS (por si el meta refresh no corre)
-    location.replace("https://jjg.app.n8n.cloud/webhook/ccec108a-e30a-48fd-b832-cec3042eda00/chat");
-  </script>
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+  <style>
+    /* Página limpia, sin contenido extra */
+    html,body{height:100%;margin:0;background:#f7f7f7;}
+  </style>
 </head>
-<body></body>
+<body>
+  <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+    const chat = createChat({
+      webhookUrl: 'https://jjg.app.n8n.cloud/webhook/ccec108a-e30a-48fd-b832-cec3042eda00/chat',
+      webhookConfig: { method: 'POST', headers: {} },
+      // modo ventana flotante (no hace falta target). Si preferís embebido a pantalla completa, avisame.
+      mode: 'window',
+      chatInputKey: 'chatInput',
+      chatSessionKey: 'sessionId',
+      loadPreviousSession: true,
+      metadata: {},
+      showWelcomeScreen: false,
+      defaultLanguage: 'es',
+      initialMessages: ['¡Hola! 👋','¿En qué te puedo ayudar hoy?'],
+      i18n: {
+        es: {
+          title: 'Soy tu asistente de Reviton 🤖',
+          subtitle: 'Estoy 24/7 para ayudarte',
+          footer: '',
+          getStarted: 'Nueva conversación',
+          inputPlaceholder: 'Escribí tu consulta',
+        },
+      },
+      enableStreaming: false,
+    });
+
+    // Abrir automáticamente al cargar
+    window.n8nChat = chat;
+    // Abrir apenas está listo (pequeño delay para asegurar montaje)
+    window.addEventListener('load', () => {
+      setTimeout(() => window.n8nChat?.open?.(), 50);
+    });
+  </script>
+  <noscript>Necesitás habilitar JavaScript para usar el chat.</noscript>
+</body>
 </html>
 
