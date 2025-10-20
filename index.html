@@ -11,176 +11,181 @@
       --shadow:0 4px 10px rgba(0,0,0,.12); --radius:14px; --safe: env(safe-area-inset-bottom);
     }
 
-    /* ===== RESETEO BÁSICO ===== */
+    /* ===== SCOPE ===== */
     .dg *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0}
-
-    /* ===== LAYOUT GENERAL ===== */
     .dg{
-      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; line-height:1.45;
+      margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; line-height:1.45;
       background-image:url('fondo.png'); background-size:cover; background-position:center; background-repeat:no-repeat;
       background-attachment:fixed; padding-bottom:max(72px,var(--safe));
     }
 
-    /* ===== HERO CON VIDEO ===== */
-    .hero{position:relative; min-height:40vh; max-height:500px; display:flex; align-items:center; justify-content:center; text-align:center; overflow:hidden; isolation:isolate}
-    .hero__media{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; z-index:-2}
-    /* overlay para contraste */
-    .hero::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35)); z-index:-1}
-    .hero__title{color:#fff; margin:0 12px 14px; font-size:clamp(32px,6vw,64px); font-weight:800; text-shadow:0 2px 14px rgba(0,0,0,.45)}
-    .pill{display:inline-flex; gap:.5rem; align-items:center; background:rgba(0,0,0,.55); color:#fff; padding:10px 16px; border-radius:999px; font-weight:700; backdrop-filter:blur(4px); max-width:min(92%,1100px)}
-    .pill small{opacity:.9}
+    /* Header */
+    .dg header{
+      position:relative; min-height:48vh; max-height:520px;
+      display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+      overflow:hidden; isolation:isolate;
+    }
+    .dg header video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-1}
+    .dg header h1{
+      color:#fff; margin:24px 12px 0; font-size:clamp(28px,5vw,56px); font-weight:800;
+      text-shadow:0 2px 14px rgba(0,0,0,.45); animation:fadeInHeader .8s ease-out both;
+    }
+    @keyframes fadeInHeader{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+    .dg .marquesina{
+      position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
+      background:rgba(0,0,0,.5); color:#fff; padding:8px 14px; border-radius:999px; backdrop-filter:blur(4px);
+      max-width:92%;
+    }
+    .dg .marquesina p{margin:0; font-weight:700; font-size:clamp(14px,3.2vw,20px)}
 
-    /* ===== LOGO STICKY ===== */
-    .logo-sticky{position:fixed; bottom:14px; left:14px; height:64px; opacity:.75; z-index:900; transition:transform .2s ease, opacity .2s ease}
-    .logo-sticky:hover{opacity:1; transform:scale(1.06)}
+    /* Logo fijo */
+    .dg .logo-sticky{
+      position:fixed;
+      bottom:14px;
+      left:0;          /* pegado al borde izquierdo */
+      height:64px;
+      opacity:.7;
+      z-index:900;
+      transition:transform .2s ease, opacity .2s ease;
+    }
+    .dg .logo-sticky:hover{opacity:1; transform:scale(1.06)}
 
-    /* ===== NAV ===== */
-    nav{background:var(--marron); position:sticky; top:0; z-index:1200; box-shadow:0 2px 8px rgba(0,0,0,.15)}
-    .nav-inner{max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:center; gap:18px; padding:8px 12px; position:relative}
-    .links{display:flex; gap:18px; flex-wrap:wrap; list-style:none; margin:0; padding:0; font-weight:800; letter-spacing:.2px}
-    .links a{display:inline-block; color:#fff; text-decoration:none; font-weight:700; padding:12px 10px; border-radius:10px}
-    .links a:hover{text-decoration:underline}
-    .hamburger{display:none; cursor:pointer; border:0; background:transparent; color:#fff; padding:12px; position:absolute; right:8px; top:2px; z-index:1203; -webkit-tap-highlight-color:transparent}
-    .hamburger svg{width:26px; height:26px}
-    .links.mobile{display:none; flex-direction:column; gap:6px; position:absolute; left:0; right:0; top:100%; background:var(--marron); border-top:1px solid rgba(255,255,255,.15); box-shadow:0 10px 18px rgba(0,0,0,.25); z-index:1202; padding:10px 16px 14px}
-    .links.mobile[hidden]{display:none !important}
+    /* Variante para tenerlo arriba a la izquierda:
+    .dg .logo-sticky{
+      position:fixed;
+      top:14px;
+      left:0;
+      bottom:auto;
+      height:64px;
+      opacity:.7;
+      z-index:900;
+    }
+    */
 
-    /* ===== SECCIONES ===== */
-    section{display:flex; justify-content:center; align-items:center; flex-direction:column; padding:36px 16px}
-    .seccion{width:min(960px,92%); background:var(--bgCard); border-radius:var(--radius); box-shadow:var(--shadow); padding:clamp(16px,3.6vw,24px)}
-    .seccion h2{color:var(--verde); font-size:clamp(22px,3.6vw,30px); margin-top:0}
-    .seccion p{margin:.45rem 0; font-size:clamp(14px,2.8vw,16px)}
+    /* ===== NAV responsive (fix iOS) ===== */
+    .dg nav{
+      background:var(--marron);
+      position:sticky; top:0;
+      z-index:1200;                   /* por encima del contenido */
+      box-shadow:0 2px 8px rgba(0,0,0,.15);
+    }
+    .dg nav .nav-inner{
+      max-width:1100px; margin:0 auto;
+      display:flex; align-items:center; justify-content:center;
+      gap:18px; padding:8px 12px;
+      position:relative;              /* ancla para el menú absoluto */
+    }
 
-    /* ===== GRID DE SERVICIOS (nuevo bloque) ===== */
-    .grid{width:min(1100px,92%); display:grid; grid-template-columns:repeat(12,1fr); gap:16px}
-    .card{grid-column:span 12; background:var(--bgCard); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px}
-    .card h3{margin:.2rem 0 .6rem; color:var(--verde)}
-    .card ul{margin:.2rem 0 0 1rem}
-    .card ul li{margin:.25rem 0}
-    @media (min-width:760px){ .card{grid-column:span 4} }
+    /* Enlaces desktop centrados */
+    .dg nav .links{
+      display:flex; gap:18px; flex-wrap:wrap; list-style:none; margin:0; padding:0;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .dg nav .links a{
+      display:inline-block; color:#fff; text-decoration:none; font-weight:700;
+      padding:12px 10px; border-radius:10px;
+    }
+    .dg nav .links a:hover{ text-decoration:underline }
 
-    /* ===== FOOTER CTA ===== */
-    .cta{display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:12px}
-    .btn{appearance:none; border:0; background:var(--verde); color:#fff; padding:12px 16px; border-radius:12px; font-weight:700; cursor:pointer; box-shadow:0 2px 10px rgba(0,0,0,.18)}
-    .btn--ghost{background:transparent; color:#fff; border:2px solid #fff}
+    /* Botón hamburguesa (solo mobile) */
+    .dg nav .hamburger{
+      display:none; cursor:pointer; border:0; background:transparent; color:#fff;
+      padding:12px; position:absolute; right:8px; top:2px; z-index:1203; /* por encima del dropdown */
+      -webkit-tap-highlight-color: transparent;
+    }
+    .dg nav .hamburger svg{width:26px; height:26px}
 
-    /* ===== ACCESIBILIDAD / PREFS ===== */
-    @media (max-width:900px){ .links{display:none} .hamburger{display:inline-flex} .links.mobile{display:flex} .nav-inner{justify-content:space-between} }
-    @media (max-width:600px){ .hero{min-height:44vh} .logo-sticky{height:50px; bottom:12px; left:12px} }
-    @media (prefers-reduced-motion:reduce){ *{animation:none!important; transition:none!important; scroll-behavior:auto!important} }
+    /* Menú móvil desplegable */
+    .dg .links.mobile{
+      display:none;                   /* visible en mobile via media query */
+      flex-direction:column; gap:6px;
+      position:absolute; left:0; right:0; top:100%;
+      background:var(--marron);
+      border-top:1px solid rgba(255,255,255,.15);
+      box-shadow:0 10px 18px rgba(0,0,0,.25);
+      z-index:1202;                   /* por debajo de la hamburguesa, encima del contenido */
+      padding:10px 16px 14px;
+    }
+    .dg .links.mobile[hidden]{display:none !important}
+    .dg .links.mobile a{display:block; padding:12px 0; border-radius:8px}
+
+    /* Contenido */
+    .dg section{display:flex; justify-content:center; align-items:center; flex-direction:column; padding:36px 16px}
+    .dg .seccion{
+      width:min(760px,92%); background:var(--bgCard); border-radius:var(--radius); box-shadow:var(--shadow);
+      padding:clamp(16px,3.6vw,24px); animation:fadeInContent .7s ease both;
+    }
+    @keyframes fadeInContent{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .dg .seccion h2{color:var(--verde); font-size:clamp(20px,3.6vw,28px); margin-top:0}
+    .dg .seccion p{margin:.4rem 0; font-size:clamp(14px,2.8vw,16px)}
+
+    /* Breakpoints */
+    @media (max-width:900px){
+      .dg nav .links{display:none}    /* oculta desktop */
+      .dg nav .hamburger{display:inline-flex}
+      .dg .links.mobile{display:flex} /* el dropdown existe (lo oculta/abre JS con [hidden]) */
+      .dg nav .nav-inner{justify-content:space-between}
+    }
+    @media (max-width:600px){
+      .dg header{min-height:44vh}
+      .dg .logo-sticky{height:50px; bottom:12px; left:0}
+      .dg .marquesina{bottom:12px}
+      .dg{background-attachment:scroll} /* evita jank en iOS */
+    }
+    @media (prefers-reduced-motion: reduce){
+      .dg *{animation:none !important; transition:none !important; scroll-behavior:auto !important}
+    }
   </style>
 </head>
 <body>
   <div class="dg">
-    <!-- Logo fijo -->
-    <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky" />
+    <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
 
-    <!-- HERO con video (desktop/mobile) -->
-    <header class="hero" aria-label="Portada DigiAgro">
-      <video class="hero__media" autoplay muted loop playsinline preload="metadata" poster="poster.jpg">
-        <!-- Usa dos fuentes para mejor compresión y fallback -->
-        <source src="productor-desktop.webm" type="video/webm" media="(min-width: 768px)" />
-        <source src="productor-desktop.mp4"  type="video/mp4"  media="(min-width: 768px)" />
-        <source src="productor-mobile.webm"  type="video/webm" media="(max-width: 767px)" />
-        <source src="productor-mobile.mp4"   type="video/mp4"  media="(max-width: 767px)" />
+    <header>
+      <video autoplay muted loop playsinline poster="poster.jpg">
+        <source src="productor.mp4" type="video/mp4">
         Tu navegador no soporta videos HTML5.
       </video>
-      <div>
-        <h1 class="hero__title">DigiAgro</h1>
-        <div class="pill">🚜 <span>Optimizamos procesos para un agro más ágil y digital.</span> 🚜</div>
-        <!-- CTA opcionales sobre el hero -->
-        <!-- <div class="cta" style="margin-top:14px">
-          <a class="btn btn--ghost" href="#servicios">Ver servicios</a>
-          <a class="btn" href="https://wa.me/54911XXXXXXXX?text=Quiero%20una%20demo%20de%20bots%20de%20WhatsApp">Quiero una demo</a>
-        </div> -->
-      </div>
+      <h1>DigiAgro</h1>
+      <div class="marquesina"><p>🚜 Optimizamos procesos para un agro más ágil y digital. 🚜</p></div>
     </header>
 
-    <!-- NAV -->
     <nav>
       <div class="nav-inner">
         <ul class="links" id="desktopLinks" aria-label="Navegación principal">
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#servicios">Servicios</a></li>
-          <li><a href="#nosotros">Nosotros</a></li>
-          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
           <li><a href="senasa.html">SENASA</a></li>
         </ul>
+
+        <!-- Botón hamburguesa -->
         <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M3 12h18M3 18h18"/>
           </svg>
         </button>
       </div>
+
+      <!-- Menú móvil (dropdown) -->
       <div class="links mobile" id="mobileMenu" hidden>
-        <a href="#inicio">Inicio</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#nosotros">Nosotros</a>
-        <a href="#contacto">Contacto</a>
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html">Contacto</a>
         <a href="senasa.html">SENASA</a>
       </div>
     </nav>
 
-    <!-- BIENVENIDA -->
-    <section id="inicio">
+    <section>
       <div class="seccion">
         <h2>💡 Bienvenido a DigiAgro 💡</h2>
         <p>En <strong>DigiAgro</strong> conectamos el agro con la tecnología para que tomes mejores decisiones, automatices tus procesos y optimices cada etapa de tu trabajo.</p>
         <p>Somos una <strong>startup enfocada en transformar la gestión agrícola</strong> con herramientas digitales simples, efectivas y a tu medida.</p>
         <p>🌱 Explorá nuestras secciones para descubrir cómo podemos ayudarte.</p>
         <p>✨ Porque en DigiAgro <strong>creamos soluciones digitales que hacen tu vida más fácil</strong>, para que puedas enfocarte en lo que realmente importa: Tu negocio.</p>
-      </div>
-    </section>
-
-    <!-- SERVICIOS CLAVE (3 columnas) -->
-    <section id="servicios" aria-label="Servicios DigiAgro">
-      <div class="grid">
-        <article class="card">
-          <h3>Bots de WhatsApp</h3>
-          <ul>
-            <li>Atención 24/7 y captura de leads con consentimiento.</li>
-            <li>Integración con ERP y Power Platform.</li>
-            <li>Agendado de demos con validación de calendario.</li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>Power Apps & Automate</h3>
-          <ul>
-            <li>Apps a medida para compras, logística y ventas.</li>
-            <li>Flujos automáticos con aprobaciones y notificaciones.</li>
-            <li>Conectores a SENASA/Agrotraza/APIs.</li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>Power BI & Trazabilidad</h3>
-          <ul>
-            <li>Dashboards para stock, OTIF y pricing.</li>
-            <li>Reportes de SENASA y seguimiento de despachos.</li>
-            <li>Mapas y KPIs para decisiones rápidas.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <!-- NOSOTROS -->
-    <section id="nosotros">
-      <div class="seccion">
-        <h2>Nosotros</h2>
-        <p>Somos un equipo con experiencia en operaciones, logística y transformación digital en el agro. Desplegamos soluciones que combinan <strong>Power Platform</strong>, integraciones con <strong>ERP</strong> y automatizaciones para escalar procesos sin fricción.</p>
-      </div>
-    </section>
-
-    <!-- CONTACTO / CTA FINAL -->
-    <section id="contacto">
-      <div class="seccion" style="text-align:center">
-        <h2>Hablemos</h2>
-        <p>¿Querés ver un demo o contarnos tu caso?</p>
-        <div class="cta">
-          <a class="btn" href="mailto:contacto@digiagro.com?subject=Quiero%20una%20demo%20DigiAgro">Escribir por email</a>
-          <a class="btn" href="https://wa.me/54911XXXXXXXX?text=Hola%20DigiAgro%2C%20quiero%20una%20demo">WhatsApp</a>
-        </div>
       </div>
     </section>
   </div>
@@ -194,26 +199,37 @@
       webhookConfig: { method: 'POST', headers: {} },
       target: '#n8n-chat',
       mode: 'window',
+      defaultLanguage: 'es',
       chatInputKey: 'chatInput',
       chatSessionKey: 'sessionId',
       loadPreviousSession: true,
       metadata: {},
       showWelcomeScreen: false,
-      defaultLanguage: 'es',
       initialMessages: ['¡Hola! 👋','¿En qué te puedo ayudar hoy?'],
       i18n: {
-        es: { title: 'Soy DIGIBOT 🤖', subtitle: 'Estoy 24/7 para ayudarte', footer: '', getStarted: 'Nueva conversación', inputPlaceholder: 'Escribí tu consulta' }
+        es: {
+          title: 'Soy DIGIBOT 🤖',
+          subtitle: 'Estoy 24/7 para ayudarte',
+          footer: '',
+          getStarted: 'Nueva conversación',
+          inputPlaceholder: 'Escribí tu consulta',
+        },
       },
       enableStreaming: false,
     });
 
     // Toggle menú móvil (compatible iOS)
-    const btn = document.querySelector('.hamburger');
+    const btn = document.querySelector('.dg .hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     btn?.addEventListener('click', () => {
       const isOpen = !mobileMenu.hasAttribute('hidden');
-      if (isOpen) { mobileMenu.setAttribute('hidden',''); btn.setAttribute('aria-expanded','false'); }
-      else { mobileMenu.removeAttribute('hidden'); btn.setAttribute('aria-expanded','true'); }
+      if (isOpen) {
+        mobileMenu.setAttribute('hidden','');
+        btn.setAttribute('aria-expanded','false');
+      } else {
+        mobileMenu.removeAttribute('hidden');
+        btn.setAttribute('aria-expanded','true');
+      }
     });
   </script>
 </body>
