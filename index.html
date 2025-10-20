@@ -12,11 +12,21 @@
     }
 
     .dg *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:smooth; min-height:100%;}
+    body{min-height:100%; margin:0; background:transparent; position:relative; isolation:isolate;}
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      background:url('fondo.png') center / cover no-repeat fixed; /* soja global */
+      filter:brightness(.95);
+    }
+
     .dg{
-      margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; line-height:1.45;
-      /* 🔧 Antes estaba background:#000 */
-      background:url('fondo.png') center/cover fixed no-repeat; /* soja de fondo */
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      line-height:1.45;
+      background:transparent;
       padding-bottom:max(72px,var(--safe));
     }
 
@@ -27,12 +37,22 @@
       display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
       overflow:hidden; isolation:isolate;
     }
+    /* alas de soja para cubrir bordes */
+    .dg header::before{
+      content:"";
+      position:absolute;
+      z-index:-2;
+      top:0; bottom:0;
+      left:-100vw; right:-100vw;
+      background:url('fondo.png') center / cover no-repeat fixed;
+    }
     .dg header video{
       position:absolute; inset:0;
       width:100%; height:100%;
       object-fit:cover;
-      transform: scale(1.2); /* 🔧 ajustá este valor según los bordes */
+      transform:scale(1.12); /* zoom extra para tapar negro */
       z-index:-1;
+      background:transparent;
     }
     .dg header h1{
       color:#fff; margin:24px 12px 0; font-size:clamp(28px,5vw,56px); font-weight:800;
