@@ -47,13 +47,14 @@
       background:url('fondo.png') center / cover no-repeat fixed;
     }
     .dg header video{
-      position:absolute; inset:0;
-      width:100%; height:100%;
-      object-fit:cover;
-      transform:scale(1.12); /* zoom extra para tapar negro */
-      z-index:-1;
-      background:transparent;
-    }
+  position:absolute;
+  top:0; bottom:0; left:50%;
+  transform:translateX(-50%) scale(1); /* centrado + sin zoom */
+  width:80%;        /* 🔧 Ajustá: 70%, 80%, 90% */
+  height:100%;
+  object-fit:cover;
+  z-index:-1;
+}
     .dg header h1{
       color:#fff; margin:24px 12px 0; font-size:clamp(28px,5vw,56px); font-weight:800;
       text-shadow:0 2px 14px rgba(0,0,0,.45);
