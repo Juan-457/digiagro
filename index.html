@@ -46,13 +46,14 @@
       left:-100vw; right:-100vw;
       background:url('fondo.png') center / cover no-repeat fixed;
     }
-    .dg header video{
+    .dg header video {
   position:absolute;
   top:0; bottom:0; left:50%;
-  transform:translateX(-50%) scale(1); /* centrado + sin zoom */
-  width:80%;        /* 🔧 Ajustá: 70%, 80%, 90% */
+  transform:translateX(-50%);   /* centrado horizontal */
+  width:80%;                    /* ajustá el ancho: 70%, 80%, 90% */
   height:100%;
-  object-fit:cover;
+  object-fit:contain;            /* 🔑 mantiene la relación de aspecto sin recortar */
+  background:transparent;        /* deja ver la soja de fondo */
   z-index:-1;
 }
     .dg header h1{
