@@ -46,15 +46,16 @@
       left:-100vw; right:-100vw;
       background:url('fondo.png') center / cover no-repeat fixed;
     }
-    .dg header video {
+    .dg header video{
   position:absolute;
-  top:0; bottom:0; left:50%;
-  transform:translateX(-50%);   /* centrado horizontal */
-  width:80%;                    /* ajustá el ancho: 70%, 80%, 90% */
-  height:100%;
-  object-fit:contain;            /* 🔑 mantiene la relación de aspecto sin recortar */
-  background:transparent;        /* deja ver la soja de fondo */
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:80%;          /* ajustá 70–90% */
+  height:auto;        /* 🔑 respeta proporción */
+  object-fit:contain; /* nunca recorta */
+  background:transparent;
   z-index:-1;
+}
 }
     .dg header h1{
       color:#fff; margin:24px 12px 0; font-size:clamp(28px,5vw,56px); font-weight:800;
