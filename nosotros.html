@@ -21,23 +21,32 @@
 
     header {
       position: relative;
-      height: 300px;
+      min-height: 60vh;   /* 🔥 más grande, ocupa 60% del alto de la pantalla */
+      max-height: 520px;  /* opcional, límite similar al de Servicios */
       overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
+      isolation: isolate;
     }
 
     header video {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       object-fit: cover;
+      z-index: -2;
+    }
+
+    /* ✅ Overlay translúcido para mejorar contraste */
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
       z-index: -1;
+      background: linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.25));
     }
 
     header h1 {
@@ -46,7 +55,7 @@
       text-align: center;
       color: white;
       animation: fadeInHeader 2s ease-out;
-      margin-top: 40px;
+      margin-top: 20px;
       font-size: 50px;
       text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
     }
@@ -71,35 +80,29 @@
       transform: scale(1.05);
     }
 
-    /* ✅ Marquesina fija abajo y centrada */
     .marquesina {
       position: absolute;
-      bottom: 10px;
+      bottom: 16px;
       left: 50%;
       transform: translateX(-50%);
-      white-space: nowrap;
       z-index: 2;
       background-color: rgba(0, 0, 0, 0.5);
-      padding: 5px 15px;
-      border-radius: 5px;
+      padding: 6px 16px;
+      border-radius: 999px;
     }
 
     .marquesina p {
       margin: 0;
       font-weight: bold;
-      font-size: 21px;
+      font-size: 20px;
       color: white;
     }
 
-      nav {
-  background-color: #6b4f2c; /* Marrón cálido */
-  padding: 10px;
-  text-align: center;
-}
     nav {
       background-color: #6b4f2c;
       padding: 10px;
       text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
 
     nav a {
@@ -118,7 +121,7 @@
     }
 
     .seccion {
-      background-color: rgba(255, 255, 255, 0.85);
+      background-color: rgba(255, 255, 255, 0.88);
       margin: 60px auto;
       padding: 20px;
       border-radius: 10px;
@@ -138,35 +141,23 @@
 
     /* 📱 Ajustes para dispositivos móviles */
     @media (max-width: 600px) {
-      header {
-        height: 380px;
-      }
-
-      header h1 {
-        font-size: 36px;
-        margin-top: 60px;
-      }
-
-      .marquesina p {
-        font-size: 16px;
-      }
+      header { min-height: 44vh; }
+      header h1 { font-size: 36px; margin-top: 40px; }
+      .marquesina p { font-size: 16px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ✅ Logo visible fijo -->
   <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
 
   <div class="contenido">
     <header>
-      <!-- 🎥 Video de fondo -->
-      <video autoplay muted loop playsinline>
+      <video autoplay muted loop playsinline poster="poster.jpg">
         <source src="nosotros.mp4" type="video/mp4">
         Tu navegador no soporta videos HTML5.
       </video>
 
-      <!-- 🧾 Contenido encima del video -->
       <h1>DigiAgro</h1>
       <div class="marquesina">
         <p>🚜 Optimizamos procesos para un agro más ágil y digital. 🚜</p>
@@ -176,7 +167,7 @@
     <nav>
       <a href="index.html">Inicio</a>
       <a href="servicios.html">Servicios</a>
-      <a href="nosotros.html">Nosotros</a>
+      <a href="nosotros.html" aria-current="page">Nosotros</a>
       <a href="contacto.html">Contacto</a>
       <a href="senasa.html">SENASA</a>
     </nav>
@@ -191,3 +182,4 @@
   </div>
 </body>
 </html>
+
