@@ -5,187 +5,100 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DigiAgro | SENASA</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-image: url('fondo.png');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
+    :root{
+      --verde:#2a5c2a; --marron:#6b4f2c;
+    }
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background-image:url('fondo.png');
+      background-size:cover;
+      background-position:center;
+      background-attachment:fixed;
+      background-repeat:no-repeat;
     }
 
-    .contenido {
-      background-color: transparent;
+    .contenido{ background-color:transparent }
+
+    /* ====== HERO (igual al resto) ====== */
+    header{
+      position:relative;
+      min-height:60vh;            /* igual que Servicios/Contacto */
+      max-height:520px;
+      overflow:hidden;
+      display:flex; flex-direction:column;
+      justify-content:center; align-items:center;
+      text-align:center;
+      isolation:isolate;
+    }
+    header video{
+      position:absolute; inset:0; width:100%; height:100%;
+      object-fit:cover;
+      object-position:50% 40%;    /* 👈 encuadre; subí/bajá cambiando el 40% */
+      z-index:-2;
+    }
+    /* Overlay para contraste y tapar pixelado leve */
+    header::before{
+      content:""; position:absolute; inset:0; z-index:-1;
+      background:linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.2));
     }
 
-    header {
-      position: relative;
-      min-height: 48vh;
-      max-height: 520px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
+    header h1{
+      color:#fff; margin:24px 12px 0;
+      font-size:clamp(28px,5vw,56px); font-weight:800;
+      text-shadow:0 2px 14px rgba(0,0,0,.45);
+      animation:fade .8s ease-out both;
+    }
+    @keyframes fade{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+
+    .marquesina{
+      position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
+      background:rgba(0,0,0,.5); color:#fff; padding:8px 14px; border-radius:999px;
+      backdrop-filter:blur(4px); max-width:92%;
+      font-weight:700; font-size:clamp(14px,3.2vw,20px)
     }
 
-    header video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
+    /* Logo fijo */
+    .logo-sticky{
+      position:fixed; bottom:14px; right:14px; height:64px; opacity:.7; z-index:1000;
+      transition:transform .2s ease, opacity .2s ease;
     }
+    .logo-sticky:hover{opacity:1; transform:scale(1.06)}
 
-    /* Overlay degradado translúcido */
-    header::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.2));
+    /* NAV (idéntico) */
+    nav{
+      background:var(--marron); color:#fff; text-align:center;
+      padding:10px; box-shadow:0 2px 8px rgba(0,0,0,.15);
+      position:sticky; top:0; z-index:900;
     }
+    nav a{color:#fff; margin:0 15px; text-decoration:none; font-weight:bold}
+    nav a:hover{text-decoration:underline}
 
-    header h1 {
-      position: relative;
-      z-index: 1;
-      color: white;
-      animation: fadeInHeader 2s ease-out;
-      margin-top: 40px;
-      font-size: 50px;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    /* Layout contenido */
+    section{padding:40px 20px; display:flex; justify-content:center}
+    .flex-container{
+      display:flex; flex-wrap:wrap; max-width:1100px; gap:30px;
+      align-items:flex-start; justify-content:center;
     }
-
-    @keyframes fadeInHeader {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .texto{
+      flex:1 1 400px; background:rgba(255,255,255,.85);
+      padding:25px; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,.1);
     }
+    .texto h2{color:var(--verde)}
+    .texto ul{padding-left:20px}
 
-    .logo-sticky {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      height: 70px;
-      opacity: 0.6;
-      z-index: 999;
-      transition: transform 0.3s ease, opacity 0.3s ease;
+    .videos{flex:1 1 300px; display:flex; flex-direction:column; gap:20px}
+    .video-container{
+      background:rgba(255,255,255,.85); padding:15px; border-radius:10px;
+      box-shadow:0 4px 8px rgba(0,0,0,.1)
     }
+    .video-container h3{font-size:16px; color:var(--verde); margin-bottom:10px}
+    iframe{width:100%; height:180px; border:none; border-radius:8px}
 
-    .logo-sticky:hover {
-      opacity: 1;
-      transform: scale(1.05);
-    }
-
-    .marquesina {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      z-index: 2;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 5px 15px;
-      border-radius: 5px;
-    }
-
-    .marquesina p {
-      margin: 0;
-      font-weight: bold;
-      font-size: 21px;
-      color: white;
-    }
-
-    nav {
-      background-color: #6b4f2c;
-      padding: 10px;
-      text-align: center;
-    }
-
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    section {
-      padding: 40px 20px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .flex-container {
-      display: flex;
-      flex-wrap: wrap;
-      max-width: 1100px;
-      gap: 30px;
-      align-items: flex-start;
-      justify-content: center;
-    }
-
-    .texto {
-      flex: 1 1 400px;
-      background-color: rgba(255, 255, 255, 0.85);
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    .texto h2 {
-      color: #2a5c2a;
-    }
-
-    .texto ul {
-      padding-left: 20px;
-    }
-
-    .videos {
-      flex: 1 1 300px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .video-container {
-      background-color: rgba(255, 255, 255, 0.85);
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    .video-container h3 {
-      font-size: 16px;
-      color: #2a5c2a;
-      margin-bottom: 10px;
-    }
-
-    iframe {
-      width: 100%;
-      height: 180px;
-      border: none;
-      border-radius: 8px;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        min-height: 44vh;
-      }
-
-      header h1 {
-        font-size: 36px;
-        margin-top: 60px;
-      }
-
-      .marquesina p {
-        font-size: 16px;
-      }
+    /* Mobile */
+    @media (max-width:600px){
+      header{min-height:100vh}   /* fullscreen en móvil */
+      .logo-sticky{height:50px; bottom:12px; right:12px}
     }
   </style>
 </head>
@@ -194,14 +107,12 @@
 
   <div class="contenido">
     <header>
-      <video autoplay muted loop playsinline>
+      <video autoplay muted loop playsinline poster="poster.jpg">
         <source src="senas.mp4" type="video/mp4">
         Tu navegador no soporta videos HTML5.
       </video>
       <h1>DigiAgro</h1>
-      <div class="marquesina">
-        <p>🚜 Optimizamos procesos para un agro más ágil y digital. 🚜</p>
-      </div>
+      <div class="marquesina"><p>🚜 Optimizamos procesos para un agro más ágil y digital. 🚜</p></div>
     </header>
 
     <nav>
@@ -209,7 +120,7 @@
       <a href="servicios.html">Servicios</a>
       <a href="nosotros.html">Nosotros</a>
       <a href="contacto.html">Contacto</a>
-      <a href="senasa.html">SENASA</a>
+      <a href="senasa.html" aria-current="page">SENASA</a>
     </nav>
 
     <section>
@@ -221,7 +132,7 @@
           <ul>
             <li>✅ Informá tus despachos en pocos clics.</li>
             <li>✅ Consultá tus stocks por depósito de forma automática.</li>
-            <li>✅ Recibí envíos de tus proveedores o devoluciones</li>
+            <li>✅ Recibí envíos de tus proveedores o devoluciones.</li>
             <li>✅ Adaptado para tus necesidades de negocios.</li>
           </ul>
           <p>Con nuestras herramientas digitales, la gestión agropecuaria nunca fue tan fácil y eficiente.</p>
@@ -242,6 +153,9 @@
       </div>
     </section>
   </div>
+</body>
+</html>
+
 </body>
 </html>
 
