@@ -158,6 +158,13 @@
       header h1 { font-size: 36px; margin-top: 40px; }
       .marquesina p { font-size: 16px; }
     }
+
+    /* ——— Ajuste opcional por si el chat tapa la nav ——— */
+    #n8n-chat,
+    .n8n-chat-container,
+    #chat-widget-root {
+      z-index: 950 !important; /* menor al logo (999) y a la nav con sombra */
+    }
   </style>
 </head>
 <body>
@@ -188,9 +195,47 @@
     <section class="seccion">
       <h2>Contacto</h2>
       <p>¿Querés más información o tenés una consulta?</p>
-      <p>📨 Escribinos a <strong>info@digiagro.com.ar</strong></p>
-      <p>También podés contactarnos directo a nuestro WhatsApp y rápidamente te responderemos:</p>
+      <p>🤖 Escribinos a las 24 horas a nuestro asistente virtual <strong>Digibot</strong> en la esquina inferior</p>
+      <p>📨 puedes contactarnos por correo a <strong>info@digiagro.com.ar</strong></p>
+      <p>📲 También podés contactarnos directo a nuestro WhatsApp y rápidamente te responderemos:</p>
       <a href="https://wa.me/5491151188747?text=Hola%2C+quiero+más+información+sobre+los+servicios+de+Digiagro" target="_blank" class="btn-contacto">💬 Escribinos por WhatsApp</a>
+    </section>
+  </div>
+
+  <!-- contenedor necesario para que n8n inserte el chat -->
+  <div id="n8n-chat"></div>
+
+  <!-- n8n chat -->
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+  <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+    createChat({
+      webhookUrl: 'https://jjg.app.n8n.cloud/webhook/8c90edd6-52a3-4069-8afd-d97a9fd86e31/chat',
+      webhookConfig: { method: 'POST', headers: {} },
+      target: '#n8n-chat',
+      mode: 'window',                 // ventana flotante
+      defaultLanguage: 'es',
+      chatInputKey: 'chatInput',
+      chatSessionKey: 'sessionId',
+      loadPreviousSession: true,
+      metadata: {},
+      showWelcomeScreen: false,
+      initialMessages: ['¡Hola! 👋','¿En qué te puedo ayudar hoy?'],
+      i18n: {
+        es: {
+          title: 'Soy DIGIBOT 🤖',
+          subtitle: 'Estoy 24/7 para ayudarte',
+          footer: '',
+          getStarted: 'Nueva conversación',
+          inputPlaceholder: 'Escribí tu consulta',
+        },
+      },
+      enableStreaming: false,
+    });
+  </script>
+</body>
+</html>
+
     </section>
   </div>
 </body>
