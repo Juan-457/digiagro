@@ -29,20 +29,19 @@
       padding-bottom:max(72px, var(--safe));
     }
 
-    /* Header con video */
+    /* ===== Header con video ===== */
     header{
       position:relative;
-      min-height:60vh;          /* ↑ antes 48vh */
-      max-height:520px;         /* mismo tope que en otras páginas */
+      min-height:60vh;          /* altura coherente con el resto */
+      max-height:520px;
       display:flex; flex-direction:column; justify-content:center; align-items:center;
       text-align:center; overflow:hidden; isolation:isolate;
     }
-    /* Video debajo del overlay */
     header video{
       position:absolute; inset:0; width:100%; height:100%;
-      object-fit:cover; z-index:-2;
+      object-fit:cover; object-position:50% 45%;
+      z-index:-2;
     }
-    /* Overlay degradado translúcido para disimular pixelado y mejorar contraste */
     header::before{
       content:""; position:absolute; inset:0; z-index:-1;
       background:linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.2));
@@ -59,8 +58,8 @@
       position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
       background:rgba(0,0,0,.5); color:#fff; padding:8px 14px; border-radius:999px;
       backdrop-filter:blur(4px); max-width:92%;
+      font-weight:700; font-size:clamp(14px,3.2vw,20px)
     }
-    .marquesina p{margin:0; font-weight:700; font-size:clamp(14px,3.2vw,20px)}
 
     /* Logo fijo */
     .logo-sticky{
@@ -69,7 +68,7 @@
     }
     .logo-sticky:hover{opacity:1; transform:scale(1.06)}
 
-    /* ===== Navegación estilo "primera imagen" ===== */
+    /* ===== Navegación ===== */
     nav{
       background:var(--marron);
       color:#fff;
@@ -79,10 +78,8 @@
     .nav-inner{
       max-width:1100px; margin:0 auto;
       display:flex; align-items:center; justify-content:center;
-      padding:8px 12px; position:relative; /* para ubicar el botón */
-      gap:12px;
+      padding:8px 12px; position:relative; gap:12px;
     }
-    /* En desktop los enlaces van centrados y no hay brand */
     .links{
       display:flex; align-items:center; justify-content:center;
       gap:28px; flex-wrap:wrap; list-style:none; padding:0; margin:0;
@@ -103,17 +100,20 @@
 
     /* Menú móvil desplegable */
     .mobile{
-      display:none; /* se controla por JS y media query */
+      /* visible/invisible se controla con [hidden] */
       flex-direction:column; gap:6px;
       padding:10px 16px 14px;
       background:var(--marron);
       border-top:1px solid rgba(255,255,255,.15);
     }
+    .mobile[hidden]{display:none}
     .mobile a{
-      padding:10px 0; border-radius:8px;
+      color:#fff; text-decoration:none;
+      padding:12px 0; border-radius:8px; font-weight:800;
     }
+    .mobile a:hover{ text-decoration:underline }
 
-    /* Sección servicios */
+    /* ===== Sección servicios ===== */
     section{padding:36px 16px; display:flex; justify-content:center}
     .wrap{ width:min(1100px, 100%) }
     .intro{
@@ -133,9 +133,7 @@
       padding:clamp(16px,2.8vw,20px); display:flex; flex-direction:column; gap:10px;
       animation:fadeInContent .7s ease both;
     }
-    .card h3{
-      margin:.2rem 0 .2rem; font-size:clamp(16px,3.2vw,20px); color:var(--verde)
-    }
+    .card h3{ margin:.2rem 0 .2rem; font-size:clamp(16px,3.2vw,20px); color:var(--verde) }
     .card p, .card li{ font-size:clamp(13px,2.6vw,15px); margin:0 }
     .card ul{ margin:.2rem 0 0 1rem }
     .pill{
@@ -161,7 +159,7 @@
 
     @keyframes fadeInContent{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-    /* ===== Mobile-first ===== */
+    /* ===== Mobile ===== */
     @media (max-width:900px){
       .hamburger{display:inline-flex}
       .nav-inner .links{display:none}
@@ -169,7 +167,8 @@
       .grid{ grid-template-columns: 1fr 1fr }
     }
     @media (max-width:600px){
-      header{min-height:100vh} /* ↑ fullscreen en móvil */
+      /* IMPORTANTE: no usar 100vh para que no tape el nav */
+      header{min-height:60vh; max-height:520px}
       .logo-sticky{height:50px; bottom:12px; right:12px}
       .marquesina{bottom:12px}
       .grid{ grid-template-columns: 1fr }
@@ -234,8 +233,80 @@
           <p>Soluciones rápidas y a medida para digitalizar el agro: apps, automatizaciones, BI e integraciones.</p>
         </div>
 
-        <!-- ... resto del contenido igual ... -->
+        <!-- Cards de servicios (tu contenido existente) -->
+        <div class="grid">
+          <div class="card">
+            <span class="pill">BCRA</span>
+            <h3>Consultas financieras</h3>
+            <p>Deudas y cheques rechazados del BCRA para evaluar riesgo de clientes.</p>
+            <ul><li>Consulta en tiempo real</li><li>Alertas automáticas</li><li>Integrable a CRM</li></ul>
+          </div>
 
+          <div class="card">
+            <span class="pill">CRM</span>
+            <h3>Gestión de clientes y distribuidores</h3>
+            <p>Embudo comercial, seguimiento y reporting. Integrable a WhatsApp/Email.</p>
+            <ul><li>Leads → Oportunidades</li><li>Agenda y visitas</li><li>Dashboards</li></ul>
+          </div>
+
+          <div class="card">
+            <span class="pill">Web</span>
+            <h3>Diseño y publicación</h3>
+            <p>Sitios rápidos, seguros y medibles. SEO básico + analítica.</p>
+            <ul><li>Landing y multi-página</li><li>Catálogo simple</li><li>Formularios</li></ul>
+          </div>
+
+          <div class="card">
+            <span class="pill">Power Apps</span>
+            <h3>Apps a medida</h3>
+            <p>Pedidos, logística, rendiciones, stock, turnos.</p>
+            <ul><li>Dataverse/SharePoint/SQL</li><li>Roles y permisos</li><li>Mobile y desktop</li></ul>
+          </div>
+
+          <div class="card">
+            <span class="pill">Power BI</span>
+            <h3>Dashboards & KPIs</h3>
+            <p>Ventas, stock, logística, cobranzas.</p>
+            <ul><li>ETL Power Query</li><li>DAX a medida</li><li>Actualización programada</li></ul>
+          </div>
+
+          <div class="card">
+            <span class="pill">AI</span>
+            <h3>Agentes de IA</h3>
+            <p>Atención 24/7 en WhatsApp/Web, con agenda y captura de leads.</p>
+            <ul><li>Agentes con GPT</li><li>Memoria y contexto</li><li>Escalada a humano</li></ul>
+          </div>
+
+          <div class="card">
+            <span class="pill">APIs</span>
+            <h3>Integraciones externas</h3>
+            <p>Conectamos tu ERP, SENASA/Agrotraza, correo, pagos, etc.</p>
+            <ul><li>HTTP/REST</li><li>OAuth/Keys</li><li>Logs y retries</li></ul>
+          </div>
+
+          <div class="card">
+            <span class="pill">Forms</span>
+            <h3>Formularios inteligentes</h3>
+            <p>Validaciones, adjuntos, firmas y flujos aprobatorios.</p>
+            <ul><li>Power Automate</li><li>Notificaciones</li><li>Historial</li></ul>
+          </div>
+
+          <div class="card">
+            <span class="pill">Flows</span>
+            <h3>Automatizaciones</h3>
+            <p>Aprobaciones, avisos y sincronizaciones entre sistemas.</p>
+            <ul><li>Plantillas reutilizables</li><li>Monitoreo</li><li>Alertas</li></ul>
+          </div>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn btn-primary"
+             href="https://wa.me/5491151188747?text=Hola%2C+quiero+conocer+los+servicios+de+DigiAgro+y+agendar+una+demo"
+             target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp de DigiAgro">
+            💬 WhatsApp
+          </a>
+          <a class="btn btn-outline" href="contacto.html">📅 Agendar demo</a>
+        </div>
       </div>
     </section>
   </div>
