@@ -6,21 +6,17 @@
   <title>DigiAgro</title>
   <meta name="color-scheme" content="light dark" />
 
-  <!-- ====================== GOOGLE TAG (Ads + opcional GA4) ====================== -->
-  <!-- Google tag (gtag.js) -->
+  <!-- ====================== GOOGLE TAG (Ads) ====================== -->
+  <!-- Global site tag -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17670261226"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
 
-    /* Ads */
     gtag('config', 'AW-17670261226');
-
-    /* GA4 (opcional): reemplazar por tu ID de GA4 si lo tenés, sino podés borrar esta línea */
-    gtag('config', 'G-XXXXXXXX');
   </script>
-  <!-- ============================================================================ -->
+  <!-- =============================================================== -->
 
   <style>
     :root{
@@ -28,7 +24,6 @@
       --shadow:0 4px 10px rgba(0,0,0,.12); --radius:14px; --safe: env(safe-area-inset-bottom);
     }
 
-    /* ===== SCOPE ===== */
     .dg *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     .dg{
@@ -37,7 +32,6 @@
       background-attachment:fixed; padding-bottom:max(72px,var(--safe));
     }
 
-    /* Header */
     .dg header{
       position:relative; min-height:100vh; height:100svh;
       display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
@@ -47,7 +41,6 @@
       position:absolute; inset:0; width:100%; height:100%;
       object-fit:cover; object-position:center; z-index:-2;
     }
-    /* Overlay degradado translúcido */
     .dg header::before{
       content:""; position:absolute; inset:0; z-index:-1;
       background:linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.2));
@@ -64,14 +57,12 @@
     }
     .dg .marquesina p{margin:0; font-weight:700; font-size:clamp(14px,3.2vw,20px)}
 
-    /* Logo fijo */
     .dg .logo-sticky{
       position:fixed; bottom:14px; left:14px; height:64px; opacity:.7; z-index:900;
       transition:transform .2s ease, opacity .2s ease;
     }
     .dg .logo-sticky:hover{opacity:1; transform:scale(1.06)}
 
-    /* ===== NAV responsive (fix iOS) ===== */
     .dg nav{
       background:var(--marron);
       position:sticky; top:0;
@@ -84,8 +75,6 @@
       gap:18px; padding:8px 12px;
       position:relative;
     }
-
-    /* Enlaces desktop centrados */
     .dg nav .links{
       display:flex; gap:18px; flex-wrap:wrap; list-style:none; margin:0; padding:0;
       font-weight:800; letter-spacing:.2px;
@@ -96,7 +85,6 @@
     }
     .dg nav .links a:hover{ text-decoration:underline }
 
-    /* Botón hamburguesa (solo mobile) */
     .dg nav .hamburger{
       display:none; cursor:pointer; border:0; background:transparent; color:#fff;
       padding:12px; position:absolute; right:8px; top:2px; z-index:1203;
@@ -104,7 +92,6 @@
     }
     .dg nav .hamburger svg{width:26px; height:26px}
 
-    /* Menú móvil desplegable */
     .dg .links.mobile{
       display:none;
       flex-direction:column; gap:6px;
@@ -118,7 +105,6 @@
     .dg .links.mobile[hidden]{display:none !important}
     .dg .links.mobile a{display:block; padding:12px 0; border-radius:8px}
 
-    /* Contenido */
     .dg section{display:flex; justify-content:center; align-items:center; flex-direction:column; padding:36px 16px}
     .dg .seccion{
       width:min(760px,92%); background:var(--bgCard); border-radius:var(--radius); box-shadow:var(--shadow);
@@ -128,12 +114,10 @@
     .dg .seccion h2{color:var(--verde); font-size:clamp(20px,3.6vw,28px); margin-top:0}
     .dg .seccion p{margin:.4rem 0; font-size:clamp(14px,2.8vw,16px)}
 
-    /* Si tu widget de chat flotante tapa la nav, bajale su z-index aquí */
     .dg #n8n-chat, .dg #chat-widget-root, .dg .chat-widget-container, .dg .n8n-chat-container{
       /* z-index:950 !important; */
     }
 
-    /* Breakpoints */
     @media (max-width:900px){
       .dg nav .links{display:none}
       .dg nav .hamburger{display:inline-flex}
@@ -201,7 +185,7 @@
     </section>
   </div>
 
-  <!-- Contenedor donde n8n inserta el chat -->
+  <!-- Contenedor chat -->
   <div id="n8n-chat"></div>
 
   <!-- n8n chat -->
@@ -232,7 +216,7 @@
       enableStreaming: false,
     });
 
-    // Toggle menú móvil (compatible iOS)
+    // Toggle menú móvil
     const btn = document.querySelector('.dg .hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     btn?.addEventListener('click', () => {
@@ -247,60 +231,45 @@
     });
   </script>
 
-  <!-- =================== MEDICIÓN DE WEBCHAT (Ads + GA4 vía gtag) =================== -->
+  <!-- =================== CONVERSIÓN WEBCHAT =================== -->
   <script>
     (function(){
-      // Evitamos duplicar eventos por sesión de página
       const chatMetrics = { opened: false, firstMsg: false };
 
-      // Helper para enviar eventos a GA4/Ads
-      function track(name, params){
-        try{
-          gtag('event', name, params || {});
-        }catch(e){ /* silencio */ }
+      function adsConversion(){
+        gtag('event', 'conversion', {
+          'send_to': 'AW-17670261226/pyaHCLtnEnrzEbE0qT6-1B',
+          'value': 1.0,
+          'currency': 'ARS'
+        });
       }
 
-      // Dispara conversión de Ads (reemplazar LABELS por los de tus conversiones)
-      function adsConversion(label){
-        try{
-          gtag('event', 'conversion', { 'send_to': 'AW-17670261226/' + label });
-        }catch(e){ /* silencio */ }
-      }
-
-      // Vinculamos eventos al área del chat n8n
       window.addEventListener('DOMContentLoaded', function(){
         const root = document.getElementById('n8n-chat');
         if(!root) return;
 
-        // 1) "Chat Open": cuando el usuario enfoca el input del chat por primera vez
-        root.addEventListener('focusin', function(ev){
+        // Marca conversión al abrir el chat
+        root.addEventListener('focusin', function(){
           if(!chatMetrics.opened){
             chatMetrics.opened = true;
-            track('chat_open', { event_category: 'webchat', value: 1 });
-            adsConversion('LABEL_CHAT_OPEN'); // <-- REEMPLAZAR
+            adsConversion();
           }
         }, true);
 
-        // 2) "Chat Message": cuando envía mensaje (Enter sin Shift) por primera vez
+        // Marca conversión al mandar el primer mensaje
         root.addEventListener('keydown', function(ev){
-          const tag = ev.target && ev.target.tagName;
-          if(!chatMetrics.firstMsg && (tag === 'INPUT' || tag === 'TEXTAREA')){
+          if(!chatMetrics.firstMsg && (ev.target.tagName === 'INPUT' || ev.target.tagName === 'TEXTAREA')){
             if(ev.key === 'Enter' && !ev.shiftKey){
               chatMetrics.firstMsg = true;
-              track('chat_message', { event_category: 'webchat', value: 1 });
-              adsConversion('LABEL_CHAT_MESSAGE'); // <-- REEMPLAZAR
+              adsConversion();
             }
           }
         }, true);
-
-        // (Opcional) Si tenés un botón flotante propio que abre el chat, podés marcarlo:
-        // document.querySelector('#btn-abrir-chat')?.addEventListener('click', () => {
-        //   if(!chatMetrics.opened){ chatMetrics.opened = true; track('chat_open', {event_category:'webchat'}); adsConversion('LABEL_CHAT_OPEN'); }
-        // });
       });
     })();
   </script>
-  <!-- ============================================================================ -->
+  <!-- ========================================================== -->
 
 </body>
 </html>
+
