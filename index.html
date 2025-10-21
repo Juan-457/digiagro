@@ -6,24 +6,27 @@
   <title>DigiAgro</title>
   <meta name="color-scheme" content="light dark" />
 
-  <!-- ====================== GOOGLE TAG (Ads) ====================== -->
-  <!-- Global site tag -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17670261226"></script>
+  <!-- ====================== GOOGLE TAG (GA4 + Ads) ====================== -->
+  <!-- Carga única de gtag.js (vale para GA4 y Ads) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
 
+    // GA4 (reemplazá por tu ID real)
+    gtag('config', 'G-XXXXXXXX');
+
+    // Si más adelante querés usar funciones de Ads (remarketing, etc.), podés dejar también:
     gtag('config', 'AW-17670261226');
   </script>
-  <!-- =============================================================== -->
+  <!-- ==================================================================== -->
 
   <style>
     :root{
       --verde:#2a5c2a; --marron:#6b4f2c; --bgCard:rgba(255,255,255,.88);
       --shadow:0 4px 10px rgba(0,0,0,.12); --radius:14px; --safe: env(safe-area-inset-bottom);
     }
-
     .dg *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     .dg{
@@ -31,7 +34,6 @@
       background-image:url('fondo.png'); background-size:cover; background-position:center; background-repeat:no-repeat;
       background-attachment:fixed; padding-bottom:max(72px,var(--safe));
     }
-
     .dg header{
       position:relative; min-height:100vh; height:100svh;
       display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
@@ -56,13 +58,11 @@
       max-width:92%;
     }
     .dg .marquesina p{margin:0; font-weight:700; font-size:clamp(14px,3.2vw,20px)}
-
     .dg .logo-sticky{
       position:fixed; bottom:14px; left:14px; height:64px; opacity:.7; z-index:900;
       transition:transform .2s ease, opacity .2s ease;
     }
     .dg .logo-sticky:hover{opacity:1; transform:scale(1.06)}
-
     .dg nav{
       background:var(--marron);
       position:sticky; top:0;
@@ -72,8 +72,7 @@
     .dg nav .nav-inner{
       max-width:1100px; margin:0 auto;
       display:flex; align-items:center; justify-content:center;
-      gap:18px; padding:8px 12px;
-      position:relative;
+      gap:18px; padding:8px 12px; position:relative;
     }
     .dg nav .links{
       display:flex; gap:18px; flex-wrap:wrap; list-style:none; margin:0; padding:0;
@@ -84,27 +83,20 @@
       padding:12px 10px; border-radius:10px;
     }
     .dg nav .links a:hover{ text-decoration:underline }
-
     .dg nav .hamburger{
       display:none; cursor:pointer; border:0; background:transparent; color:#fff;
       padding:12px; position:absolute; right:8px; top:2px; z-index:1203;
       -webkit-tap-highlight-color: transparent;
     }
     .dg nav .hamburger svg{width:26px; height:26px}
-
     .dg .links.mobile{
-      display:none;
-      flex-direction:column; gap:6px;
+      display:none; flex-direction:column; gap:6px;
       position:absolute; left:0; right:0; top:100%;
-      background:var(--marron);
-      border-top:1px solid rgba(255,255,255,.15);
-      box-shadow:0 10px 18px rgba(0,0,0,.25);
-      z-index:1202;
-      padding:10px 16px 14px;
+      background:var(--marron); border-top:1px solid rgba(255,255,255,.15);
+      box-shadow:0 10px 18px rgba(0,0,0,.25); z-index:1202; padding:10px 16px 14px;
     }
     .dg .links.mobile[hidden]{display:none !important}
     .dg .links.mobile a{display:block; padding:12px 0; border-radius:8px}
-
     .dg section{display:flex; justify-content:center; align-items:center; flex-direction:column; padding:36px 16px}
     .dg .seccion{
       width:min(760px,92%); background:var(--bgCard); border-radius:var(--radius); box-shadow:var(--shadow);
@@ -113,26 +105,7 @@
     @keyframes fadeInContent{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
     .dg .seccion h2{color:var(--verde); font-size:clamp(20px,3.6vw,28px); margin-top:0}
     .dg .seccion p{margin:.4rem 0; font-size:clamp(14px,2.8vw,16px)}
-
-    .dg #n8n-chat, .dg #chat-widget-root, .dg .chat-widget-container, .dg .n8n-chat-container{
-      /* z-index:950 !important; */
-    }
-
-    @media (max-width:900px){
-      .dg nav .links{display:none}
-      .dg nav .hamburger{display:inline-flex}
-      .dg .links.mobile{display:flex}
-      .dg nav .nav-inner{justify-content:space-between}
-    }
-    @media (max-width:600px){
-      .dg header{min-height:100vh; height:100svh}
-      .dg .logo-sticky{height:50px; bottom:12px; left:12px}
-      .dg .marquesina{bottom:12px}
-      .dg{background-attachment:scroll}
-    }
-    @media (prefers-reduced-motion: reduce){
-      .dg *{animation:none !important; transition:none !important; scroll-behavior:auto !important}
-    }
+    .dg #n8n-chat, .dg #chat-widget-root, .dg .chat-widget-container, .dg .n8n-chat-container{ /* z-index:950 !important; */ }
   </style>
 </head>
 <body>
@@ -157,14 +130,12 @@
           <li><a href="contacto.html">Contacto</a></li>
           <li><a href="senasa.html">SENASA</a></li>
         </ul>
-
         <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M3 12h18M3 18h18"/>
           </svg>
         </button>
       </div>
-
       <div class="links mobile" id="mobileMenu" hidden>
         <a href="index.html">Inicio</a>
         <a href="servicios.html">Servicios</a>
@@ -204,15 +175,10 @@
       metadata: {},
       showWelcomeScreen: false,
       initialMessages: ['¡Hola! 👋','¿En qué te puedo ayudar hoy?'],
-      i18n: {
-        es: {
-          title: 'Soy DIGIBOT 🤖',
-          subtitle: 'Estoy 24/7 para ayudarte',
-          footer: '',
-          getStarted: 'Nueva conversación',
-          inputPlaceholder: 'Escribí tu consulta',
-        },
-      },
+      i18n: { es: {
+        title: 'Soy DIGIBOT 🤖', subtitle: 'Estoy 24/7 para ayudarte', footer: '',
+        getStarted: 'Nueva conversación', inputPlaceholder: 'Escribí tu consulta',
+      }},
       enableStreaming: false,
     });
 
@@ -221,54 +187,44 @@
     const mobileMenu = document.getElementById('mobileMenu');
     btn?.addEventListener('click', () => {
       const isOpen = !mobileMenu.hasAttribute('hidden');
-      if (isOpen) {
-        mobileMenu.setAttribute('hidden','');
-        btn.setAttribute('aria-expanded','false');
-      } else {
-        mobileMenu.removeAttribute('hidden');
-        btn.setAttribute('aria-expanded','true');
-      }
+      if (isOpen) { mobileMenu.setAttribute('hidden',''); btn.setAttribute('aria-expanded','false'); }
+      else { mobileMenu.removeAttribute('hidden'); btn.setAttribute('aria-expanded','true'); }
     });
   </script>
 
-  <!-- =================== CONVERSIÓN WEBCHAT =================== -->
+  <!-- =================== MEDICIÓN WEBCHAT (GA4) =================== -->
   <script>
     (function(){
-      const chatMetrics = { opened: false, firstMsg: false };
-
-      function adsConversion(){
-        gtag('event', 'conversion', {
-          'send_to': 'AW-17670261226/pyaHCLtnEnrzEbE0qT6-1B',
-          'value': 1.0,
-          'currency': 'ARS'
-        });
-      }
+      const chatState = { opened:false, firstMsg:false };
 
       window.addEventListener('DOMContentLoaded', function(){
         const root = document.getElementById('n8n-chat');
         if(!root) return;
 
-        // Marca conversión al abrir el chat
+        // Evento GA4 cuando el usuario abre el chat (primer focus en input/textarea)
         root.addEventListener('focusin', function(){
-          if(!chatMetrics.opened){
-            chatMetrics.opened = true;
-            adsConversion();
+          if(!chatState.opened){
+            chatState.opened = true;
+            gtag('event','chat_open',{ event_category:'webchat', value:1 });
           }
         }, true);
 
-        // Marca conversión al mandar el primer mensaje
+        // Evento GA4 cuando envía su primer mensaje (Enter sin Shift)
         root.addEventListener('keydown', function(ev){
-          if(!chatMetrics.firstMsg && (ev.target.tagName === 'INPUT' || ev.target.tagName === 'TEXTAREA')){
+          if(!chatState.firstMsg && (ev.target.tagName === 'INPUT' || ev.target.tagName === 'TEXTAREA')){
             if(ev.key === 'Enter' && !ev.shiftKey){
-              chatMetrics.firstMsg = true;
-              adsConversion();
+              chatState.firstMsg = true;
+              gtag('event','chat_message',{ event_category:'webchat', value:1 });
             }
           }
         }, true);
       });
     })();
   </script>
-  <!-- ========================================================== -->
+  <!-- ============================================================ -->
+</body>
+</html>
+
 
 </body>
 </html>
