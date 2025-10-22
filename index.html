@@ -13,10 +13,10 @@
     function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
 
-    // GA4
-    gtag('config', 'G-QCQF1T2G33');
+    // GA4 (debug activado para ver en DebugView)
+    gtag('config', 'G-QCQF1T2G33', { 'debug_mode': true });
 
-    // Google Ads (opcional)
+    // Google Ads (opcional; lo dejás si pensás usar Remarketing/Convers.)
     gtag('config', 'AW-17670261226');
   </script>
   <!-- ==================================================================== -->
@@ -199,20 +199,20 @@
         const root = document.getElementById('n8n-chat');
         if(!root) return;
 
-        // Evento GA4 cuando el usuario abre el chat
+        // Evento GA4 cuando el usuario abre el chat (primer foco en input/textarea)
         root.addEventListener('focusin', function(){
           if(!chatState.opened){
             chatState.opened = true;
-            gtag('event','chat_open',{ event_category:'webchat', value:1 });
+            gtag('event','chat_open',{ event_category:'webchat', value:1, debug_mode:true });
           }
         }, true);
 
-        // Evento GA4 cuando envía su primer mensaje
+        // Evento GA4 cuando envía su primer mensaje (Enter sin Shift)
         root.addEventListener('keydown', function(ev){
           if(!chatState.firstMsg && (ev.target.tagName === 'INPUT' || ev.target.tagName === 'TEXTAREA')){
             if(ev.key === 'Enter' && !ev.shiftKey){
               chatState.firstMsg = true;
-              gtag('event','chat_message',{ event_category:'webchat', value:1 });
+              gtag('event','chat_message',{ event_category:'webchat', value:1, debug_mode:true });
             }
           }
         }, true);
@@ -222,3 +222,4 @@
   <!-- ============================================================ -->
 </body>
 </html>
+
