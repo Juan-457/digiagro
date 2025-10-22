@@ -6,21 +6,15 @@
   <title>DigiAgro</title>
   <meta name="color-scheme" content="light dark" />
 
-  <!-- ====================== GOOGLE TAG (GA4 + Ads) ====================== -->
-  <!-- Carga única de gtag.js (vale para GA4 y Ads) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QCQF1T2G33"></script>
+  <!-- ====================== GOOGLE TAG MANAGER ====================== -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    // GA4 (reemplazá por tu ID real)
-    gtag('config', 'G-QCQF1T2G33');
-
-    // Si más adelante querés usar funciones de Ads (remarketing, etc.), podés dejar también:
-    gtag('config', 'AW-17670261226');
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NMWWJZG2');
   </script>
-  <!-- ==================================================================== -->
+  <!-- ================================================================ -->
 
   <style>
     :root{
@@ -109,6 +103,13 @@
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMWWJZG2"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <div class="dg">
     <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
 
@@ -191,40 +192,6 @@
       else { mobileMenu.removeAttribute('hidden'); btn.setAttribute('aria-expanded','true'); }
     });
   </script>
-
-  <!-- =================== MEDICIÓN WEBCHAT (GA4) =================== -->
-  <script>
-    (function(){
-      const chatState = { opened:false, firstMsg:false };
-
-      window.addEventListener('DOMContentLoaded', function(){
-        const root = document.getElementById('n8n-chat');
-        if(!root) return;
-
-        // Evento GA4 cuando el usuario abre el chat (primer focus en input/textarea)
-        root.addEventListener('focusin', function(){
-          if(!chatState.opened){
-            chatState.opened = true;
-            gtag('event','chat_open',{ event_category:'webchat', value:1 });
-          }
-        }, true);
-
-        // Evento GA4 cuando envía su primer mensaje (Enter sin Shift)
-        root.addEventListener('keydown', function(ev){
-          if(!chatState.firstMsg && (ev.target.tagName === 'INPUT' || ev.target.tagName === 'TEXTAREA')){
-            if(ev.key === 'Enter' && !ev.shiftKey){
-              chatState.firstMsg = true;
-              gtag('event','chat_message',{ event_category:'webchat', value:1 });
-            }
-          }
-        }, true);
-      });
-    })();
-  </script>
-  <!-- ============================================================ -->
 </body>
 </html>
 
-
-</body>
-</html>
