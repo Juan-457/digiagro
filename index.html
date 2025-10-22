@@ -7,17 +7,16 @@
   <meta name="color-scheme" content="light dark" />
 
   <!-- ====================== GOOGLE TAG (GA4 + Ads) ====================== -->
-  <!-- Carga única de gtag.js (vale para GA4 y Ads) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QCQF1T2G33"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
 
-    // GA4 (reemplazá por tu ID real)
+    // GA4
     gtag('config', 'G-QCQF1T2G33');
 
-    // Si más adelante querés usar funciones de Ads (remarketing, etc.), podés dejar también:
+    // Google Ads (opcional)
     gtag('config', 'AW-17670261226');
   </script>
   <!-- ==================================================================== -->
@@ -105,7 +104,6 @@
     @keyframes fadeInContent{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
     .dg .seccion h2{color:var(--verde); font-size:clamp(20px,3.6vw,28px); margin-top:0}
     .dg .seccion p{margin:.4rem 0; font-size:clamp(14px,2.8vw,16px)}
-    .dg #n8n-chat, .dg #chat-widget-root, .dg .chat-widget-container, .dg .n8n-chat-container{ /* z-index:950 !important; */ }
   </style>
 </head>
 <body>
@@ -201,7 +199,7 @@
         const root = document.getElementById('n8n-chat');
         if(!root) return;
 
-        // Evento GA4 cuando el usuario abre el chat (primer focus en input/textarea)
+        // Evento GA4 cuando el usuario abre el chat
         root.addEventListener('focusin', function(){
           if(!chatState.opened){
             chatState.opened = true;
@@ -209,7 +207,7 @@
           }
         }, true);
 
-        // Evento GA4 cuando envía su primer mensaje (Enter sin Shift)
+        // Evento GA4 cuando envía su primer mensaje
         root.addEventListener('keydown', function(ev){
           if(!chatState.firstMsg && (ev.target.tagName === 'INPUT' || ev.target.tagName === 'TEXTAREA')){
             if(ev.key === 'Enter' && !ev.shiftKey){
@@ -224,8 +222,3 @@
   <!-- ============================================================ -->
 </body>
 </html>
-
-
-</body>
-</html>
-
