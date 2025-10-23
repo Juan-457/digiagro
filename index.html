@@ -8,13 +8,13 @@
 
   <!-- ====================== GOOGLE TAG MANAGER ====================== -->
   <script>
-  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-NMWWJZG2');
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NMWWJZG2');
   </script>
-  <!-- ================================================================ -->
+  <!-- ================================================================= -->
 
   <style>
     :root{
@@ -99,7 +99,6 @@
     @keyframes fadeInContent{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
     .dg .seccion h2{color:var(--verde); font-size:clamp(20px,3.6vw,28px); margin-top:0}
     .dg .seccion p{margin:.4rem 0; font-size:clamp(14px,2.8vw,16px)}
-    .dg #n8n-chat, .dg #chat-widget-root, .dg .chat-widget-container, .dg .n8n-chat-container{ /* z-index:950 !important; */ }
   </style>
 </head>
 <body>
@@ -192,6 +191,38 @@
       else { mobileMenu.removeAttribute('hidden'); btn.setAttribute('aria-expanded','true'); }
     });
   </script>
+
+  <!-- =================== MEDICIÓN WEBCHAT (GA4 vía GTM) =================== -->
+  <script>
+    (function(){
+      const chatState = { opened:false, firstMsg:false };
+
+      window.addEventListener('DOMContentLoaded', function(){
+        const root = document.getElementById('n8n-chat');
+        if(!root) return;
+
+        // Evento cuando el usuario abre el chat
+        root.addEventListener('focusin', function(){
+          if(!chatState.opened){
+            chatState.opened = true;
+            window.dataLayer.push({ event:'chat_open', event_category:'webchat', value:1 });
+          }
+        }, true);
+
+        // Evento cuando envía su primer mensaje
+        root.addEventListener('keydown', function(ev){
+          if(!chatState.firstMsg && (ev.target.tagName === 'INPUT' || ev.target.tagName === 'TEXTAREA')){
+            if(ev.key === 'Enter' && !ev.shiftKey){
+              chatState.firstMsg = true;
+              window.dataLayer.push({ event:'chat_message', event_category:'webchat', value:1 });
+            }
+          }
+        }, true);
+      });
+    })();
+  </script>
+  <!-- ============================================================ -->
 </body>
 </html>
+
 
