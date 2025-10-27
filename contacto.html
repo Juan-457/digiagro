@@ -200,36 +200,32 @@
       </section>
   </div>
 
-  <!-- contenedor necesario para que n8n inserte el chat -->
-  <div id="n8n-chat"></div>
+   <!-- ========= JS: menú móvil + tracking WhatsApp ========= -->
+  <script>
+    // Toggle menú móvil
+    (function(){
+      const btn = document.querySelector('.dg .hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      btn?.addEventListener('click', () => {
+        const isOpen = !mobileMenu.hasAttribute('hidden');
+        if (isOpen) { mobileMenu.setAttribute('hidden',''); btn.setAttribute('aria-expanded','false'); }
+        else { mobileMenu.removeAttribute('hidden'); btn.setAttribute('aria-expanded','true'); }
+      });
+    })();
 
-  <!-- n8n chat -->
-  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-  <script type="module">
-    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
-    createChat({
-      webhookUrl: 'https://jjg.app.n8n.cloud/webhook/8c90edd6-52a3-4069-8afd-d97a9fd86e31/chat',
-      webhookConfig: { method: 'POST', headers: {} },
-      target: '#n8n-chat',
-      mode: 'window',                 // ventana flotante
-      defaultLanguage: 'es',
-      chatInputKey: 'chatInput',
-      chatSessionKey: 'sessionId',
-      loadPreviousSession: true,
-      metadata: {},
-      showWelcomeScreen: false,
-      initialMessages: ['¡Hola! 👋','¿En qué te puedo ayudar hoy?'],
-      i18n: {
-        es: {
-          title: 'Soy DIGIBOT 🤖',
-          subtitle: 'Estoy 24/7 para ayudarte',
-          footer: '',
-          getStarted: 'Nueva conversación',
-          inputPlaceholder: 'Escribí tu consulta',
-        },
-      },
-      enableStreaming: false,
-    });
+    // Medición de clic en WhatsApp (GA4/Ads vía GTM)
+    (function(){
+      window.dataLayer = window.dataLayer || [];
+      const wbtn = document.getElementById('whatsappButton');
+      wbtn?.addEventListener('click', function(){
+        window.dataLayer.push({
+          event: 'click_whatsapp',
+          event_category: 'engagement',
+          event_label: 'wa_5491168540048',
+          value: 1
+        });
+      });
+    })();
   </script>
 </body>
 </html>
