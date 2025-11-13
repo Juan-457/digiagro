@@ -216,6 +216,98 @@
       });
     })();
   </script>
+  <!-- POPUP PROMO DIGIAGRO -->
+<style>
+  #promoPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    font-family: 'Arial', sans-serif;
+  }
+
+  #promoPopup.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  #promoBox {
+    background: white;
+    width: 90%;
+    max-width: 420px;
+    padding: 30px;
+    border-radius: 18px;
+    text-align: center;
+    animation: popIn 0.35s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
+
+  @keyframes popIn {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  #promoBox h2 {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #28a745;
+  }
+
+  #promoBox p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+
+  #promoClose {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.2s;
+  }
+
+  #promoClose:hover {
+    background: #218838;
+  }
+</style>
+
+<div id="promoPopup">
+  <div id="promoBox">
+    <h2>🎉 ¡Promo DigiAgro!</h2>
+    <p>Estamos <b>locos</b> 🤯<br>
+    Durante <b>noviembre y diciembre</b> no cobramos la implementación de los bots de WhatsApp.</p>
+    <button id="promoClose">Entendido</button>
+  </div>
+</div>
+
+<script>
+  window.onload = function() {
+    setTimeout(() => {
+      document.getElementById("promoPopup").classList.add("show");
+    }, 1200); // aparece después de 1.2s
+  }
+
+  document.getElementById("promoClose").onclick = function() {
+    document.getElementById("promoPopup").classList.remove("show");
+  }
+</script>
+
 </body>
 </html>
 
