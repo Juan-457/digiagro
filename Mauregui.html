@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Mauregui Automotores | Tu próximo auto te espera</title>
+  <title>Maurregui Automotores | Tu próximo auto te espera</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Maurregui Automotores. Encontrá tu 0km o usado seleccionado con financiación, toma de usados y asesoramiento personalizado." />
 
@@ -11,17 +11,15 @@
 
   <style>
     :root {
-      --color-primario: #0b3c6f;   /* Azul Maurregui (a gusto) */
-      --color-secundario: #f5b301; /* Amarillo/acento */
+      --color-primario: #0b3c6f;
+      --color-secundario: #f5b301;
       --color-texto: #222;
       --color-texto-suave: #555;
       --bg-claro: #f7f7f7;
       --fuente: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -30,15 +28,52 @@
       background-color: #fff;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* INTRO HERO – 10 segundos */
+    #intro-hero {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #0b3c6f, #000);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: fadeOutIntro 1s ease forwards;
+      animation-delay: 10s;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
+    .intro-content {
+      text-align: center;
+      color: #fff;
+      animation: fadeIn 1s ease;
     }
+
+    .intro-content h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+
+    .intro-content p {
+      font-size: 1.2rem;
+      opacity: .9;
+    }
+
+    @keyframes fadeOutIntro {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+
 
     /* HEADER */
     .site-header {
@@ -107,7 +142,7 @@
       font-size: 1.1rem;
     }
 
-    /* HERO */
+    /* HERO PRINCIPAL */
     .hero {
       position: relative;
       min-height: min(80vh, 720px);
@@ -260,387 +295,75 @@
       }
     }
 
-    /* STATS */
-    .stats-bar {
-      background-color: var(--bg-claro);
-      padding: 24px 20px;
-    }
-
-    .stats-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-    }
-
-    .stat-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .stat-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background: rgba(11, 60, 111, 0.09);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-    }
-
-    .stat-text-main {
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    .stat-text-sub {
-      font-size: 0.85rem;
-      color: var(--color-texto-suave);
-    }
-
-    /* SECCIÓN GENÉRICA */
-    section {
-      padding: 40px 20px;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      font-size: 1.6rem;
-      margin: 0 0 8px;
-    }
-
-    .section-subtitle {
-      margin: 0 0 24px;
-      color: var(--color-texto-suave);
-      font-size: 0.95rem;
-    }
-
-    /* MARCAS */
-    .brands-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 20px;
-      align-items: center;
-    }
-
-    .brand-card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid #eee;
-      min-height: 70px;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    /* CATEGORÍAS */
-    .categories-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 16px;
-    }
-
-    .category-card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 14px 12px;
-      text-align: center;
-      border: 1px solid #eee;
-      cursor: pointer;
-      transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    .category-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(0,0,0,.06);
-      border-color: var(--color-primario);
-    }
-
-    /* AUTO DESTACADO */
-    .featured {
-      background: linear-gradient(135deg, #fdfdfd, #f3f6fb);
-    }
-
-    .featured-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 26px;
-      align-items: center;
-    }
-
-    .featured-kicker {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--color-secundario);
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-
-    .featured-title {
-      margin: 0 0 10px;
-      font-size: 1.4rem;
-    }
-
-    .featured-desc {
-      margin: 0 0 16px;
-      font-size: 0.95rem;
-      color: var(--color-texto-suave);
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 18px;
-      font-size: 0.8rem;
-    }
-
-    .pill {
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid #e1e5ed;
-    }
-
-    .featured-img-wrap {
-      border-radius: 18px;
-      background: radial-gradient(circle at top, #ffffff 0, #d8e0f0 40%, #c0c8d8 100%);
-      padding: 20px;
-      box-shadow: 0 24px 48px rgba(0,0,0,.18);
-    }
-
-    /* QUIÉNES SOMOS */
-    .about {
-      background: #f9f9f9;
-    }
-
-    .about p {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      color: var(--color-texto-suave);
-      margin-bottom: 12px;
-    }
-
-    /* SUCURSALES / CTA */
-    .branches {
-      position: relative;
-      color: #fff;
-      overflow: hidden;
-    }
-
-    .branches::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 0 0, #2f7ac1 0, #0b3c6f 40%, #020913 100%);
-      opacity: 0.95;
-      z-index: -2;
-    }
-
-    .branches-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, .9fr);
-      gap: 24px;
-      align-items: center;
-    }
-
-    .branches-card {
-      background: rgba(0,0,0,0.26);
-      border-radius: 16px;
-      padding: 18px 18px 16px;
-      font-size: 0.9rem;
-      border: 1px solid rgba(255,255,255,0.18);
-    }
-
-    .branches-card h3 {
-      margin-top: 0;
-      margin-bottom: 6px;
-    }
-
-    .branches-list {
-      margin: 0;
-      padding-left: 18px;
-      font-size: 0.9rem;
-    }
-
-    .branches-list li {
-      margin-bottom: 4px;
-    }
-
-    /* FOOTER */
-    .site-footer {
-      background: #000;
-      color: #eee;
-      padding: 26px 20px;
-      font-size: 0.85rem;
-    }
-
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="#inicio" class="logo">
-        <div class="logo-mark"></div>
-        <div>
-          Maurregui<br />
-          <span style="font-size:0.8rem; font-weight:400;">Automotores</span>
-        </div>
+<!-- HERO INTRO 10 SEGUNDOS -->
+<div id="intro-hero">
+  <div class="intro-content">
+    <h1>Maurregui Automotores</h1>
+    <p>Bienvenido a tu próximo auto</p>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#inicio" class="logo">
+      <div class="logo-mark"></div>
+      <div>
+        Maurregui<br />
+        <span style="font-size:0.8rem; font-weight:400;">Automotores</span>
+      </div>
+    </a>
+    <nav class="main-nav">
+      <a href="#inicio">Inicio</a>
+      <a href="#modelos">Modelos</a>
+      <a href="#categorias">Categorías</a>
+      <a href="#sucursales">Sucursales</a>
+      <a href="#contacto">Contacto</a>
+      <a href="https://wa.me/5491112345678" target="_blank" class="cta-whatsapp">
+        <span>💬</span> WhatsApp
       </a>
-      <nav class="main-nav">
-        <a href="#inicio">Inicio</a>
-        <a href="#modelos">Modelos</a>
-        <a href="#categorias">Categorías</a>
-        <a href="#sucursales">Sucursales</a>
-        <a href="#contacto">Contacto</a>
-        <a href="https://wa.me/5491112345678" target="_blank" class="cta-whatsapp">
-          <span>💬</span> WhatsApp
-        </a>
-      </nav>
-    </div>
-  </header>
+    </nav>
+  </div>
+</header>
 
-  <!-- HERO -->
-  <section id="inicio" class="hero">
-    <div class="hero-inner">
-      <div>
-        <div class="hero-kicker">Maurregui Automotores</div>
-        <h1 class="hero-title">
-          Tu próximo auto, <span>más cerca</span> de lo que pensás.
-        </h1>
-        <p class="hero-subtitle">
-          0km y usados seleccionados, financiación a medida, toma de usados y un equipo que te acompaña en todo el proceso de compra.
-        </p>
-        <div class="hero-badges">
-          <div class="badge">Financiación flexible</div>
-          <div class="badge">Toma de usados</div>
-          <div class="badge">Asesoramiento personalizado</div>
-        </div>
-        <div class="hero-actions">
-          <a href="#modelos" class="btn-primary">Ver modelos disponibles →</a>
-          <a href="#contacto" class="btn-secondary">Quiero que me contacten</a>
-        </div>
-      </div>
-      <div class="hero-image-wrap">
-        <div class="hero-car">
-          <!-- Reemplazar por foto real -->
-          <img src="https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Auto destacado Maurregui" />
-        </div>
-        <div class="hero-label">
-          Ejemplo de SUV 0km · Desde $X/mes*
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section class="stats-bar">
-    <div class="stats-grid">
-      <div class="stat-item">
-        <div class="stat-icon">🚗</div>
-        <div>
-          <div class="stat-text-main">Decenas de unidades en stock</div>
-          <div class="stat-text-sub">0km y usados seleccionados</div>
-        </div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-icon">🤝</div>
-        <div>
-          <div class="stat-text-main">Planes de financiación a medida</div>
-          <div class="stat-text-sub">Trabajamos con bancos y financieras</div>
-        </div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-icon">📍</div>
-        <div>
-          <div class="stat-text-main">Presencia en la zona</div>
-          <div class="stat-text-sub">Sucursales cercanas para entregar tu unidad</div>
-        </div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-icon">⭐</div>
-        <div>
-          <div class="stat-text-main">Acompañamiento post-venta</div>
-          <div class="stat-text-sub">Te asesoramos incluso después de la compra</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MARCAS -->
-  <section id="modelos">
-    <div class="container">
-      <h2 class="section-title">Marcas con las que trabajamos</h2>
-      <p class="section-subtitle">
-        Podés adaptar esta sección a las marcas reales de Maurregui: Fiat, Renault, Peugeot, etc. Aquí es solo un ejemplo visual.
+<!-- HERO PRINCIPAL -->
+<section id="inicio" class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-kicker">Maurregui Automotores</div>
+      <h1 class="hero-title">
+        Tu próximo auto, <span>más cerca</span> de lo que pensás.
+      </h1>
+      <p class="hero-subtitle">
+        0km y usados seleccionados, financiación a medida, toma de usados y un equipo que te acompaña en todo el proceso de compra.
       </p>
-      <div class="brands-grid">
-        <div class="brand-card">Fiat</div>
-        <div class="brand-card">Renault</div>
-        <div class="brand-card">Peugeot</div>
-        <div class="brand-card">Chevrolet</div>
-        <div class="brand-card">Toyota</div>
-        <div class="brand-card">Volkswagen</div>
+      <div class="hero-badges">
+        <div class="badge">Financiación flexible</div>
+        <div class="badge">Toma de usados</div>
+        <div class="badge">Asesoramiento personalizado</div>
+      </div>
+      <div class="hero-actions">
+        <a href="#modelos" class="btn-primary">Ver modelos disponibles →</a>
+        <a href="#contacto" class="btn-secondary">Quiero que me contacten</a>
       </div>
     </div>
-  </section>
 
-  <!-- CATEGORÍAS -->
-  <section id="categorias">
-    <div class="container">
-      <h2 class="section-title">Buscar por tipo de vehículo</h2>
-      <p class="section-subtitle">
-        Atajos rápidos para que el usuario llegue más fácil a lo que le interesa.
-      </p>
-      <div class="categories-grid">
-        <div class="category-card">SUV</div>
-        <div class="category-card">Pick-up</div>
-        <div class="category-card">Sedán</div>
-        <div class="category-card">Hatchback</div>
-        <div class="category-card">Familiares</div>
-        <div class="category-card">Utilitarios</div>
+    <div class="hero-image-wrap">
+      <div class="hero-car">
+        <img src="https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Auto destacado Maurregui" />
+      </div>
+      <div class="hero-label">
+        Ejemplo de SUV 0km · Desde $X/mes*
       </div>
     </div>
-  </section>
 
-  <!-- AUTO DESTACADO -->
-  <section class="featured">
-    <div class="container featured-grid">
-      <div>
-        <div class="featured-kicker">Unidad destacada</div>
-        <h3 class="featured-title">Ejemplo: SUV 0km Línea 2025</h3>
-        <p class="featured-desc">
-          Podés usar esta sección para mostrar una oferta puntual: un modelo nuevo, una promo de financiación o una unidad con entrega inmediata.
-        </p
+  </div>
+</section>
+
+</body>
+</html>
+
