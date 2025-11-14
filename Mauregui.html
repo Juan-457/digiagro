@@ -1,83 +1,390 @@
-<!-- HERO INTRO CON VIDEO - MAURREGUI AUTOMOTORES -->
-<div id="intro-hero">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Maurregui Automotores | Tu próximo auto te espera</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Maurregui Automotores. Encontrá tu 0km o usado seleccionado con financiación, toma de usados y asesoramiento personalizado." />
 
-  <!-- Video de fondo -->
-  <video autoplay muted loop playsinline id="intro-video">
-    <source src="mauregui_1.mp4" type="video/mp4" />
-  </video>
+  <!-- Fuente Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- Contenido encima -->
-  <div class="intro-content">
-    <h1>Maurregui Automotores</h1>
-    <p>Bienvenido a tu próximo auto</p>
+  <style>
+    :root {
+      --color-primario: #0b3c6f;
+      --color-secundario: #f5b301;
+      --color-texto: #222;
+      --color-texto-suave: #555;
+      --bg-claro: #f7f7f7;
+      --fuente: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--fuente);
+      color: var(--color-texto);
+      background-color: #fff;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ===== HERO INTRO CON VIDEO (10s) ===== */
+    #intro-hero {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      overflow: hidden;
+      animation: fadeOutIntro 1s ease forwards;
+      animation-delay: 10s; /* ⏳ Se oculta a los 10 segundos */
+      background: #000;
+    }
+
+    #intro-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.55);
+    }
+
+    .intro-content {
+      text-align: center;
+      color: #fff;
+      animation: fadeIn 1.2s ease;
+      padding: 0 20px;
+    }
+
+    .intro-content h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .intro-content p {
+      font-size: 1.3rem;
+      opacity: .92;
+    }
+
+    @keyframes fadeOutIntro {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .intro-content h1 { font-size: 2.1rem; }
+      .intro-content p  { font-size: 1.05rem; }
+    }
+
+    /* ===== HEADER ===== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #000;
+      color: #fff;
+      padding: 10px 20px;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--color-primario), #041f36);
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+    }
+
+    .main-nav a {
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .main-nav a:hover {
+      text-decoration: underline;
+    }
+
+    .cta-whatsapp {
+      background: #25d366;
+      color: #111;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cta-whatsapp span {
+      font-size: 1.1rem;
+    }
+
+    /* ===== HERO PRINCIPAL ===== */
+    .hero {
+      position: relative;
+      min-height: min(80vh, 720px);
+      background: radial-gradient(circle at 0 0, #0f609b 0, #020b16 48%, #000 100%);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 30px;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.75rem;
+      color: #d0e7ff;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+      margin: 0 0 14px;
+      font-weight: 800;
+    }
+
+    .hero-title span {
+      color: var(--color-secundario);
+    }
+
+    .hero-subtitle {
+      margin: 0 0 18px;
+      font-size: 0.98rem;
+      max-width: 36rem;
+      color: #e4eef8;
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+      font-size: 0.8rem;
+    }
+
+    .badge {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      background: #fff;
+      color: #111;
+      cursor: pointer;
+      box-shadow: 0 16px 38px rgba(0,0,0,.45);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.35);
+      font-weight: 600;
+      font-size: 0.9rem;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .hero-image-wrap {
+      position: relative;
+    }
+
+    .hero-car {
+      border-radius: 16px;
+      overflow: hidden;
+      background: radial-gradient(circle at top, #ffffff 0, #c7d5e6 40%, #0f2640 100%);
+      padding: 20px;
+      box-shadow: 0 24px 60px rgba(0,0,0,.55);
+    }
+
+    .hero-car img {
+      border-radius: 10px;
+      object-fit: contain;
+      max-height: 260px;
+      margin: 0 auto;
+    }
+
+    .hero-label {
+      position: absolute;
+      right: 0;
+      bottom: -18px;
+      transform: translateY(50%);
+      background: #fff;
+      color: #111;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      box-shadow: 0 20px 40px rgba(0,0,0,.45);
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-image-wrap {
+        order: -1;
+      }
+      .hero-label {
+        right: 20px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        min-height: auto;
+      }
+      .hero-inner {
+        padding-top: 24px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- INTRO CON VIDEO -->
+  <div id="intro-hero">
+    <video autoplay muted loop playsinline id="intro-video">
+      <source src="mauregui_1.mp4" type="video/mp4" />
+    </video>
+    <div class="intro-content">
+      <h1>Maurregui Automotores</h1>
+      <p>Bienvenido a tu próximo auto</p>
+    </div>
   </div>
 
-</div>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#inicio" class="logo">
+        <div class="logo-mark"></div>
+        <div>
+          Maurregui<br />
+          <span style="font-size:0.8rem; font-weight:400;">Automotores</span>
+        </div>
+      </a>
+      <nav class="main-nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#modelos">Modelos</a>
+        <a href="#categorias">Categorías</a>
+        <a href="#sucursales">Sucursales</a>
+        <a href="#contacto">Contacto</a>
+        <a href="https://wa.me/5491112345678" target="_blank" class="cta-whatsapp">
+          <span>💬</span> WhatsApp
+        </a>
+      </nav>
+    </div>
+  </header>
 
-<style>
-/* ---- HERO INTRO FULLSCREEN ---- */
-#intro-hero {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  overflow: hidden;
-  animation: fadeOutIntro 1s ease forwards;
-  animation-delay: 10s; /* ⏳ Se oculta a los 10 segundos */
-  background: #000;
-}
+  <!-- HERO PRINCIPAL -->
+  <section id="inicio" class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-kicker">Maurregui Automotores</div>
+        <h1 class="hero-title">
+          Tu próximo auto, <span>más cerca</span> de lo que pensás.
+        </h1>
+        <p class="hero-subtitle">
+          0km y usados seleccionados, financiación a medida, toma de usados y un equipo que te acompaña en todo el proceso de compra.
+        </p>
+        <div class="hero-badges">
+          <div class="badge">Financiación flexible</div>
+          <div class="badge">Toma de usados</div>
+          <div class="badge">Asesoramiento personalizado</div>
+        </div>
+        <div class="hero-actions">
+          <a href="#modelos" class="btn-primary">Ver modelos disponibles →</a>
+          <a href="#contacto" class="btn-secondary">Quiero que me contacten</a>
+        </div>
+      </div>
 
-/* ---- VIDEO A PANTALLA COMPLETA ---- */
-#intro-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
-  z-index: -1;
-  filter: brightness(0.55); /* 👌 Oscurece el video para que el texto resalte */
-}
-
-/* ---- TEXTO DEL HERO ---- */
-.intro-content {
-  text-align: center;
-  color: #fff;
-  animation: fadeIn 1.2s ease;
-}
-
-.intro-content h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-  font-weight: 800;
-  letter-spacing: 1px;
-}
-
-.intro-content p {
-  font-size: 1.3rem;
-  opacity: .92;
-}
-
-/* ---- ANIMACIONES ---- */
-@keyframes fadeOutIntro {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-</style>
-
+      <div class="hero-image-wrap">
+        <div class="hero-car">
+          <img src="https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Auto destacado Maurregui" />
+        </div>
+        <div class="hero-label">
+          Ejemplo de SUV 0km · Desde $X/mes*
+        </div>
+      </div>
+    </div>
+  </section>
 
 </body>
 </html>
-
