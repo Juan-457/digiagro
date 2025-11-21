@@ -5,11 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Servicios | DigiAgro</title>
   <meta name="color-scheme" content="light dark" />
+
+  <!-- ====================== GOOGLE TAG MANAGER ====================== -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NMWWJZG2');
+  </script>
+  <!-- ================================================================= -->
+
   <style>
     :root{
       --verde:#2a5c2a;
       --marron:#6b4f2c;
-      --bgCard:rgba(255,255,255,.88);
+      --bgCard:rgba(255,255,255,.96);
       --shadow:0 4px 10px rgba(0,0,0,.12);
       --radius:14px;
       --safe: env(safe-area-inset-bottom);
@@ -26,13 +37,13 @@
       background-position:center;
       background-repeat:no-repeat;
       background-attachment:fixed;
-      padding-bottom:max(72px, var(--safe));
+      padding-bottom:max(72px,var(--safe));
     }
 
     /* ===== Header con video ===== */
     header{
       position:relative;
-      min-height:60vh;
+      min-height:55vh;
       max-height:520px;
       display:flex; flex-direction:column; justify-content:center; align-items:center;
       text-align:center; overflow:hidden; isolation:isolate;
@@ -45,44 +56,40 @@
     }
     header::before{
       content:""; position:absolute; inset:0; z-index:-1;
-      background:linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.25));
+      background:linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.25));
     }
     header h1{
       color:#fff; margin:24px 12px 8px;
-      font-size:clamp(28px,5vw,56px); font-weight:800;
+      font-size:clamp(28px,5vw,48px); font-weight:800;
       text-shadow:0 2px 14px rgba(0,0,0,.45);
       animation:fadeInHeader .8s ease-out both;
     }
-    header .subtitle{
-      color:#f5f5f5;
-      max-width:720px;
-      margin:0 auto 18px;
-      font-size:clamp(15px,3vw,19px);
-      font-weight:500;
+    header .hero-subtitle{
+      color:#f5f5f5; max-width:620px; margin:0 auto 18px;
+      font-size:clamp(14px,3vw,18px); font-weight:500;
       text-shadow:0 2px 10px rgba(0,0,0,.5);
       animation:fadeInHeader .9s ease-out both;
     }
     @keyframes fadeInHeader{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
 
     .marquesina{
-      position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
-      background:rgba(0,0,0,.5); color:#fff; padding:8px 14px; border-radius:999px;
+      position:absolute; bottom:12px; left:50%; transform:translateX(-50%);
+      background:rgba(0,0,0,.5); color:#fff; padding:6px 14px; border-radius:999px;
       backdrop-filter:blur(4px); max-width:92%;
-      font-weight:700; font-size:clamp(14px,3.2vw,20px)
+      font-weight:700; font-size:clamp(13px,3vw,18px)
     }
 
     /* Logo fijo */
     .logo-sticky{
-      position:fixed; bottom:14px; right:14px; height:64px; opacity:.7; z-index:1000;
+      position:fixed; bottom:14px; left:14px; height:64px; opacity:.7; z-index:1000;
       transition:transform .2s ease, opacity .2s ease;
     }
     .logo-sticky:hover{opacity:1; transform:scale(1.06)}
 
     /* ===== Navegación ===== */
     nav{
-      background:var(--marron);
-      color:#fff;
-      position:sticky; top:0; z-index:900;
+      background:var(--marron); color:#fff;
+      position:sticky; top:0; z-index:1200;
       box-shadow:0 2px 8px rgba(0,0,0,.15);
     }
     .nav-inner{
@@ -109,55 +116,62 @@
     .hamburger svg{width:26px; height:26px}
 
     /* Menú móvil desplegable */
-    .mobile{
+    .links.mobile{
+      display:flex;
       flex-direction:column; gap:6px;
-      padding:10px 16px 14px;
-      background:var(--marron);
-      border-top:1px solid rgba(255,255,255,.15);
+      position:absolute; left:0; right:0; top:100%;
+      background:var(--marron); border-top:1px solid rgba(255,255,255,.15);
+      box-shadow:0 10px 18px rgba(0,0,0,.25); z-index:1202; padding:10px 16px 14px;
     }
-    .mobile[hidden]{display:none}
-    .mobile a{
+    .links.mobile[hidden]{display:none !important}
+    .links.mobile a{
       color:#fff; text-decoration:none;
       padding:12px 0; border-radius:8px; font-weight:800;
     }
-    .mobile a:hover{ text-decoration:underline }
+    .links.mobile a:hover{ text-decoration:underline }
 
     /* ===== Sección servicios ===== */
-    section{padding:36px 16px 40px; display:flex; justify-content:center}
+    section{padding:28px 16px 40px; display:flex; justify-content:center}
     .wrap{ width:min(1100px, 100%) }
+
     .intro{
       background:var(--bgCard); border-radius:var(--radius); box-shadow:var(--shadow);
-      padding:clamp(16px,3.6vw,24px); text-align:center; animation:fadeInContent .7s ease both;
+      padding:clamp(16px,3.6vw,22px); text-align:center; animation:fadeInContent .7s ease both;
+      margin-bottom:18px;
     }
-    .intro h2{color:var(--verde); font-size:clamp(22px,3.8vw,30px); margin-top:0}
-    .intro p{margin:.4rem 0; font-size:clamp(14px,2.8vw,16px)}
+    .intro h2{color:var(--verde); font-size:clamp(22px,3.8vw,30px); margin:0 0 6px}
+    .intro p{margin:.3rem 0; font-size:clamp(14px,2.8vw,16px)}
 
     .grid{
-      margin-top:18px;
-      display:grid; gap:16px;
+      display:grid; gap:14px;
       grid-template-columns: repeat(3, 1fr);
     }
     .card{
-      background:#fff; border-radius:12px; box-shadow:var(--shadow);
-      padding:clamp(16px,2.8vw,20px); display:flex; flex-direction:column; gap:10px;
+      background:#fff; border-radius:18px; box-shadow:var(--shadow);
+      padding:16px 14px; display:flex; flex-direction:column; gap:8px;
       animation:fadeInContent .7s ease both;
     }
-    .card h3{ margin:.2rem 0 .2rem; font-size:clamp(16px,3.2vw,20px); color:var(--verde) }
-    .card p, .card li{ font-size:clamp(13px,2.6vw,15px); margin:0 }
-    .card ul{ margin:.2rem 0 0 1rem }
-    .pill{
-      display:inline-block; font-size:12px; font-weight:700;
-      background:rgba(42,92,42,.1); color:#2a5c2a; padding:6px 10px; border-radius:999px;
+    .card-header{
+      font-size:12px; font-weight:700;
+      color:#4d5b4d;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(42,92,42,.06);
+      display:inline-block;
     }
+    .card h3{ margin:.4rem 0 .1rem; font-size:clamp(15px,2.9vw,18px); color:var(--verde) }
+    .card p{ font-size:13px; margin:0 0 .2rem; color:#222 }
+    .card ul{ margin:.1rem 0 0 1.1rem; padding:0 }
+    .card li{ font-size:12.5px; margin:2px 0; color:#333 }
 
     .cta-row{
-      margin-top:24px;
+      margin-top:20px;
       display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
     }
     .btn{
-      display:inline-flex; align-items:center; gap:10px;
-      text-decoration:none; border-radius:10px; font-weight:800;
-      padding:14px 18px; font-size:clamp(14px,3.2vw,16px);
+      display:inline-flex; align-items:center; gap:8px;
+      text-decoration:none; border-radius:12px; font-weight:800;
+      padding:12px 18px; font-size:14px;
       transition:transform .15s ease, box-shadow .15s ease, background-color .2s ease;
       touch-action:manipulation;
     }
@@ -172,15 +186,18 @@
     @media (max-width:900px){
       .hamburger{display:inline-flex}
       .nav-inner .links{display:none}
-      .mobile{display:flex}
       .grid{ grid-template-columns: 1fr 1fr }
+      .card{ padding:14px 10px }
+      .card p{ font-size:12.5px }
+      .card li{ font-size:12px }
     }
     @media (max-width:600px){
-      header{min-height:60vh; max-height:520px}
-      .logo-sticky{height:50px; bottom:12px; right:12px}
-      .marquesina{bottom:12px}
+      header{min-height:50vh; max-height:460px}
+      .logo-sticky{height:50px; bottom:12px; left:12px}
+      .marquesina{bottom:10px}
       .grid{ grid-template-columns: 1fr }
       body{background-attachment:scroll}
+      section{padding-top:22px}
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -193,198 +210,189 @@
   <!-- Logo fijo -->
   <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky" />
 
-  <div class="contenido">
-    <header>
-      <video autoplay muted loop playsinline preload="metadata" poster="poster.jpg">
-        <source src="dron.mp4" type="video/mp4" />
-        Tu navegador no soporta videos HTML5.
-      </video>
+  <header>
+    <video autoplay muted loop playsinline preload="metadata" poster="poster.jpg">
+      <source src="dron.mp4" type="video/mp4" />
+      Tu navegador no soporta videos HTML5.
+    </video>
 
-      <h1>Servicios DigiAgro</h1>
-      <p class="subtitle">
-        Bots de WhatsApp, automatizaciones y tableros de datos para que tu operación agro sea más rápida,
-        trazable y simple de manejar.
-      </p>
+    <h1>Servicios DigiAgro</h1>
+    <p class="hero-subtitle">
+      Soluciones rápidas para digitalizar tu operación: bots de WhatsApp, automatizaciones, reportes e integraciones.
+    </p>
 
-      <div class="marquesina">
-        <p>🚜 Digitalizamos procesos clave de distribuidores, acopios y agroservicios. 🚜</p>
+    <div class="marquesina">
+      Automatizamos tareas repetitivas para distribuidores, acopios y agroservicios. 🚜
+    </div>
+  </header>
+
+  <!-- ===== Nav centrada (igual que en el index) ===== -->
+  <nav>
+    <div class="nav-inner" role="navigation" aria-label="Principal">
+      <ul class="links" id="desktopLinks">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="servicios.html" aria-current="page">Servicios</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="senasa.html">SENASA</a></li>
+      </ul>
+
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Menú móvil -->
+    <div class="links mobile" id="mobileMenu" hidden>
+      <a href="index.html">Inicio</a>
+      <a href="servicios.html" aria-current="page">Servicios</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="senasa.html">SENASA</a>
+    </div>
+  </nav>
+
+  <section>
+    <div class="wrap">
+      <div class="intro">
+        <h2>Servicios</h2>
+        <p>Elegí el módulo que mejor se adapte a tu negocio o combiná varios para armar tu stack digital.</p>
       </div>
-    </header>
 
-    <!-- ===== Nav centrada ===== -->
-    <nav>
-      <div class="nav-inner" role="navigation" aria-label="Principal">
-        <ul class="links" id="desktopLinks">
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="servicios.html" aria-current="page">Servicios</a></li>
-          <li><a href="nosotros.html">Nosotros</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
-          <li><a href="senasa.html">SENASA</a></li>
-        </ul>
-
-        <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M3 12h18M3 18h18"/>
-          </svg>
-        </button>
-      </div>
-
-      <!-- Menú móvil -->
-      <div class="mobile" id="mobileMenu" hidden>
-        <a href="index.html">Inicio</a>
-        <a href="servicios.html" aria-current="page">Servicios</a>
-        <a href="nosotros.html">Nosotros</a>
-        <a href="contacto.html">Contacto</a>
-        <a href="senasa.html">SENASA</a>
-      </div>
-    </nav>
-
-    <section>
-      <div class="wrap">
-        <div class="intro">
-          <h2>¿Qué podemos hacer por tu negocio?</h2>
-          <p>
-            Tomamos los procesos que hoy te consumen tiempo (SENASA, facturación, remitos, reportes, consultas de riesgo,
-            seguimiento de clientes) y los convertimos en <strong>flujos digitales y bots de WhatsApp</strong> que trabajan
-            con vos, no en tu contra.
-          </p>
-          <p>
-            Podés empezar por un solo caso de uso (por ejemplo remitos o facturación) e ir escalando a medida que ves el impacto.
-          </p>
+      <!-- Cards de servicios -->
+      <div class="grid">
+        <div class="card">
+          <span class="card-header">BCRA · Riesgo</span>
+          <h3>Consultas financieras de clientes</h3>
+          <p>Deudas y cheques rechazados del BCRA para evaluar riesgo de clientes.</p>
+          <ul>
+            <li>Consulta en tiempo real</li>
+            <li>Alertas automáticas</li>
+            <li>Integrable a CRM</li>
+          </ul>
         </div>
 
-        <!-- Cards de servicios -->
-        <div class="grid">
-
-          <!-- BLOQUE 1: Riesgo & clientes -->
-          <div class="card">
-            <span class="pill">BCRA · Riesgo</span>
-            <h3>Consultas financieras de clientes</h3>
-            <p>Chequeo automático de deudas y cheques rechazados del BCRA para evaluar riesgo antes de vender.</p>
-            <ul>
-              <li>Consulta en tiempo real desde web o app</li>
-              <li>Alertas automáticas por cliente</li>
-              <li>Integrable a tu CRM o Excel actual</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <span class="pill">CRM · WhatsApp</span>
-            <h3>Gestión de clientes y distribuidores</h3>
-            <p>Embudo comercial con seguimiento y reporting, conectado a WhatsApp y correo.</p>
-            <ul>
-              <li>Leads → Oportunidades → Ventas</li>
-              <li>Agenda de visitas y tareas</li>
-              <li>Dashboards comerciales en tiempo real</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <span class="pill">Web · Presencia</span>
-            <h3>Diseño y publicación de sitios</h3>
-            <p>Landing pages y sitios simples para mostrar productos, pedir demos y derivar tráfico pago.</p>
-            <ul>
-              <li>Landing de producto o servicio</li>
-              <li>Catálogo simple con consultas</li>
-              <li>Formularios conectados a tu bot o CRM</li>
-            </ul>
-          </div>
-
-          <!-- BLOQUE 2: Apps & datos -->
-          <div class="card">
-            <span class="pill">Power Apps · Campo</span>
-            <h3>Apps a medida para el agro</h3>
-            <p>Aplicaciones para pedidos, logística, rendiciones, stock y turnos, pensadas para equipos de campo.</p>
-            <ul>
-              <li>Dataverse / SharePoint / SQL</li>
-              <li>Roles y permisos por usuario</li>
-              <li>Modo mobile y desktop</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <span class="pill">Power BI · KPIs</span>
-            <h3>Dashboards & KPIs</h3>
-            <p>Tableros de ventas, stock, logística y cobranzas para decidir con datos.</p>
-            <ul>
-              <li>ETL con Power Query</li>
-              <li>Métricas a medida (DAX)</li>
-              <li>Actualización automática</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <span class="pill">IA · Bots 24/7</span>
-            <h3>Agentes de IA en WhatsApp/Web</h3>
-            <p>Bots que responden preguntas frecuentes, capturan leads, agendan y escalan a humano cuando hace falta.</p>
-            <ul>
-              <li>Agentes sobre tu propia base de conocimiento</li>
-              <li>Memoria y contexto por cliente</li>
-              <li>Escalada a tu equipo comercial</li>
-            </ul>
-          </div>
-
-          <!-- BLOQUE 3: Integraciones & flujos -->
-          <div class="card">
-            <span class="pill">APIs · Integraciones</span>
-            <h3>Integraciones externas</h3>
-            <p>Conectamos tu ERP, SENASA/Agrotraza, correo, pasarelas de pago y otros sistemas.</p>
-            <ul>
-              <li>HTTP/REST, web services y archivos planos</li>
-              <li>OAuth/Keys y manejo de credenciales</li>
-              <li>Logs, monitoreo y reintentos</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <span class="pill">Forms · Captura</span>
-            <h3>Formularios inteligentes</h3>
-            <p>Formularios que validan datos, adjuntan archivos y disparan flujos automáticos.</p>
-            <ul>
-              <li>Power Automate + almacenamiento seguro</li>
-              <li>Notificaciones a correo o WhatsApp</li>
-              <li>Historial y auditoría</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <span class="pill">Flows · Automatización</span>
-            <h3>Automatizaciones de procesos</h3>
-            <p>Aprobaciones, avisos y sincronización de datos entre sistemas para eliminar tareas repetitivas.</p>
-            <ul>
-              <li>Plantillas reutilizables para tu equipo</li>
-              <li>Monitoreo y alertas de errores</li>
-              <li>Escalamiento a humano cuando se necesita</li>
-            </ul>
-          </div>
+        <div class="card">
+          <span class="card-header">CRM · WhatsApp</span>
+          <h3>Gestión de clientes y distribuidores</h3>
+          <p>Embudo comercial, seguimiento y reporting integrado a WhatsApp/Email.</p>
+          <ul>
+            <li>Leads → oportunidades</li>
+            <li>Agenda y visitas</li>
+            <li>Dashboards comerciales</li>
+          </ul>
         </div>
 
-        <div class="cta-row">
-          <a class="btn btn-primary"
-             href="https://wa.me/5491162763084?text=Hola%20DigiAgro,%20quiero%20ver%20qué%20podemos%20automatizar%20primero."
-             target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp de DigiAgro">
-            💬 Hablar por WhatsApp
-          </a>
-          <a class="btn btn-outline" href="contacto.html">📅 Agendar una demo rápida</a>
+        <div class="card">
+          <span class="card-header">Web · Presencia</span>
+          <h3>Diseño y publicación de sitios</h3>
+          <p>Sitios rápidos, seguros y medibles. SEO básico + analítica.</p>
+          <ul>
+            <li>Landing o multi-página</li>
+            <li>Catálogo simple</li>
+            <li>Formularios de contacto</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <span class="card-header">Power Apps</span>
+          <h3>Apps a medida</h3>
+          <p>Pedidos, logística, rendiciones, stock, turnos.</p>
+          <ul>
+            <li>Dataverse / SharePoint / SQL</li>
+            <li>Roles y permisos</li>
+            <li>Mobile y desktop</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <span class="card-header">Power BI</span>
+          <h3>Dashboards & KPIs</h3>
+          <p>Ventas, stock, logística, cobranzas.</p>
+          <ul>
+            <li>ETL con Power Query</li>
+            <li>DAX a medida</li>
+            <li>Actualización programada</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <span class="card-header">IA · Bots</span>
+          <h3>Agentes de IA</h3>
+          <p>Atención 24/7 en WhatsApp/Web, con agenda y captura de leads.</p>
+          <ul>
+            <li>Agentes con GPT</li>
+            <li>Memoria y contexto</li>
+            <li>Escalada a humano</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <span class="card-header">APIs · Integraciones</span>
+          <h3>Integraciones externas</h3>
+          <p>Conectamos tu ERP, SENASA/Agrotraza, correo, pagos, etc.</p>
+          <ul>
+            <li>HTTP/REST</li>
+            <li>OAuth / API Keys</li>
+            <li>Logs y reintentos</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <span class="card-header">Forms</span>
+          <h3>Formularios inteligentes</h3>
+          <p>Validaciones, adjuntos, firmas y flujos aprobatorios.</p>
+          <ul>
+            <li>Power Automate</li>
+            <li>Notificaciones</li>
+            <li>Historial de respuestas</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <span class="card-header">Flows · Automatización</span>
+          <h3>Automatizaciones</h3>
+          <p>Aprobaciones, avisos y sincronizaciones entre sistemas.</p>
+          <ul>
+            <li>Plantillas reutilizables</li>
+            <li>Monitoreo</li>
+            <li>Alertas</li>
+          </ul>
         </div>
       </div>
-    </section>
-  </div>
 
+      <div class="cta-row">
+        <a class="btn btn-primary"
+           href="https://wa.me/5491162763084?text=Hola%20DigiAgro,%20quiero%20ver%20sus%20servicios."
+           target="_blank" rel="noopener noreferrer">
+          💬 Hablar por WhatsApp
+        </a>
+        <a class="btn btn-outline" href="contacto.html">
+          📅 Agendar demo
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= JS: menú móvil ========= -->
   <script>
-    // Toggle accesible del menú móvil
-    const btn = document.querySelector('.hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    btn?.addEventListener('click', () => {
-      const isOpen = !mobileMenu.hasAttribute('hidden');
-      if (isOpen) {
-        mobileMenu.setAttribute('hidden','');
-        btn.setAttribute('aria-expanded','false');
-      } else {
-        mobileMenu.removeAttribute('hidden');
-        btn.setAttribute('aria-expanded','true');
-      }
-    });
+    (function(){
+      const btn = document.querySelector('.hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      btn?.addEventListener('click', () => {
+        const isOpen = !mobileMenu.hasAttribute('hidden');
+        if (isOpen) {
+          mobileMenu.setAttribute('hidden','');
+          btn.setAttribute('aria-expanded','false');
+        } else {
+          mobileMenu.removeAttribute('hidden');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    })();
   </script>
 </body>
 </html>
+
