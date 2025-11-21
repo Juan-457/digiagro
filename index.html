@@ -66,7 +66,7 @@
       text-decoration:none;
       cursor:pointer;
       border:2px solid transparent;
-      transition:background .15s ease, color .15s ease, transform .1s ease, box-shadow .15s ease, border-color .15s ease;
+      transition:background .15s.ease, color .15s ease, transform .1s ease, box-shadow .15s ease, border-color .15s ease;
       -webkit-tap-highlight-color:transparent;
     }
     .dg .btn-primaria{
@@ -126,9 +126,9 @@
     }
     .dg nav .hamburger svg{width:26px; height:26px}
 
-    /* ====== FIX MENÚ MOBILE ====== */
+    /* ====== MENÚ MOBILE ====== */
     .dg .links.mobile{
-      /* ya no display:none */
+      display:flex;
       flex-direction:column; gap:6px;
       position:absolute; left:0; right:0; top:100%;
       background:var(--marron); border-top:1px solid rgba(255,255,255,.15);
@@ -146,7 +146,6 @@
     @keyframes fadeInContent{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
     .dg .seccion h2{color:var(--verde); font-size:clamp(20px,3.6vw,28px); margin-top:0}
     .dg .seccion p{margin:.4rem 0; font-size:clamp(14px,2.8vw,16px)}
-
     .dg .pill-row{
       display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 4px;
     }
@@ -172,7 +171,7 @@
       box-shadow:0 6px 16px rgba(0,0,0,.25);
       text-decoration:none;
       -webkit-tap-highlight-color: transparent;
-      transition:transform .15s ease, box-shadow .15s ease, opacity .2s ease;
+      transition:transform .15s ease, box-shadow .15s.ease, opacity .2s ease;
     }
     .whatsapp-float:hover{ transform:scale(1.06); box-shadow:0 8px 22px rgba(0,0,0,.28) }
     .whatsapp-float:active{ transform:scale(0.98) }
@@ -186,17 +185,17 @@
     /* Menú hamburguesa en mobile */
     @media (max-width: 700px){
       .dg nav .hamburger{display:block}
-      .dg nav .links{display:none}
+      .dg nav .links:not(.mobile){display:none}  /* <- solo oculto el menú de escritorio */
     }
   </style>
 </head>
 <body>
-
   <!-- Google Tag Manager (noscript) -->
   <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMWWJZG2"
     height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <div class="dg">
     <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
@@ -204,8 +203,10 @@
     <header>
       <video autoplay muted loop playsinline poster="poster.jpg">
         <source src="productor.mp4" type="video/mp4">
+        Tu navegador no soporta videos HTML5.
       </video>
 
+      <!-- HERO -->
       <h1>Bots y automatización para el agro</h1>
       <p class="hero-subtitle">
         Implementamos bots de WhatsApp y flujos digitales para <strong>SENASA, facturación, remitos y reportes</strong>,
@@ -236,7 +237,7 @@
           <li><a href="senasa.html">SENASA</a></li>
         </ul>
         <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M3 12h18M3 18h18"/>
           </svg>
         </button>
@@ -419,7 +420,7 @@
     window.onload = function() {
       setTimeout(() => {
         document.getElementById("promoPopup").classList.add("show");
-      }, 1200);
+      }, 1200); // aparece después de 1.2s
     }
 
     document.getElementById("promoClose").onclick = function() {
