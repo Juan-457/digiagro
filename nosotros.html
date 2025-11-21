@@ -2,184 +2,116 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nosotros | DigiAgro</title>
+
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-image: url('fondo.png');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
+    :root{
+      --verde:#2a5c2a; --marron:#6b4f2c;
+      --bgCard:rgba(255,255,255,.93); --radius:14px;
+      --shadow:0 4px 10px rgba(0,0,0,.15);
+    }
+    body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      background-image:url('fondo.png');background-size:cover;background-position:center;
+      background-attachment:fixed;background-repeat:no-repeat;}
+
+    /* ===== HEADER ===== */
+    header{
+      position:relative;min-height:50vh;height:50svh;max-height:550px;
+      display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+      isolation:isolate;padding:0 16px;
+    }
+    header video{
+      position:absolute;inset:0;width:100%;height:100%;
+      object-fit:cover;z-index:-2;
+    }
+    header::before{
+      content:"";position:absolute;inset:0;z-index:-1;
+      background:linear-gradient(to bottom,rgba(0,0,0,.55),rgba(0,0,0,.25));
+    }
+    header h1{
+      color:#fff;margin:4px;font-size:clamp(36px,5vw,62px);font-weight:800;
+      text-shadow:0 2px 14px rgba(0,0,0,.5);
+    }
+    .marquesina{
+      background:rgba(0,0,0,.55);padding:8px 18px;border-radius:999px;
+      color:#fff;font-weight:600;font-size:clamp(14px,3.5vw,18px);
+      margin-top:10px;
     }
 
-    .contenido {
-      background-color: transparent;
+    /* ===== NAV ===== */
+    nav{
+      background:var(--marron);text-align:center;padding:12px;
+      box-shadow:0 2px 8px rgba(0,0,0,.15);
     }
-
-    header {
-      position: relative;
-      min-height: 60vh;   /* 🔥 más grande, ocupa 60% del alto de la pantalla */
-      max-height: 520px;  /* opcional, límite similar al de Servicios */
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      isolation: isolate;
+    nav a{
+      color:#fff;margin:0 16px;text-decoration:none;font-weight:700;font-size:15px;
     }
+    nav a:hover{text-decoration:underline}
 
-    header video {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      z-index: -2;
+    /* ===== CONTENT ===== */
+    section{
+      display:flex;justify-content:center;align-items:center;flex-direction:column;
+      padding:44px 14px;
     }
-
-    /* ✅ Overlay translúcido para mejorar contraste */
-    header::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.25));
+    .seccion{
+      width:min(920px,94%);background:var(--bgCard);border-radius:var(--radius);
+      box-shadow:var(--shadow);padding:30px 22px;animation:fadeIn .7s ease;
+      color:#132135;font-size:clamp(15px,2.6vw,17px);
     }
-
-    header h1 {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      color: white;
-      animation: fadeInHeader 2s ease-out;
-      margin-top: 20px;
-      font-size: 50px;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    .seccion h2{
+      color:var(--verde);font-size:clamp(22px,4vw,30px);margin-top:0;
+      font-weight:800;margin-bottom:12px;
     }
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-    @keyframes fadeInHeader {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* ===== LOGO STICKY ===== */
+    .logo-sticky{
+      position:fixed;bottom:14px;left:14px;height:64px;opacity:.7;z-index:900;
+      transition:.2s;cursor:pointer;
     }
+    .logo-sticky:hover{opacity:1;transform:scale(1.06)}
 
-    .logo-sticky {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      height: 70px;
-      opacity: 0.6;
-      z-index: 999;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    .logo-sticky:hover {
-      opacity: 1;
-      transform: scale(1.05);
-    }
-
-    .marquesina {
-      position: absolute;
-      bottom: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 6px 16px;
-      border-radius: 999px;
-    }
-
-    .marquesina p {
-      margin: 0;
-      font-weight: bold;
-      font-size: 20px;
-      color: white;
-    }
-
-    nav {
-      background-color: #6b4f2c;
-      padding: 10px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    }
-
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    section {
-      padding: 40px 20px;
-    }
-
-    .seccion {
-      background-color: rgba(255, 255, 255, 0.88);
-      margin: 60px auto;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 1000px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      animation: fadeInContent 2s ease;
-    }
-
-    @keyframes fadeInContent {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .seccion h2 {
-      color: #2a5c2a;
-    }
-
-    /* 📱 Ajustes para dispositivos móviles */
-    @media (max-width: 600px) {
-      header { min-height: 44vh; }
-      header h1 { font-size: 36px; margin-top: 40px; }
-      .marquesina p { font-size: 16px; }
+    /* ===== MOBILE ===== */
+    @media (max-width:700px){
+      header{min-height:42vh}
+      .seccion{padding:20px 16px}
+      nav a{margin:0 10px}
     }
   </style>
 </head>
+
 <body>
 
   <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
 
-  <div class="contenido">
-    <header>
-      <video autoplay muted loop playsinline poster="poster.jpg">
-        <source src="nosotros.mp4" type="video/mp4">
-        Tu navegador no soporta videos HTML5.
-      </video>
+  <header>
+    <video autoplay muted loop playsinline poster="poster.jpg">
+      <source src="nosotros.mp4" type="video/mp4">
+    </video>
 
-      <h1>DigiAgro</h1>
-      <div class="marquesina">
-        <p>🚜 Optimizamos procesos para un agro más ágil y digital. 🚜</p>
-      </div>
-    </header>
+    <h1>Nosotros</h1>
+    <div class="marquesina">🚜 Digitalizando el agro de punta a punta 🚜</div>
+  </header>
 
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="servicios.html">Servicios</a>
-      <a href="nosotros.html" aria-current="page">Nosotros</a>
-      <a href="contacto.html">Contacto</a>
-      <a href="senasa.html">SENASA</a>
-    </nav>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="nosotros.html" aria-current="page">Nosotros</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="senasa.html">SENASA</a>
+  </nav>
 
-    <section class="seccion">
-      <h2>Nosotros</h2>
-      <p>DigiAgro es una startup enfocada en la digitalización del agro.</p>
-      <p>Combinamos conocimiento operativo con tecnología para ofrecer soluciones simples, eficientes y accesibles.</p>
-      <p>Nuestro propósito es transformar procesos clave de la cadena agroindustrial, ayudando a productores, distribuidores y empresas a tomar decisiones más rápidas e inteligentes.</p>
-      <p>Creemos que la innovación es el camino para un agro más ágil, conectado y sostenible.</p>
-    </section>
-  </div>
+  <section>
+    <div class="seccion">
+      <h2>¿Quiénes somos?</h2>
+      <p>DigiAgro es una startup creada para conectar la operación agropecuaria con tecnología simple y práctica.</p>
+      <p>Ayudamos a distribuidores, acopios, productores y pymes a mejorar procesos cotidianos mediante automatización, bots de WhatsApp y digitalización de documentos.</p>
+      <p>Creemos en soluciones que ahorren tiempo real en las tareas críticas del campo y la comercialización.</p>
+      <p>Innovamos para que el agro sea más rápido, inteligente y eficiente.</p>
+    </div>
+  </section>
+
 </body>
 </html>
 
