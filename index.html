@@ -113,14 +113,17 @@
       padding:12px; position:absolute; right:8px; top:2px; z-index:1203;
     }
     .dg nav .hamburger svg{width:26px; height:26px}
+
+    /* ===== MENÚ MOBILE ===== */
     .dg .links.mobile{
-      display:none; flex-direction:column; gap:6px;
+      display:flex;                       /* ⬅️ clave: NO display:none */
+      flex-direction:column; gap:6px;
       position:absolute; left:0; right:0; top:100%;
       background:var(--marron); border-top:1px solid rgba(255,255,255,.15);
       box-shadow:0 10px 18px rgba(0,0,0,.25); z-index:1202; padding:10px 16px 14px;
     }
     .dg .links.mobile[hidden]{display:none !important}
-    .dg .links.mobile a{padding:12px 0}
+    .dg .links.mobile a{padding:12px 0; border-radius:8px}
 
     /* ===== SECCIÓN ===== */
     .dg section{display:flex; justify-content:center; align-items:center; flex-direction:column; padding:36px 16px}
@@ -147,10 +150,10 @@
     .whatsapp-float img{ width:34px; height:34px }
     .whatsapp-float:hover{ transform:scale(1.06) }
 
-    /* ===== MOBILE FIX ===== */
+    /* ===== MOBILE ===== */
     @media (max-width:700px){
       .dg nav .hamburger{display:block}
-      .dg nav .links{display:none}
+      .dg nav .links:not(.mobile){display:none}  /* oculto solo el menú de escritorio */
       .dg .seccion{background:#ffffff;}
       .dg .seccion p,
       .dg .seccion li{font-size:15px;}
