@@ -124,33 +124,29 @@
       padding:12px; position:absolute; right:8px; top:2px; z-index:1203;
       -webkit-tap-highlight-color: transparent;
     }
+    .dg nav .hamburger svg{width:26px; height:26px}
+
+    /* ====== FIX MENÚ MOBILE ====== */
     .dg .links.mobile{
-  /* SACAMOS display:none */
-  flex-direction:column;
-  gap:6px;
-  position:absolute;
-  left:0; right:0; top:100%;
-  background:var(--marron);
-  border-top:1px solid rgba(255,255,255,.15);
-  box-shadow:0 10px 18px rgba(0,0,0,.25);
-  z-index:1202;
-  padding:10px 16px 14px;
-}
+      /* ya no display:none */
+      flex-direction:column; gap:6px;
+      position:absolute; left:0; right:0; top:100%;
+      background:var(--marron); border-top:1px solid rgba(255,255,255,.15);
+      box-shadow:0 10px 18px rgba(0,0,0,.25); z-index:1202; padding:10px 16px 14px;
+    }
+    .dg .links.mobile[hidden]{display:none !important}
+    .dg .links.mobile a{display:block; padding:12px 0; border-radius:8px}
 
-/* este sí queda igual */
-.dg .links.mobile[hidden]{
-  display:none !important;
-}
-
+    /* ====== Sección ====== */
+    .dg section{display:flex; justify-content:center; align-items:center; flex-direction:column; padding:36px 16px}
+    .dg .seccion{
+      width:min(920px,92%); background:var(--bgCard); border-radius:var(--radius); box-shadow:var(--shadow);
+      padding:clamp(16px,3.6vw,24px); animation:fadeInContent .7s ease both;
     }
     @keyframes fadeInContent{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
     .dg .seccion h2{color:var(--verde); font-size:clamp(20px,3.6vw,28px); margin-top:0}
     .dg .seccion p{margin:.4rem 0; font-size:clamp(14px,2.8vw,16px)}
-    .dg .seccion ul{
-      padding-left:1.2rem;
-      margin:0.4rem 0 0.8rem;
-      font-size:clamp(14px,2.8vw,16px)
-    }
+
     .dg .pill-row{
       display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 4px;
     }
@@ -195,12 +191,12 @@
   </style>
 </head>
 <body>
+
   <!-- Google Tag Manager (noscript) -->
   <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMWWJZG2"
     height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
-  <!-- End Google Tag Manager (noscript) -->
 
   <div class="dg">
     <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
@@ -208,10 +204,8 @@
     <header>
       <video autoplay muted loop playsinline poster="poster.jpg">
         <source src="productor.mp4" type="video/mp4">
-        Tu navegador no soporta videos HTML5.
       </video>
 
-      <!-- HERO MEJORADO -->
       <h1>Bots y automatización para el agro</h1>
       <p class="hero-subtitle">
         Implementamos bots de WhatsApp y flujos digitales para <strong>SENASA, facturación, remitos y reportes</strong>,
@@ -242,7 +236,7 @@
           <li><a href="senasa.html">SENASA</a></li>
         </ul>
         <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M3 12h18M3 18h18"/>
           </svg>
         </button>
@@ -276,14 +270,14 @@
         <p><strong>Algunas de las soluciones que ya estamos implementando:</strong></p>
         <ul>
           <li>🤖 <strong>Bot SENASA:</strong> alta de envíos, productos y trazabilidad sin tipear todo a mano.</li>
-          <li>💸 <strong>Facturación por WhatsApp:</strong> generá comprobantes desde una conversación (ideal monotributistas y pymes).</li>
-          <li>📦 <strong>Digitalización de remitos y documentos:</strong> sacás una foto y el bot extrae los datos para cargar en tu sistema.</li>
-          <li>📊 <strong>Dashboards y reportes:</strong> visibilidad de ventas, stock y cobranzas en Power BI u otras herramientas.</li>
+          <li>💸 <strong>Facturación por WhatsApp:</strong> generá comprobantes desde una conversación.</li>
+          <li>📦 <strong>Digitalización de remitos y documentos:</strong> sacás una foto y el bot extrae los datos.</li>
+          <li>📊 <strong>Dashboards y reportes:</strong> visibilidad de ventas, stock y cobranzas.</li>
         </ul>
 
         <p>
-          Diseñamos cada solución para que sea <strong>simple de usar</strong> para tu equipo comercial y administrativo,
-          sin que tengas que cambiar todo tu sistema actual.
+          Diseñamos cada solución para que sea <strong>simple de usar</strong> para tu equipo,
+          sin que tengas que cambiar tus sistemas actuales.
         </p>
 
         <p>
@@ -425,7 +419,7 @@
     window.onload = function() {
       setTimeout(() => {
         document.getElementById("promoPopup").classList.add("show");
-      }, 1200); // aparece después de 1.2s
+      }, 1200);
     }
 
     document.getElementById("promoClose").onclick = function() {
