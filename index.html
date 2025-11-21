@@ -18,21 +18,28 @@
 
   <style>
     :root{
-      --verde:#2a5c2a; --marron:#6b4f2c; --bgCard:rgba(255,255,255,.88);
-      --shadow:0 4px 10px rgba(0,0,0,.12); --radius:14px; --safe: env(safe-area-inset-bottom);
+      --verde:#2a5c2a;
+      --marron:#6b4f2c;
+      --bgCard: rgba(255,255,255,.96); /* mayor legibilidad */
+      --shadow:0 4px 10px rgba(0,0,0,.12);
+      --radius:14px;
+      --safe: env(safe-area-inset-bottom);
     }
+
     .dg *{box-sizing:border-box}
     html{scroll-behavior:smooth}
+
     .dg{
       margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; line-height:1.45;
       background-image:url('fondo.png'); background-size:cover; background-position:center; background-repeat:no-repeat;
       background-attachment:fixed; padding-bottom:max(72px,var(--safe));
     }
+
+    /* ===== HEADER ===== */
     .dg header{
       position:relative; min-height:100vh; height:100svh;
       display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
-      overflow:hidden; isolation:isolate;
-      padding:0 16px;
+      overflow:hidden; isolation:isolate; padding:0 16px;
     }
     .dg header video{
       position:absolute; inset:0; width:100%; height:100%;
@@ -49,60 +56,43 @@
     .dg header .hero-subtitle{
       color:#f5f5f5; max-width:640px; margin:0 auto 18px;
       font-size:clamp(15px,3.1vw,19px); font-weight:500;
-      text-shadow:0 2px 10px rgba(0,0,0,.5);
-      animation:fadeInHeader .9s ease-out both;
+      text-shadow:0 2px 10px rgba(0,0,0,.5); animation:fadeInHeader .9s ease-out both;
     }
     .dg header .hero-cta{
       display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:42px;
       animation:fadeInHeader 1s ease-out both;
     }
+    @keyframes fadeInHeader{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ===== BOTONES ===== */
     .dg .btn-primaria,
     .dg .btn-secundaria{
       display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 20px;
-      border-radius:999px;
-      font-weight:700;
-      font-size:15px;
-      text-decoration:none;
-      cursor:pointer;
-      border:2px solid transparent;
-      transition:background .15s.ease, color .15s ease, transform .1s ease, box-shadow .15s ease, border-color .15s ease;
+      padding:10px 20px; border-radius:999px; font-weight:700; font-size:15px;
+      text-decoration:none; cursor:pointer; border:2px solid transparent;
+      transition:background .15s ease, color .15s ease, transform .1s ease, box-shadow .15s ease;
       -webkit-tap-highlight-color:transparent;
     }
-    .dg .btn-primaria{
-      background:#25D366;
-      color:#fff;
-      box-shadow:0 6px 18px rgba(0,0,0,.35);
-    }
-    .dg .btn-primaria:hover{
-      transform:translateY(-1px);
-      box-shadow:0 9px 24px rgba(0,0,0,.4);
-    }
-    .dg .btn-secundaria{
-      background:transparent;
-      color:#fff;
-      border-color:rgba(255,255,255,.7);
-    }
-    .dg .btn-secundaria:hover{
-      background:rgba(0,0,0,.12);
-    }
+    .dg .btn-primaria{ background:#25D366; color:#fff; box-shadow:0 6px 18px rgba(0,0,0,.35) }
+    .dg .btn-primaria:hover{ transform:translateY(-1px); box-shadow:0 9px 24px rgba(0,0,0,.4) }
+    .dg .btn-secundaria{ background:transparent; color:#fff; border-color:rgba(255,255,255,.7) }
+    .dg .btn-secundaria:hover{ background:rgba(0,0,0,.12) }
 
-    @keyframes fadeInHeader{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
     .dg .marquesina{
       position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
-      background:rgba(0,0,0,.5); color:#fff; padding:8px 14px; border-radius:999px; backdrop-filter:blur(4px);
-      max-width:92%;
+      background:rgba(0,0,0,.5); color:#fff; padding:8px 14px; border-radius:999px;
+      backdrop-filter:blur(4px); max-width:92%;
     }
     .dg .marquesina p{margin:0; font-weight:700; font-size:clamp(14px,3.2vw,20px)}
+
+    /* ===== NAV ===== */
     .dg .logo-sticky{
       position:fixed; bottom:14px; left:14px; height:64px; opacity:.7; z-index:900;
       transition:transform .2s ease, opacity .2s ease;
     }
     .dg .logo-sticky:hover{opacity:1; transform:scale(1.06)}
     .dg nav{
-      background:var(--marron);
-      position:sticky; top:0;
-      z-index:1200;
+      background:var(--marron); position:sticky; top:0; z-index:1200;
       box-shadow:0 2px 8px rgba(0,0,0,.15);
     }
     .dg nav .nav-inner{
@@ -115,87 +105,65 @@
       font-weight:800; letter-spacing:.2px;
     }
     .dg nav .links a{
-      display:inline-block; color:#fff; text-decoration:none; font-weight:700;
-      padding:12px 10px; border-radius:10px;
+      color:#fff; padding:12px 10px; border-radius:10px; text-decoration:none;
     }
     .dg nav .links a:hover{ text-decoration:underline }
     .dg nav .hamburger{
       display:none; cursor:pointer; border:0; background:transparent; color:#fff;
       padding:12px; position:absolute; right:8px; top:2px; z-index:1203;
-      -webkit-tap-highlight-color: transparent;
     }
     .dg nav .hamburger svg{width:26px; height:26px}
-
-    /* ====== MENÚ MOBILE ====== */
     .dg .links.mobile{
-      display:flex;
-      flex-direction:column; gap:6px;
+      display:none; flex-direction:column; gap:6px;
       position:absolute; left:0; right:0; top:100%;
       background:var(--marron); border-top:1px solid rgba(255,255,255,.15);
       box-shadow:0 10px 18px rgba(0,0,0,.25); z-index:1202; padding:10px 16px 14px;
     }
     .dg .links.mobile[hidden]{display:none !important}
-    .dg .links.mobile a{display:block; padding:12px 0; border-radius:8px}
+    .dg .links.mobile a{padding:12px 0}
 
-    /* ====== Sección ====== */
+    /* ===== SECCIÓN ===== */
     .dg section{display:flex; justify-content:center; align-items:center; flex-direction:column; padding:36px 16px}
     .dg .seccion{
-      width:min(920px,92%); background:var(--bgCard); border-radius:var(--radius); box-shadow:var(--shadow);
-      padding:clamp(16px,3.6vw,24px); animation:fadeInContent .7s ease both;
+      width:min(920px,92%); background:var(--bgCard);
+      border-radius:var(--radius); box-shadow:var(--shadow);
+      padding:clamp(16px,3.6vw,24px); animation:fadeInContent .7s ease both; color:#132135;
     }
-    @keyframes fadeInContent{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
     .dg .seccion h2{color:var(--verde); font-size:clamp(20px,3.6vw,28px); margin-top:0}
-    .dg .seccion p{margin:.4rem 0; font-size:clamp(14px,2.8vw,16px)}
-    .dg .pill-row{
-      display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 4px;
-    }
-    .dg .pill{
-      background:rgba(42,92,42,0.08);
-      color:#294029;
-      border-radius:999px;
-      padding:6px 12px;
-      font-size:13px;
-      font-weight:600;
-    }
+    .dg .seccion p,
+    .dg .seccion li{font-size:clamp(14px,2.8vw,16px); color:#132135}
+    .dg .pill-row{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 4px}
+    .dg .pill{background:rgba(42,92,42,0.08); color:#294029; border-radius:999px; padding:6px 12px; font-size:13px; font-weight:600}
 
-    /* ====== Burbuja WhatsApp ====== */
+    @keyframes fadeInContent{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ===== WHATSAPP FLOAT ===== */
     .whatsapp-float{
-      position:fixed;
-      right:20px;
-      bottom:24px;
-      z-index:1300;
+      position:fixed; right:20px; bottom:24px; z-index:1300;
       display:inline-flex; align-items:center; justify-content:center;
-      width:64px; height:64px;
-      background:#25D366;
-      border-radius:50%;
-      box-shadow:0 6px 16px rgba(0,0,0,.25);
-      text-decoration:none;
-      -webkit-tap-highlight-color: transparent;
-      transition:transform .15s ease, box-shadow .15s.ease, opacity .2s ease;
+      width:64px; height:64px; background:#25D366; border-radius:50%;
+      box-shadow:0 6px 16px rgba(0,0,0,.25); text-decoration:none; transition:transform .15s ease;
     }
-    .whatsapp-float:hover{ transform:scale(1.06); box-shadow:0 8px 22px rgba(0,0,0,.28) }
-    .whatsapp-float:active{ transform:scale(0.98) }
-    .whatsapp-float img{ width:34px; height:34px; display:block }
+    .whatsapp-float img{ width:34px; height:34px }
+    .whatsapp-float:hover{ transform:scale(1.06) }
 
-    @media (min-width: 768px){
-      .whatsapp-float{ bottom:28px }
-      .dg header .hero-cta{ gap:14px }
-    }
-
-    /* Menú hamburguesa en mobile */
-    @media (max-width: 700px){
+    /* ===== MOBILE FIX ===== */
+    @media (max-width:700px){
       .dg nav .hamburger{display:block}
-      .dg nav .links:not(.mobile){display:none}  /* <- solo oculto el menú de escritorio */
+      .dg nav .links{display:none}
+      .dg .seccion{background:#ffffff;}
+      .dg .seccion p,
+      .dg .seccion li{font-size:15px;}
     }
   </style>
 </head>
+
 <body>
   <!-- Google Tag Manager (noscript) -->
   <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMWWJZG2"
     height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
-  <!-- End Google Tag Manager (noscript) -->
 
   <div class="dg">
     <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
@@ -203,10 +171,8 @@
     <header>
       <video autoplay muted loop playsinline poster="poster.jpg">
         <source src="productor.mp4" type="video/mp4">
-        Tu navegador no soporta videos HTML5.
       </video>
 
-      <!-- HERO -->
       <h1>Bots y automatización para el agro</h1>
       <p class="hero-subtitle">
         Implementamos bots de WhatsApp y flujos digitales para <strong>SENASA, facturación, remitos y reportes</strong>,
@@ -214,12 +180,8 @@
       </p>
 
       <div class="hero-cta">
-        <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">
-          📲 Quiero mi demo por WhatsApp
-        </a>
-        <a href="#soluciones" class="btn-secundaria">
-          Ver soluciones que ofrecemos
-        </a>
+        <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">📲 Quiero mi demo por WhatsApp</a>
+        <a href="#soluciones" class="btn-secundaria">Ver soluciones que ofrecemos</a>
       </div>
 
       <div class="marquesina">
@@ -237,7 +199,7 @@
           <li><a href="senasa.html">SENASA</a></li>
         </ul>
         <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M3 12h18M3 18h18"/>
           </svg>
         </button>
@@ -251,14 +213,10 @@
       </div>
     </nav>
 
-    <!-- SECCIÓN PRINCIPAL ORIENTADA A SOLUCIONES -->
     <section id="soluciones">
       <div class="seccion">
         <h2>💡 ¿Qué resolvemos en DigiAgro?</h2>
-        <p>
-          En <strong>DigiAgro</strong> conectamos el agro con la tecnología para que puedas
-          <strong>automatizar procesos, reducir errores y ganar tiempo</strong> en la operación diaria.
-        </p>
+        <p>En <strong>DigiAgro</strong> conectamos el agro con la tecnología para que puedas <strong>automatizar procesos, reducir errores y ganar tiempo</strong> en la operación diaria.</p>
 
         <div class="pill-row">
           <span class="pill">Bots de WhatsApp</span>
@@ -276,30 +234,18 @@
           <li>📊 <strong>Dashboards y reportes:</strong> visibilidad de ventas, stock y cobranzas.</li>
         </ul>
 
-        <p>
-          Diseñamos cada solución para que sea <strong>simple de usar</strong> para tu equipo,
-          sin que tengas que cambiar tus sistemas actuales.
-        </p>
-
-        <p>
-          Si querés ver cómo se aplicaría en tu negocio, escribinos y armamos una demo rápida:
-        </p>
+        <p>Diseñamos cada solución para que sea <strong>simple de usar</strong>, sin cambiar tus sistemas actuales.</p>
+        <p>Si querés ver cómo se aplicaría en tu negocio, escribinos y armamos una demo rápida:</p>
 
         <p style="margin-top:10px;">
-          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">
-            🚀 Agendar demo sin costo
-          </a>
+          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">🚀 Agendar demo sin costo</a>
         </p>
       </div>
     </section>
   </div>
 
   <!-- ========= Burbuja de WhatsApp (con tracking) ========= -->
-  <a id="whatsappButton"
-     class="whatsapp-float"
-     href="https://wa.me/5491162763084"
-     target="_blank" rel="noopener"
-     aria-label="Chatear por WhatsApp con DigiAgro">
+  <a id="whatsappButton" class="whatsapp-float" href="https://wa.me/5491162763084" target="_blank" rel="noopener">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" />
   </a>
 
@@ -334,98 +280,6 @@
         });
       });
     })();
-  </script>
-
-  <!-- POPUP PROMO DIGIAGRO -->
-  <style>
-    #promoPopup {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0,0,0,0.6);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      opacity: 0;
-      visibility: hidden;
-      transition: 0.3s;
-      font-family: 'Arial', sans-serif;
-    }
-
-    #promoPopup.show {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    #promoBox {
-      background: white;
-      width: 90%;
-      max-width: 420px;
-      padding: 30px;
-      border-radius: 18px;
-      text-align: center;
-      animation: popIn 0.35s ease;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    }
-
-    @keyframes popIn {
-      from { transform: scale(0.7); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    #promoBox h2 {
-      font-size: 26px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #28a745;
-    }
-
-    #promoBox p {
-      font-size: 16px;
-      color: #333;
-      margin-bottom: 20px;
-      line-height: 1.4;
-    }
-
-    #promoClose {
-      background: #28a745;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      transition: 0.2s;
-    }
-
-    #promoClose:hover {
-      background: #218838;
-    }
-  </style>
-
-  <div id="promoPopup">
-    <div id="promoBox">
-      <h2>🎉 ¡Promo DigiAgro!</h2>
-      <p>Estamos <b>locos</b> 🤯<br>
-      Durante <b>noviembre y diciembre</b> no cobramos la implementación de los bots de WhatsApp.</p>
-      <button id="promoClose">Entendido</button>
-    </div>
-  </div>
-
-  <script>
-    window.onload = function() {
-      setTimeout(() => {
-        document.getElementById("promoPopup").classList.add("show");
-      }, 1200); // aparece después de 1.2s
-    }
-
-    document.getElementById("promoClose").onclick = function() {
-      document.getElementById("promoPopup").classList.remove("show");
-    }
   </script>
 
 </body>
