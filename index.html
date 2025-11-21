@@ -32,6 +32,7 @@
       position:relative; min-height:100vh; height:100svh;
       display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
       overflow:hidden; isolation:isolate;
+      padding:0 16px;
     }
     .dg header video{
       position:absolute; inset:0; width:100%; height:100%;
@@ -39,12 +40,53 @@
     }
     .dg header::before{
       content:""; position:absolute; inset:0; z-index:-1;
-      background:linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.2));
+      background:linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.25));
     }
     .dg header h1{
-      color:#fff; margin:24px 12px 0; font-size:clamp(28px,5vw,56px); font-weight:800;
+      color:#fff; margin:24px 12px 8px; font-size:clamp(30px,5.2vw,56px); font-weight:800;
       text-shadow:0 2px 14px rgba(0,0,0,.45); animation:fadeInHeader .8s ease-out both;
     }
+    .dg header .hero-subtitle{
+      color:#f5f5f5; max-width:640px; margin:0 auto 18px;
+      font-size:clamp(15px,3.1vw,19px); font-weight:500;
+      text-shadow:0 2px 10px rgba(0,0,0,.5);
+      animation:fadeInHeader .9s ease-out both;
+    }
+    .dg header .hero-cta{
+      display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:42px;
+      animation:fadeInHeader 1s ease-out both;
+    }
+    .dg .btn-primaria,
+    .dg .btn-secundaria{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 20px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:15px;
+      text-decoration:none;
+      cursor:pointer;
+      border:2px solid transparent;
+      transition:background .15s ease, color .15s ease, transform .1s ease, box-shadow .15s ease, border-color .15s ease;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .dg .btn-primaria{
+      background:#25D366;
+      color:#fff;
+      box-shadow:0 6px 18px rgba(0,0,0,.35);
+    }
+    .dg .btn-primaria:hover{
+      transform:translateY(-1px);
+      box-shadow:0 9px 24px rgba(0,0,0,.4);
+    }
+    .dg .btn-secundaria{
+      background:transparent;
+      color:#fff;
+      border-color:rgba(255,255,255,.7);
+    }
+    .dg .btn-secundaria:hover{
+      background:rgba(0,0,0,.12);
+    }
+
     @keyframes fadeInHeader{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
     .dg .marquesina{
       position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
@@ -93,18 +135,34 @@
     .dg .links.mobile a{display:block; padding:12px 0; border-radius:8px}
     .dg section{display:flex; justify-content:center; align-items:center; flex-direction:column; padding:36px 16px}
     .dg .seccion{
-      width:min(760px,92%); background:var(--bgCard); border-radius:var(--radius); box-shadow:var(--shadow);
+      width:min(920px,92%); background:var(--bgCard); border-radius:var(--radius); box-shadow:var(--shadow);
       padding:clamp(16px,3.6vw,24px); animation:fadeInContent .7s ease both;
     }
     @keyframes fadeInContent{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
     .dg .seccion h2{color:var(--verde); font-size:clamp(20px,3.6vw,28px); margin-top:0}
     .dg .seccion p{margin:.4rem 0; font-size:clamp(14px,2.8vw,16px)}
+    .dg .seccion ul{
+      padding-left:1.2rem;
+      margin:0.4rem 0 0.8rem;
+      font-size:clamp(14px,2.8vw,16px)
+    }
+    .dg .pill-row{
+      display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 4px;
+    }
+    .dg .pill{
+      background:rgba(42,92,42,0.08);
+      color:#294029;
+      border-radius:999px;
+      padding:6px 12px;
+      font-size:13px;
+      font-weight:600;
+    }
 
     /* ====== Burbuja WhatsApp ====== */
     .whatsapp-float{
       position:fixed;
       right:20px;
-      bottom:24px;            /* visible siempre y cómodo en mobile */
+      bottom:24px;
       z-index:1300;
       display:inline-flex; align-items:center; justify-content:center;
       width:64px; height:64px;
@@ -119,9 +177,15 @@
     .whatsapp-float:active{ transform:scale(0.98) }
     .whatsapp-float img{ width:34px; height:34px; display:block }
 
-    /* Si tenés el widget del chat en el futuro, subí un poco la burbuja */
     @media (min-width: 768px){
       .whatsapp-float{ bottom:28px }
+      .dg header .hero-cta{ gap:14px }
+    }
+
+    /* Menú hamburguesa en mobile */
+    @media (max-width: 700px){
+      .dg nav .hamburger{display:block}
+      .dg nav .links{display:none}
     }
   </style>
 </head>
@@ -141,8 +205,26 @@
         <source src="productor.mp4" type="video/mp4">
         Tu navegador no soporta videos HTML5.
       </video>
-      <h1>DigiAgro</h1>
-      <div class="marquesina"><p>🚜 Optimizamos procesos para un agro más ágil y digital. 🚜</p></div>
+
+      <!-- HERO MEJORADO -->
+      <h1>Bots y automatización para el agro</h1>
+      <p class="hero-subtitle">
+        Implementamos bots de WhatsApp y flujos digitales para <strong>SENASA, facturación, remitos y reportes</strong>,
+        para que tu equipo trabaje más rápido y con menos errores.
+      </p>
+
+      <div class="hero-cta">
+        <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">
+          📲 Quiero mi demo por WhatsApp
+        </a>
+        <a href="#soluciones" class="btn-secundaria">
+          Ver soluciones que ofrecemos
+        </a>
+      </div>
+
+      <div class="marquesina">
+        <p>🚜 Automatizamos tareas repetitivas para distribuidores, acopios y agroservicios. 🚜</p>
+      </div>
     </header>
 
     <nav>
@@ -169,13 +251,45 @@
       </div>
     </nav>
 
-    <section>
+    <!-- SECCIÓN PRINCIPAL ORIENTADA A SOLUCIONES -->
+    <section id="soluciones">
       <div class="seccion">
-        <h2>💡 Bienvenido a DigiAgro 💡</h2>
-        <p>En <strong>DigiAgro</strong> conectamos el agro con la tecnología para que tomes mejores decisiones, automatices tus procesos y optimices cada etapa de tu trabajo.</p>
-        <p>Somos una <strong>startup enfocada en transformar la gestión agrícola</strong> con herramientas digitales simples, efectivas y a tu medida.</p>
-        <p>🌱 Explorá nuestras secciones para descubrir cómo podemos ayudarte.</p>
-        <p>✨ Porque en DigiAgro <strong>creamos soluciones digitales que hacen tu vida más fácil</strong>, para que puedas enfocarte en lo que realmente importa: Tu negocio.</p>
+        <h2>💡 ¿Qué resolvemos en DigiAgro?</h2>
+        <p>
+          En <strong>DigiAgro</strong> conectamos el agro con la tecnología para que puedas
+          <strong>automatizar procesos, reducir errores y ganar tiempo</strong> en la operación diaria.
+        </p>
+
+        <div class="pill-row">
+          <span class="pill">Bots de WhatsApp</span>
+          <span class="pill">SENASA & trazabilidad</span>
+          <span class="pill">Facturación automática</span>
+          <span class="pill">Digitalización de remitos</span>
+          <span class="pill">Dashboards en Power BI</span>
+        </div>
+
+        <p><strong>Algunas de las soluciones que ya estamos implementando:</strong></p>
+        <ul>
+          <li>🤖 <strong>Bot SENASA:</strong> alta de envíos, productos y trazabilidad sin tipear todo a mano.</li>
+          <li>💸 <strong>Facturación por WhatsApp:</strong> generá comprobantes desde una conversación (ideal monotributistas y pymes).</li>
+          <li>📦 <strong>Digitalización de remitos y documentos:</strong> sacás una foto y el bot extrae los datos para cargar en tu sistema.</li>
+          <li>📊 <strong>Dashboards y reportes:</strong> visibilidad de ventas, stock y cobranzas en Power BI u otras herramientas.</li>
+        </ul>
+
+        <p>
+          Diseñamos cada solución para que sea <strong>simple de usar</strong> para tu equipo comercial y administrativo,
+          sin que tengas que cambiar todo tu sistema actual.
+        </p>
+
+        <p>
+          Si querés ver cómo se aplicaría en tu negocio, escribinos y armamos una demo rápida:
+        </p>
+
+        <p style="margin-top:10px;">
+          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">
+            🚀 Agendar demo sin costo
+          </a>
+        </p>
       </div>
     </section>
   </div>
@@ -197,8 +311,13 @@
       const mobileMenu = document.getElementById('mobileMenu');
       btn?.addEventListener('click', () => {
         const isOpen = !mobileMenu.hasAttribute('hidden');
-        if (isOpen) { mobileMenu.setAttribute('hidden',''); btn.setAttribute('aria-expanded','false'); }
-        else { mobileMenu.removeAttribute('hidden'); btn.setAttribute('aria-expanded','true'); }
+        if (isOpen) {
+          mobileMenu.setAttribute('hidden','');
+          btn.setAttribute('aria-expanded','false');
+        } else {
+          mobileMenu.removeAttribute('hidden');
+          btn.setAttribute('aria-expanded','true');
+        }
       });
     })();
 
@@ -216,99 +335,98 @@
       });
     })();
   </script>
+
   <!-- POPUP PROMO DIGIAGRO -->
-<style>
-  #promoPopup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0,0,0,0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.3s;
-    font-family: 'Arial', sans-serif;
-  }
+  <style>
+    #promoPopup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+      font-family: 'Arial', sans-serif;
+    }
 
-  #promoPopup.show {
-    opacity: 1;
-    visibility: visible;
-  }
+    #promoPopup.show {
+      opacity: 1;
+      visibility: visible;
+    }
 
-  #promoBox {
-    background: white;
-    width: 90%;
-    max-width: 420px;
-    padding: 30px;
-    border-radius: 18px;
-    text-align: center;
-    animation: popIn 0.35s ease;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  }
+    #promoBox {
+      background: white;
+      width: 90%;
+      max-width: 420px;
+      padding: 30px;
+      border-radius: 18px;
+      text-align: center;
+      animation: popIn 0.35s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
 
-  @keyframes popIn {
-    from { transform: scale(0.7); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-  }
+    @keyframes popIn {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
 
-  #promoBox h2 {
-    font-size: 26px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #28a745;
-  }
+    #promoBox h2 {
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #28a745;
+    }
 
-  #promoBox p {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 20px;
-    line-height: 1.4;
-  }
+    #promoBox p {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
 
-  #promoClose {
-    background: #28a745;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: 0.2s;
-  }
+    #promoClose {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
 
-  #promoClose:hover {
-    background: #218838;
-  }
-</style>
+    #promoClose:hover {
+      background: #218838;
+    }
+  </style>
 
-<div id="promoPopup">
-  <div id="promoBox">
-    <h2>🎉 ¡Promo DigiAgro!</h2>
-    <p>Estamos <b>locos</b> 🤯<br>
-    Durante <b>noviembre y diciembre</b> no cobramos la implementación de los bots de WhatsApp.</p>
-    <button id="promoClose">Entendido</button>
+  <div id="promoPopup">
+    <div id="promoBox">
+      <h2>🎉 ¡Promo DigiAgro!</h2>
+      <p>Estamos <b>locos</b> 🤯<br>
+      Durante <b>noviembre y diciembre</b> no cobramos la implementación de los bots de WhatsApp.</p>
+      <button id="promoClose">Entendido</button>
+    </div>
   </div>
-</div>
 
-<script>
-  window.onload = function() {
-    setTimeout(() => {
-      document.getElementById("promoPopup").classList.add("show");
-    }, 1200); // aparece después de 1.2s
-  }
+  <script>
+    window.onload = function() {
+      setTimeout(() => {
+        document.getElementById("promoPopup").classList.add("show");
+      }, 1200); // aparece después de 1.2s
+    }
 
-  document.getElementById("promoClose").onclick = function() {
-    document.getElementById("promoPopup").classList.remove("show");
-  }
-</script>
+    document.getElementById("promoClose").onclick = function() {
+      document.getElementById("promoPopup").classList.remove("show");
+    }
+  </script>
 
 </body>
 </html>
-
-
