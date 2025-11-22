@@ -145,17 +145,20 @@
 
     /* ===== NAV ===== */
     .dg .logo-sticky{
-      position:fixed;
-      top:12px;
-      left:14px;
-      height:64px;
-      opacity:.9;
-      z-index:900;
-      transition:transform .2s ease, opacity .2s ease;
-    }
-    .dg .logo-sticky:hover{
-      opacity:1;
-      transform:scale(1.06);
+  position:fixed;
+  bottom:14px;
+  left:14px;
+  height:56px;          /* un poco más chico */
+  opacity:.45;          /* transparencia suave */
+  z-index:900;
+  transition:transform .2s ease, opacity .2s ease;
+}
+
+.dg .logo-sticky:hover{
+  opacity:0.95;         /* se ve más nítido al pasar el mouse */
+  transform:scale(1.03);
+}
+
     }
     .dg nav{
       background:var(--marron);
