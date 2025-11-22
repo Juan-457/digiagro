@@ -20,18 +20,22 @@
     :root{
       --verde:#2a5c2a;
       --marron:#6b4f2c;
-      --bgCard: rgba(255,255,255,.96);
+      --bgCard: rgba(255,255,255,.96); /* mayor legibilidad */
       --shadow:0 4px 10px rgba(0,0,0,.12);
       --radius:14px;
       --safe: env(safe-area-inset-bottom);
     }
+
     .dg *{box-sizing:border-box}
     html{scroll-behavior:smooth}
+
     .dg{
       margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; line-height:1.45;
       background-image:url('fondo.png'); background-size:cover; background-position:center; background-repeat:no-repeat;
       background-attachment:fixed; padding-bottom:max(72px,var(--safe));
     }
+
+    /* ===== HEADER ===== */
     .dg header{
       position:relative; min-height:100vh; height:100svh;
       display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
@@ -47,16 +51,20 @@
     }
     .dg header h1{
       color:#fff; margin:24px 12px 8px; font-size:clamp(30px,5.2vw,56px); font-weight:800;
-      text-shadow:0 2px 14px rgba(0,0,0,.45);
+      text-shadow:0 2px 14px rgba(0,0,0,.45); animation:fadeInHeader .8s ease-out both;
     }
     .dg header .hero-subtitle{
       color:#f5f5f5; max-width:640px; margin:0 auto 18px;
       font-size:clamp(15px,3.1vw,19px); font-weight:500;
-      text-shadow:0 2px 10px rgba(0,0,0,.5);
+      text-shadow:0 2px 10px rgba(0,0,0,.5); animation:fadeInHeader .9s ease-out both;
     }
     .dg header .hero-cta{
       display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:42px;
+      animation:fadeInHeader 1s ease-out both;
     }
+    @keyframes fadeInHeader{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ===== BOTONES ===== */
     .dg .btn-primaria,
     .dg .btn-secundaria{
       display:inline-flex; align-items:center; justify-content:center;
@@ -69,12 +77,20 @@
     .dg .btn-primaria:hover{ transform:translateY(-1px); box-shadow:0 9px 24px rgba(0,0,0,.4) }
     .dg .btn-secundaria{ background:transparent; color:#fff; border-color:rgba(255,255,255,.7) }
     .dg .btn-secundaria:hover{ background:rgba(0,0,0,.12) }
+
     .dg .marquesina{
       position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
       background:rgba(0,0,0,.5); color:#fff; padding:8px 14px; border-radius:999px;
       backdrop-filter:blur(4px); max-width:92%;
     }
     .dg .marquesina p{margin:0; font-weight:700; font-size:clamp(14px,3.2vw,20px)}
+
+    /* ===== NAV ===== */
+    .dg .logo-sticky{
+      position:fixed; bottom:14px; left:14px; height:64px; opacity:.7; z-index:900;
+      transition:transform .2s ease, opacity .2s ease;
+    }
+    .dg .logo-sticky:hover{opacity:1; transform:scale(1.06)}
     .dg nav{
       background:var(--marron); position:sticky; top:0; z-index:1200;
       box-shadow:0 2px 8px rgba(0,0,0,.15);
@@ -97,28 +113,80 @@
       padding:12px; position:absolute; right:8px; top:2px; z-index:1203;
     }
     .dg nav .hamburger svg{width:26px; height:26px}
+
+    /* ===== MENÚ MOBILE ===== */
     .dg .links.mobile{
-      display:flex; flex-direction:column; gap:6px;
+      display:flex;
+      flex-direction:column; gap:6px;
       position:absolute; left:0; right:0; top:100%;
       background:var(--marron); border-top:1px solid rgba(255,255,255,.15);
       box-shadow:0 10px 18px rgba(0,0,0,.25); z-index:1202; padding:10px 16px 14px;
     }
     .dg .links.mobile[hidden]{display:none !important}
+    .dg .links.mobile a{padding:12px 0; border-radius:8px}
+
+    /* ===== SECCIÓN ===== */
     .dg section{display:flex; justify-content:center; align-items:center; flex-direction:column; padding:36px 16px}
     .dg .seccion{
       width:min(920px,92%); background:var(--bgCard);
       border-radius:var(--radius); box-shadow:var(--shadow);
-      padding:clamp(16px,3.6vw,24px);
-      color:#132135;
+      padding:clamp(16px,3.6vw,24px); animation:fadeInContent .7s ease both; color:#132135;
     }
+    .dg .seccion h2{color:var(--verde); font-size:clamp(20px,3.6vw,28px); margin-top:0}
+    .dg .seccion p,
+    .dg .seccion li{font-size:clamp(14px,2.8vw,16px); color:#132135}
+    .dg .pill-row{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 4px}
+    .dg .pill{background:rgba(42,92,42,0.08); color:#294029; border-radius:999px; padding:6px 12px; font-size:13px; font-weight:600}
+
+    @keyframes fadeInContent{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ===== TABLA DE PLANES ===== */
+    .dg .pricing-note{
+      font-size:13px;
+      color:#555;
+      margin-top:10px;
+    }
+    .dg .pricing-table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:10px;
+      font-size:14px;
+    }
+    .dg .pricing-table th,
+    .dg .pricing-table td{
+      border:1px solid #d9e6d9;
+      padding:8px 6px;
+      text-align:center;
+    }
+    .dg .pricing-table th{
+      background:var(--verde);
+      color:#fff;
+      font-weight:700;
+    }
+    .dg .pricing-table .highlight{
+      background:rgba(42,92,42,0.06);
+      font-weight:700;
+    }
+
+    /* ===== WHATSAPP FLOAT ===== */
     .whatsapp-float{
       position:fixed; right:20px; bottom:24px; z-index:1300;
       display:inline-flex; align-items:center; justify-content:center;
       width:64px; height:64px; background:#25D366; border-radius:50%;
-      box-shadow:0 6px 16px rgba(0,0,0,.25);
+      box-shadow:0 6px 16px rgba(0,0,0,.25); text-decoration:none; transition:transform .15s ease;
     }
-    .whatsapp-float:hover{ transform:scale(1.06) }
     .whatsapp-float img{ width:34px; height:34px }
+    .whatsapp-float:hover{ transform:scale(1.06) }
+
+    /* ===== MOBILE ===== */
+    @media (max-width:700px){
+      .dg nav .hamburger{display:block}
+      .dg nav .links:not(.mobile){display:none}
+      .dg .seccion{background:#ffffff;}
+      .dg .seccion p,
+      .dg .seccion li{font-size:15px;}
+      .dg .pricing-table{font-size:13px;}
+    }
   </style>
 </head>
 
@@ -209,8 +277,10 @@
       </div>
     </section>
 
+    <!-- ======== NUEVA SECCIÓN: PLANES Y PRECIOS ======== -->
     <section id="planes">
       <div class="seccion">
+        <h2>💰 Planes de Bots de Whatsapp</h2>
         <h2>💰 Planes para Bots de Whatsapp</h2>
         <p>
           Trabajamos con planes mensuales simples para que puedas empezar rápido.
@@ -263,62 +333,44 @@
         </p>
       </div>
     </section>
-
   </div>
 
+  <!-- ========= Burbuja de WhatsApp (con tracking) ========= -->
   <a id="whatsappButton" class="whatsapp-float" href="https://wa.me/5491162763084" target="_blank" rel="noopener">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" />
   </a>
 
-  <!-- ========= JS: menú móvil + tracking ========= -->
+  <!-- ========= JS: menú móvil + tracking WhatsApp ========= -->
   <script>
-    (function(){ const btn=document.querySelector('.dg .hamburger'); const mobileMenu=document.getElementById('mobileMenu'); btn?.addEventListener('click',()=>{ const isOpen=!mobileMenu.hasAttribute('hidden'); if(isOpen){mobileMenu.setAttribute('hidden',''); btn.setAttribute('aria-expanded','false');} else {mobileMenu.removeAttribute('hidden'); btn.setAttribute('aria-expanded','true');} }); })();
-    (function(){ window.dataLayer=window.dataLayer||[]; const wbtn=document.getElementById('whatsappButton'); wbtn?.addEventListener('click', function(){ window.dataLayer.push({ event: 'click_whatsapp', event_category: 'engagement', event_label: 'wa_5491162763084', value: 1 }); }); })();
-  </script>
+    // Toggle menú móvil
+    (function(){
+      const btn = document.querySelector('.dg .hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      btn?.addEventListener('click', () => {
+        const isOpen = !mobileMenu.hasAttribute('hidden');
+        if (isOpen) {
+          mobileMenu.setAttribute('hidden','');
+          btn.setAttribute('aria-expanded','false');
+        } else {
+          mobileMenu.removeAttribute('hidden');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    })();
 
-  <!-- ========= JS: Tracking Avanzado ========= -->
-  <script>
-  /* SCROLL DEPTH */
-  (function(){
-    let s25=false,s50=false,s75=false,s100=false;
-    window.addEventListener('scroll',()=>{
-      const scroll=(window.scrollY+window.innerHeight)/document.body.scrollHeight*100;
-      function send(p){window.dataLayer.push({event:'scroll_depth',scroll_percent:p});}
-      if(scroll>=25&&!s25){send(25);s25=true;}
-      if(scroll>=50&&!s50){send(50);s50=true;}
-      if(scroll>=75&&!s75){send(75);s75=true;}
-      if(scroll>=100&&!s100){send(100);s100=true;}
-    });
-  })();
-
-  /* VIEW SECTIONS */
-  function sectionView(id,name){
-    const el=document.getElementById(id); if(!el) return;
-    let fired=false;
-    window.addEventListener('scroll',()=>{
-      const rect=el.getBoundingClientRect();
-      if(rect.top<window.innerHeight*0.75 && !fired){
-        fired=true;
-        window.dataLayer.push({event:'view_section',section_name:name});
-      }
-    });
-  }
-  sectionView('soluciones','Soluciones');
-  sectionView('planes','Planes');
-
-  /* MENU CLICK */
-  document.querySelectorAll('nav .links a').forEach(link=>{
-    link.addEventListener('click',()=>{
-      window.dataLayer.push({event:'menu_click',menu_option:link.textContent.trim()});
-    });
-  });
-
-  /* CTA HEADER */
-  document.querySelectorAll('.hero-cta a').forEach(link=>{
-    link.addEventListener('click',()=>{
-      window.dataLayer.push({event:'cta_header',button_text:link.textContent.trim()});
-    });
-  });
+    // Medición de clic en WhatsApp (GA4/Ads vía GTM)
+    (function(){
+      window.dataLayer = window.dataLayer || [];
+      const wbtn = document.getElementById('whatsappButton');
+      wbtn?.addEventListener('click', function(){
+        window.dataLayer.push({
+          event: 'click_whatsapp',
+          event_category: 'engagement',
+          event_label: 'wa_5491162763084',
+          value: 1
+        });
+      });
+    })();
   </script>
 
 </body>
