@@ -38,13 +38,13 @@
       background-position:center;
       background-repeat:no-repeat;
       background-attachment:fixed;
-      padding-bottom:max(72px,var(--safe));
+      padding-bottom:max(80px,var(--safe)); /* espacio para el menú fijo */
     }
 
     /* ===== HEADER ===== */
     .dg header{
       position:relative;
-      min-height:calc(100vh - 60px);
+      min-height:calc(100vh - 80px);
       display:flex;
       flex-direction:column;
       justify-content:center;
@@ -53,7 +53,7 @@
       overflow:hidden;
       isolation:isolate;
       padding:0 16px;
-      padding-top:75px;
+      padding-top:60px;
     }
     .dg header video{
       position:absolute;
@@ -97,10 +97,10 @@
     /* ===== LOGO FIJO ABAJO IZQUIERDA ===== */
     .dg .logo-sticky{
       position:fixed;
-      bottom:14px;
-      left:14px;
+      bottom:88px;         /* más arriba para que no lo tape el menú */
+      left:18px;
       height:56px;
-      opacity:.45;
+      opacity:.55;
       z-index:900;
       transition:transform .2s ease, opacity .2s ease;
     }
@@ -158,57 +158,78 @@
       font-size:clamp(14px,3.2vw,20px);
     }
 
-    /* ===== NAV ===== */
+    /* ===== NAV MODERNO FIJO ABAJO ===== */
     .dg nav{
-      background:var(--marron);
-      position:sticky;
-      top:0;
+      position:fixed;
+      bottom:0;
+      left:0;
+      right:0;
       z-index:1200;
-      box-shadow:0 2px 8px rgba(0,0,0,.15);
+      background:linear-gradient(90deg,#102a43,#1b4332,#2d6a4f);
+      background-size:200% 100%;
+      box-shadow:0 -2px 12px rgba(0,0,0,.35);
+      border-top:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(10px);
+      animation:navGlow 14s ease-in-out infinite alternate;
     }
+    @keyframes navGlow{
+      from{background-position:0% 0}
+      to{background-position:100% 0}
+    }
+
     .dg nav .nav-inner{
       max-width:1100px;
       margin:0 auto;
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:18px;
-      padding:8px 12px;
+      gap:22px;
+      padding:10px 12px 12px;
       position:relative;
     }
     .dg nav .links{
       display:flex;
-      gap:18px;
+      gap:22px;
       flex-wrap:wrap;
       list-style:none;
       margin:0;
       padding:0;
-      font-weight:800;
-      letter-spacing:.2px;
+      font-weight:700;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      font-size:12px;
     }
     .dg nav .links a{
-      color:#fff;
-      padding:12px 10px;
-      border-radius:10px;
+      color:#f9fafb;
+      padding:8px 6px;
+      border-radius:999px;
       text-decoration:none;
+      opacity:.85;
+      transition:opacity .15s ease, background .15s ease, transform .1s ease;
     }
-    .dg nav .links a:hover{text-decoration:underline}
-
+    .dg nav .links a:hover{
+      opacity:1;
+      background:rgba(255,255,255,.08);
+      transform:translateY(-1px);
+    }
     .dg nav .hamburger{
       display:none;
       cursor:pointer;
       border:0;
       background:transparent;
       color:#fff;
-      padding:12px;
+      padding:10px;
       position:absolute;
       right:8px;
-      top:2px;
+      top:4px;
       z-index:1203;
     }
-    .dg nav .hamburger svg{width:26px;height:26px}
+    .dg nav .hamburger svg{
+      width:24px;
+      height:24px;
+    }
 
-    /* ===== MENÚ MOBILE ===== */
+    /* ===== MENÚ MOBILE DESPLEGABLE ===== */
     .dg .links.mobile{
       display:flex;
       flex-direction:column;
@@ -216,17 +237,25 @@
       position:absolute;
       left:0;
       right:0;
-      top:100%;
-      background:var(--marron);
-      border-top:1px solid rgba(255,255,255,.15);
-      box-shadow:0 10px 18px rgba(0,0,0,.25);
+      bottom:110%;
+      background:rgba(15,23,42,.96);
+      border-radius:16px 16px 4px 4px;
+      box-shadow:0 16px 30px rgba(0,0,0,.45);
       z-index:1202;
       padding:10px 16px 14px;
     }
     .dg .links.mobile[hidden]{display:none!important}
-    .dg .links.mobile a{padding:12px 0;border-radius:8px}
+    .dg .links.mobile a{
+      padding:10px 0;
+      border-radius:10px;
+      color:#f9fafb;
+      border-bottom:1px solid rgba(148,163,184,.3);
+    }
+    .dg .links.mobile a:last-child{
+      border-bottom:none;
+    }
 
-    /* ===== SECCIÓN ===== */
+    /* ===== SECCIONES ===== */
     .dg section{
       display:flex;
       justify-content:center;
@@ -246,6 +275,11 @@
       color:var(--verde);
       font-size:clamp(20px,3.6vw,28px);
       margin-top:0;
+    }
+    .dg .seccion p,
+    .dg .seccion li{
+      font-size:clamp(14px,2.8vw,16px);
+      color:#132135;
     }
 
     /* ===== TABLA DE PLANES ===== */
@@ -280,7 +314,7 @@
     .whatsapp-float{
       position:fixed;
       right:20px;
-      bottom:24px;
+      bottom:88px; /* un poco por encima del menú */
       z-index:1300;
       display:inline-flex;
       align-items:center;
@@ -299,13 +333,18 @@
     @media (max-width:700px){
       .dg nav .hamburger{display:block}
       .dg nav .links:not(.mobile){display:none}
-      .dg .seccion{background:#fff;}
+      .dg .seccion{background:#ffffff;}
       .dg .pricing-table{font-size:13px;}
     }
   </style>
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMWWJZG2"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
 
   <div class="dg">
     <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
@@ -326,12 +365,14 @@
         <a href="#planes" class="btn-secundaria">Ver precios</a>
       </div>
 
-      <div class="marquesina">🚜 Soluciones para distribuidores, acopios y agroservicios 🚜</div>
+      <div class="marquesina">
+        🚜 Soluciones para distribuidores, acopios y agroservicios 🚜
+      </div>
     </header>
 
     <nav>
       <div class="nav-inner">
-        <ul class="links" id="desktopLinks">
+        <ul class="links" id="desktopLinks" aria-label="Navegación principal">
           <li><a href="#planes">Planes</a></li>
           <li><a href="servicios.html">Servicios</a></li>
           <li><a href="nosotros.html">Nosotros</a></li>
@@ -356,48 +397,84 @@
     <section id="soluciones">
       <div class="seccion">
         <h2>💡 ¿Qué resolvemos en DigiAgro?</h2>
-        <p>Conectamos el agro con la tecnología para que puedas <strong>automatizar procesos, reducir errores y ganar tiempo</strong>.</p>
+        <p>En <strong>DigiAgro</strong> conectamos el agro con la tecnología para que puedas <strong>automatizar procesos, reducir errores y ganar tiempo</strong> en la operación diaria.</p>
 
         <ul>
-          <li>🤖 <strong>Bots de Whatsapp</strong> para preguntas frecuentes y procesos.</li>
-          <li>💸 <strong>Traza Agro SENASA:</strong> alta de envíos y trazabilidad.</li>
-          <li>📦 <strong>Digitalización de remitos:</strong> sacás una foto y el bot extrae datos.</li>
-          <li>📊 <strong>Dashboards y reportes:</strong> ventas, stock y cobranzas.</li>
+          <li>🤖 <strong>Bots de Whatsapp</strong> para preguntas frecuentes e integraciones con tu negocio.</li>
+          <li>💸 <strong>Traza Agro SENASA:</strong> alta de envíos, productos y trazabilidad sin tipear todo a mano.</li>
+          <li>📦 <strong>Digitalización de remitos y documentos:</strong> sacás una foto y el bot extrae los datos.</li>
+          <li>📊 <strong>Dashboards y reportes:</strong> visibilidad de ventas, stock y cobranzas.</li>
         </ul>
 
-        <p style="margin-top:10px;"><a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank">🚀 Agendar demo sin costo</a></p>
+        <p style="margin-top:10px;">
+          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">🚀 Agendar demo sin costo</a>
+        </p>
       </div>
     </section>
 
+    <!-- ======== SECCIÓN: PLANES Y PRECIOS ======== -->
     <section id="planes">
       <div class="seccion">
         <h2>💰 Planes para Bots de WhatsApp</h2>
+        <p>
+          Trabajamos con planes mensuales simples para que puedas empezar rápido.
+          Los negocios más chicos suelen arrancar con el <strong>Plan Básico</strong> y, a medida que crecen,
+          pasan a planes superiores.
+        </p>
 
+        <p><strong>Planes de referencia (USD/mes):</strong></p>
         <table class="pricing-table">
           <thead>
-            <tr><th>Plan</th><th>Respuestas</th><th>Precio</th></tr>
+            <tr>
+              <th>Plan</th>
+              <th>Respuestas incluidas</th>
+              <th>Precio mensual</th>
+            </tr>
           </thead>
           <tbody>
-            <tr><td>Básico</td><td>200</td><td>USD 35</td></tr>
-            <tr><td>Pro</td><td>800</td><td>USD 65</td></tr>
-            <tr class="highlight"><td>Power ⭐</td><td>3.000</td><td>USD 120</td></tr>
-            <tr><td>Corporate</td><td>∞ Ilimitadas</td><td>USD 250</td></tr>
+            <tr>
+              <td>Básico</td>
+              <td>200</td>
+              <td>USD 35</td>
+            </tr>
+            <tr>
+              <td>Pro</td>
+              <td>800</td>
+              <td>USD 65</td>
+            </tr>
+            <tr class="highlight">
+              <td>Power ⭐ (Recomendado)</td>
+              <td>3.000</td>
+              <td>USD 120</td>
+            </tr>
+            <tr>
+              <td>Corporate</td>
+              <td>∞ Ilimitadas</td>
+              <td>USD 250</td>
+            </tr>
           </tbody>
         </table>
 
-        <p class="pricing-note">Precios orientativos, ajustables según volumen e integraciones.</p>
+        <p class="pricing-note">
+          Los valores son de referencia y pueden ajustarse según el volumen de consultas,
+          la cantidad de integraciones y las necesidades puntuales de tu negocio.
+        </p>
 
-        <p style="margin-top:14px;"><a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank">💬 Consultar mi mejor plan</a></p>
+        <p style="margin-top:14px;">
+          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">
+            💬 Hablar por WhatsApp sobre el mejor plan para mi negocio
+          </a>
+        </p>
       </div>
     </section>
-
   </div>
 
-  <!-- ========= WhatsApp ========= -->
+  <!-- ========= Burbuja de WhatsApp (con tracking) ========= -->
   <a id="whatsappButton" class="whatsapp-float" href="https://wa.me/5491162763084" target="_blank" rel="noopener">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" />
   </a>
 
+  <!-- ========= JS: menú móvil + tracking WhatsApp ========= -->
   <script>
     // Toggle menú móvil
     (function(){
@@ -405,8 +482,13 @@
       const mobileMenu = document.getElementById('mobileMenu');
       btn?.addEventListener('click', () => {
         const isOpen = !mobileMenu.hasAttribute('hidden');
-        if (isOpen) { mobileMenu.setAttribute('hidden',''); btn.setAttribute('aria-expanded','false'); }
-        else { mobileMenu.removeAttribute('hidden'); btn.setAttribute('aria-expanded','true'); }
+        if (isOpen) {
+          mobileMenu.setAttribute('hidden','');
+          btn.setAttribute('aria-expanded','false');
+        } else {
+          mobileMenu.removeAttribute('hidden');
+          btn.setAttribute('aria-expanded','true');
+        }
       });
     })();
   </script>
