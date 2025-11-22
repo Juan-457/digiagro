@@ -116,7 +116,7 @@
 
     /* ===== MENÚ MOBILE ===== */
     .dg .links.mobile{
-      display:flex;                       /* ⬅️ clave: NO display:none */
+      display:flex;
       flex-direction:column; gap:6px;
       position:absolute; left:0; right:0; top:100%;
       background:var(--marron); border-top:1px solid rgba(255,255,255,.15);
@@ -140,6 +140,34 @@
 
     @keyframes fadeInContent{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
+    /* ===== TABLA DE PLANES ===== */
+    .dg .pricing-note{
+      font-size:13px;
+      color:#555;
+      margin-top:10px;
+    }
+    .dg .pricing-table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:10px;
+      font-size:14px;
+    }
+    .dg .pricing-table th,
+    .dg .pricing-table td{
+      border:1px solid #d9e6d9;
+      padding:8px 6px;
+      text-align:center;
+    }
+    .dg .pricing-table th{
+      background:var(--verde);
+      color:#fff;
+      font-weight:700;
+    }
+    .dg .pricing-table .highlight{
+      background:rgba(42,92,42,0.06);
+      font-weight:700;
+    }
+
     /* ===== WHATSAPP FLOAT ===== */
     .whatsapp-float{
       position:fixed; right:20px; bottom:24px; z-index:1300;
@@ -153,10 +181,11 @@
     /* ===== MOBILE ===== */
     @media (max-width:700px){
       .dg nav .hamburger{display:block}
-      .dg nav .links:not(.mobile){display:none}  /* oculto solo el menú de escritorio */
+      .dg nav .links:not(.mobile){display:none}
       .dg .seccion{background:#ffffff;}
       .dg .seccion p,
       .dg .seccion li{font-size:15px;}
+      .dg .pricing-table{font-size:13px;}
     }
   </style>
 </head>
@@ -196,6 +225,7 @@
       <div class="nav-inner">
         <ul class="links" id="desktopLinks" aria-label="Navegación principal">
           <li><a href="index.html">Inicio</a></li>
+          <li><a href="#planes">Planes</a></li>
           <li><a href="servicios.html">Servicios</a></li>
           <li><a href="nosotros.html">Nosotros</a></li>
           <li><a href="contacto.html">Contacto</a></li>
@@ -209,6 +239,7 @@
       </div>
       <div class="links mobile" id="mobileMenu" hidden>
         <a href="index.html">Inicio</a>
+        <a href="#planes">Planes</a>
         <a href="servicios.html">Servicios</a>
         <a href="nosotros.html">Nosotros</a>
         <a href="contacto.html">Contacto</a>
@@ -242,6 +273,62 @@
 
         <p style="margin-top:10px;">
           <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">🚀 Agendar demo sin costo</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ======== NUEVA SECCIÓN: PLANES Y PRECIOS ======== -->
+    <section id="planes">
+      <div class="seccion">
+        <h2>💰 Planes pensados para el agro</h2>
+        <p>
+          Trabajamos con planes mensuales simples para que puedas empezar rápido.
+          Los negocios más chicos suelen arrancar con el <strong>Plan Básico</strong>,
+          y a medida que crecen pasan a planes superiores.
+        </p>
+
+        <p><strong>Planes de referencia (USD/mes):</strong></p>
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th>Plan</th>
+              <th>Respuestas incluidas</th>
+              <th>Precio mensual</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Básico</td>
+              <td>200</td>
+              <td>USD 35</td>
+            </tr>
+            <tr>
+              <td>Pro</td>
+              <td>800</td>
+              <td>USD 65</td>
+            </tr>
+            <tr class="highlight">
+              <td>Power ⭐ (Recomendado)</td>
+              <td>3.000</td>
+              <td>USD 120</td>
+            </tr>
+            <tr>
+              <td>Corporate</td>
+              <td>∞ Ilimitadas</td>
+              <td>USD 250</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="pricing-note">
+          Los valores son de referencia y pueden ajustarse según el volumen de consultas,
+          los flujos (SENASA, facturación, remitos) y las integraciones que necesite tu empresa.
+        </p>
+
+        <p style="margin-top:14px;">
+          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">
+            💬 Hablar por WhatsApp sobre el mejor plan para mi negocio
+          </a>
         </p>
       </div>
     </section>
