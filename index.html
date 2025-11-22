@@ -53,7 +53,7 @@
       overflow:hidden;
       isolation:isolate;
       padding:0 16px;
-      padding-top:75px; /* deja espacio para el logo */
+      padding-top:75px;
     }
     .dg header video{
       position:absolute;
@@ -92,6 +92,21 @@
       gap:10px;
       justify-content:center;
       margin-bottom:42px;
+    }
+
+    /* ===== LOGO FIJO ABAJO IZQUIERDA ===== */
+    .dg .logo-sticky{
+      position:fixed;
+      bottom:14px;
+      left:14px;
+      height:56px;
+      opacity:.45;
+      z-index:900;
+      transition:transform .2s ease, opacity .2s ease;
+    }
+    .dg .logo-sticky:hover{
+      opacity:.95;
+      transform:scale(1.03);
     }
 
     /* ===== BOTONES ===== */
@@ -144,22 +159,6 @@
     }
 
     /* ===== NAV ===== */
-    .dg .logo-sticky{
-  position:fixed;
-  bottom:14px;
-  left:14px;
-  height:56px;
-  opacity:.45;
-  z-index:900;
-  transition:transform .2s ease, opacity .2s ease;
-}
-
-.dg .logo-sticky:hover{
-  opacity:0.95;
-  transform:scale(1.03);
-}
-
-    }
     .dg nav{
       background:var(--marron);
       position:sticky;
@@ -193,9 +192,8 @@
       border-radius:10px;
       text-decoration:none;
     }
-    .dg nav .links a:hover{
-      text-decoration:underline;
-    }
+    .dg nav .links a:hover{text-decoration:underline}
+
     .dg nav .hamburger{
       display:none;
       cursor:pointer;
@@ -208,10 +206,7 @@
       top:2px;
       z-index:1203;
     }
-    .dg nav .hamburger svg{
-      width:26px;
-      height:26px;
-    }
+    .dg nav .hamburger svg{width:26px;height:26px}
 
     /* ===== MENÚ MOBILE ===== */
     .dg .links.mobile{
@@ -228,10 +223,10 @@
       z-index:1202;
       padding:10px 16px 14px;
     }
-    .dg .links.mobile[hidden]{display:none !important}
-    .dg .links.mobile a{padding:12px 0; border-radius:8px}
+    .dg .links.mobile[hidden]{display:none!important}
+    .dg .links.mobile a{padding:12px 0;border-radius:8px}
 
-    /* ===== SECCIÓN GENÉRICA ===== */
+    /* ===== SECCIÓN ===== */
     .dg section{
       display:flex;
       justify-content:center;
@@ -251,25 +246,6 @@
       color:var(--verde);
       font-size:clamp(20px,3.6vw,28px);
       margin-top:0;
-    }
-    .dg .seccion p,
-    .dg .seccion li{
-      font-size:clamp(14px,2.8vw,16px);
-      color:#132135;
-    }
-    .dg .pill-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin:10px 0 4px;
-    }
-    .dg .pill{
-      background:rgba(42,92,42,0.08);
-      color:#294029;
-      border-radius:999px;
-      padding:6px 12px;
-      font-size:13px;
-      font-weight:600;
     }
 
     /* ===== TABLA DE PLANES ===== */
@@ -317,27 +293,19 @@
       text-decoration:none;
       transition:transform .15s ease;
     }
-    .whatsapp-float img{ width:34px; height:34px }
-    .whatsapp-float:hover{ transform:scale(1.06) }
+    .whatsapp-float img{width:34px;height:34px}
+    .whatsapp-float:hover{transform:scale(1.06)}
 
-    /* ===== MOBILE ===== */
     @media (max-width:700px){
       .dg nav .hamburger{display:block}
       .dg nav .links:not(.mobile){display:none}
-      .dg .seccion{background:#ffffff;}
-      .dg .seccion p,
-      .dg .seccion li{font-size:15px;}
+      .dg .seccion{background:#fff;}
       .dg .pricing-table{font-size:13px;}
     }
   </style>
 </head>
 
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMWWJZG2"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
 
   <div class="dg">
     <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
@@ -358,14 +326,12 @@
         <a href="#planes" class="btn-secundaria">Ver precios</a>
       </div>
 
-      <div class="marquesina">
-        🚜 Soluciones para distribuidores, acopios y agroservicios 🚜
-      </div>
+      <div class="marquesina">🚜 Soluciones para distribuidores, acopios y agroservicios 🚜</div>
     </header>
 
     <nav>
       <div class="nav-inner">
-        <ul class="links" id="desktopLinks" aria-label="Navegación principal">
+        <ul class="links" id="desktopLinks">
           <li><a href="#planes">Planes</a></li>
           <li><a href="servicios.html">Servicios</a></li>
           <li><a href="nosotros.html">Nosotros</a></li>
@@ -390,95 +356,48 @@
     <section id="soluciones">
       <div class="seccion">
         <h2>💡 ¿Qué resolvemos en DigiAgro?</h2>
-        <p>En <strong>DigiAgro</strong> conectamos el agro con la tecnología para que puedas <strong>automatizar procesos, reducir errores y ganar tiempo</strong> en la operación diaria.</p>
+        <p>Conectamos el agro con la tecnología para que puedas <strong>automatizar procesos, reducir errores y ganar tiempo</strong>.</p>
 
-        <div class="pill-row">
-          <span class="pill">Bots de WhatsApp</span>
-          <span class="pill">SENASA & trazabilidad</span>
-          <span class="pill">Facturación automática</span>
-          <span class="pill">Digitalización de remitos</span>
-          <span class="pill">Dashboards en Power BI</span>
-        </div>
-
-        <p><strong>Algunas de las soluciones que ya estamos implementando:</strong></p>
         <ul>
-          <li>🤖 <strong>Bots de Whatsapp</strong> para Preguntas Frecuentes y otras integraciones con tu negocio.</li>
-          <li>💸 <strong>Traza Agro SENASA:</strong> alta de envíos, productos y trazabilidad sin tipear todo a mano.</li>
-          <li>📦 <strong>Digitalización de remitos y documentos:</strong> sacás una foto y el bot extrae los datos.</li>
-          <li>📊 <strong>Dashboards y reportes:</strong> visibilidad de ventas, stock y cobranzas.</li>
+          <li>🤖 <strong>Bots de Whatsapp</strong> para preguntas frecuentes y procesos.</li>
+          <li>💸 <strong>Traza Agro SENASA:</strong> alta de envíos y trazabilidad.</li>
+          <li>📦 <strong>Digitalización de remitos:</strong> sacás una foto y el bot extrae datos.</li>
+          <li>📊 <strong>Dashboards y reportes:</strong> ventas, stock y cobranzas.</li>
         </ul>
 
-        <p>Diseñamos cada solución para que sea <strong>simple de usar</strong>, sin cambiar tus sistemas actuales.</p>
-
-        <p style="margin-top:10px;">
-          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">🚀 Agendar demo sin costo</a>
-        </p>
+        <p style="margin-top:10px;"><a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank">🚀 Agendar demo sin costo</a></p>
       </div>
     </section>
 
-    <!-- ======== SECCIÓN: PLANES Y PRECIOS ======== -->
     <section id="planes">
       <div class="seccion">
         <h2>💰 Planes para Bots de WhatsApp</h2>
-        <p>
-          Trabajamos con planes mensuales simples para que puedas empezar rápido.
-          Los negocios más chicos suelen arrancar con el <strong>Plan Básico</strong> y, a medida que crecen,
-          pasan a planes superiores.
-        </p>
 
-        <p><strong>Planes de referencia (USD/mes):</strong></p>
         <table class="pricing-table">
           <thead>
-            <tr>
-              <th>Plan</th>
-              <th>Respuestas incluidas</th>
-              <th>Precio mensual</th>
-            </tr>
+            <tr><th>Plan</th><th>Respuestas</th><th>Precio</th></tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Básico</td>
-              <td>200</td>
-              <td>USD 35</td>
-            </tr>
-            <tr>
-              <td>Pro</td>
-              <td>800</td>
-              <td>USD 65</td>
-            </tr>
-            <tr class="highlight">
-              <td>Power ⭐ (Recomendado)</td>
-              <td>3.000</td>
-              <td>USD 120</td>
-            </tr>
-            <tr>
-              <td>Corporate</td>
-              <td>∞ Ilimitadas</td>
-              <td>USD 250</td>
-            </tr>
+            <tr><td>Básico</td><td>200</td><td>USD 35</td></tr>
+            <tr><td>Pro</td><td>800</td><td>USD 65</td></tr>
+            <tr class="highlight"><td>Power ⭐</td><td>3.000</td><td>USD 120</td></tr>
+            <tr><td>Corporate</td><td>∞ Ilimitadas</td><td>USD 250</td></tr>
           </tbody>
         </table>
 
-        <p class="pricing-note">
-          Los valores son de referencia y pueden ajustarse según el volumen de consultas,
-          la cantidad de integraciones y las necesidades puntuales de tu negocio.
-        </p>
+        <p class="pricing-note">Precios orientativos, ajustables según volumen e integraciones.</p>
 
-        <p style="margin-top:14px;">
-          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">
-            💬 Hablar por WhatsApp sobre el mejor plan para mi negocio
-          </a>
-        </p>
+        <p style="margin-top:14px;"><a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank">💬 Consultar mi mejor plan</a></p>
       </div>
     </section>
+
   </div>
 
-  <!-- ========= Burbuja de WhatsApp (con tracking) ========= -->
+  <!-- ========= WhatsApp ========= -->
   <a id="whatsappButton" class="whatsapp-float" href="https://wa.me/5491162763084" target="_blank" rel="noopener">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
   </a>
 
-  <!-- ========= JS: menú móvil + tracking WhatsApp ========= -->
   <script>
     // Toggle menú móvil
     (function(){
@@ -486,31 +405,11 @@
       const mobileMenu = document.getElementById('mobileMenu');
       btn?.addEventListener('click', () => {
         const isOpen = !mobileMenu.hasAttribute('hidden');
-        if (isOpen) {
-          mobileMenu.setAttribute('hidden','');
-          btn.setAttribute('aria-expanded','false');
-        } else {
-          mobileMenu.removeAttribute('hidden');
-          btn.setAttribute('aria-expanded','true');
-        }
-      });
-    })();
-
-    // Medición de clic en WhatsApp (GA4/Ads vía GTM)
-    (function(){
-      window.dataLayer = window.dataLayer || [];
-      const wbtn = document.getElementById('whatsappButton');
-      wbtn?.addEventListener('click', function(){
-        window.dataLayer.push({
-          event: 'click_whatsapp',
-          event_category: 'engagement',
-          event_label: 'wa_5491162763084',
-          value: 1
-        });
+        if (isOpen) { mobileMenu.setAttribute('hidden',''); btn.setAttribute('aria-expanded','false'); }
+        else { mobileMenu.removeAttribute('hidden'); btn.setAttribute('aria-expanded','true'); }
       });
     })();
   </script>
 
 </body>
 </html>
-
