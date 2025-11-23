@@ -38,7 +38,8 @@
       background-position:center;
       background-repeat:no-repeat;
       background-attachment:fixed;
-      padding-bottom:max(80px,var(--safe)); /* espacio para el menú fijo */
+      padding-top:70px; /* espacio para el menú fijo arriba */
+      padding-bottom:max(80px,var(--safe));
     }
 
     /* ===== HEADER ===== */
@@ -53,7 +54,7 @@
       overflow:hidden;
       isolation:isolate;
       padding:0 16px;
-      padding-top:60px;
+      padding-top:20px;
     }
     .dg header video{
       position:absolute;
@@ -97,7 +98,7 @@
     /* ===== LOGO FIJO ABAJO IZQUIERDA ===== */
     .dg .logo-sticky{
       position:fixed;
-      bottom:88px;         /* más arriba para que no lo tape el menú */
+      bottom:24px;
       left:18px;
       height:56px;
       opacity:.55;
@@ -134,13 +135,18 @@
       transform:translateY(-1px);
       box-shadow:0 9px 24px rgba(0,0,0,.4);
     }
+
+    /* Botón “Ver precios” en violeta que resalte */
     .dg .btn-secundaria{
-      background:transparent;
+      background:#7c3aed;           /* violeta intenso */
       color:#fff;
-      border-color:rgba(255,255,255,.7);
+      border-color:#a855f7;
+      box-shadow:0 6px 18px rgba(88,28,135,.45);
     }
     .dg .btn-secundaria:hover{
-      background:rgba(0,0,0,.12);
+      background:#a855f7;
+      box-shadow:0 9px 24px rgba(88,28,135,.6);
+      transform:translateY(-1px);
     }
 
     .dg .marquesina{
@@ -158,17 +164,17 @@
       font-size:clamp(14px,3.2vw,20px);
     }
 
-    /* ===== NAV MODERNO FIJO ABAJO ===== */
+    /* ===== NAV MODERNO FIJO ARRIBA ===== */
     .dg nav{
       position:fixed;
-      bottom:0;
+      top:0;
       left:0;
       right:0;
       z-index:1200;
       background:linear-gradient(90deg,#102a43,#1b4332,#2d6a4f);
       background-size:200% 100%;
-      box-shadow:0 -2px 12px rgba(0,0,0,.35);
-      border-top:1px solid rgba(255,255,255,.08);
+      box-shadow:0 2px 12px rgba(0,0,0,.35);
+      border-bottom:1px solid rgba(255,255,255,.08);
       backdrop-filter:blur(10px);
       animation:navGlow 14s ease-in-out infinite alternate;
     }
@@ -237,9 +243,9 @@
       position:absolute;
       left:0;
       right:0;
-      bottom:110%;
+      top:100%;
       background:rgba(15,23,42,.96);
-      border-radius:16px 16px 4px 4px;
+      border-radius:0 0 16px 16px;
       box-shadow:0 16px 30px rgba(0,0,0,.45);
       z-index:1202;
       padding:10px 16px 14px;
@@ -314,7 +320,7 @@
     .whatsapp-float{
       position:fixed;
       right:20px;
-      bottom:88px; /* un poco por encima del menú */
+      bottom:24px;
       z-index:1300;
       display:inline-flex;
       align-items:center;
@@ -349,27 +355,7 @@
   <div class="dg">
     <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
 
-    <header>
-      <video autoplay muted loop playsinline poster="poster.jpg">
-        <source src="productor.mp4" type="video/mp4">
-      </video>
-
-      <h1>Bots y automatización para el agro</h1>
-      <p class="hero-subtitle">
-        Automatizamos <strong>SENASA, facturación, remitos y consultas en WhatsApp</strong>
-        para que tu equipo trabaje más rápido y con menos errores.
-      </p>
-
-      <div class="hero-cta">
-        <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">📲 Quiero mi demo</a>
-        <a href="#planes" class="btn-secundaria">Ver precios</a>
-      </div>
-
-      <div class="marquesina">
-        🚜 Soluciones para distribuidores, acopios y agroservicios 🚜
-      </div>
-    </header>
-
+    <!-- NAV ARRIBA -->
     <nav>
       <div class="nav-inner">
         <ul class="links" id="desktopLinks" aria-label="Navegación principal">
@@ -393,6 +379,27 @@
         <a href="senasa.html">SENASA</a>
       </div>
     </nav>
+
+    <header>
+      <video autoplay muted loop playsinline poster="poster.jpg">
+        <source src="productor.mp4" type="video/mp4">
+      </video>
+
+      <h1>Bots y automatización para el agro</h1>
+      <p class="hero-subtitle">
+        Automatizamos <strong>SENASA, facturación, remitos y consultas en WhatsApp</strong>
+        para que tu equipo trabaje más rápido y con menos errores.
+      </p>
+
+      <div class="hero-cta">
+        <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">📲 Quiero mi demo</a>
+        <a href="#planes" class="btn-secundaria">Ver precios</a>
+      </div>
+
+      <div class="marquesina">
+        🚜 Soluciones para distribuidores, acopios y agroservicios 🚜
+      </div>
+    </header>
 
     <section id="soluciones">
       <div class="seccion">
