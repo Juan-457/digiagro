@@ -53,7 +53,7 @@
       overflow:hidden;
       isolation:isolate;
       padding:0 16px;
-      padding-top:80px;
+      padding-top:80px; /* espacio para el nav fijo */
     }
     .dg header video{
       position:absolute;
@@ -184,7 +184,7 @@
       margin:0 auto;
       display:flex;
       align-items:center;
-      justify-content:space-between;
+      justify-content:space-between; /* mobile: brand + links/hamburger */
       gap:22px;
       padding:10px 12px 10px;
     }
@@ -195,18 +195,8 @@
       letter-spacing:.06em;
       text-transform:uppercase;
       font-size:13px;
-      opacity:.85;
+      opacity:.9;
       margin-left:12px;
-    }
-    @media (min-width:900px){
-      .dg nav .brand{
-        font-size:14px;
-        font-weight:600;
-      }
-      .dg nav .brand:hover{
-        opacity:1;
-        transform:translateY(-1px);
-      }
     }
 
     .dg nav .links{
@@ -262,8 +252,18 @@
       border-radius:0 0 16px 16px;
       box-shadow:0 16px 30px rgba(0,0,0,.45);
       padding:10px 16px 14px;
+      z-index:1202;
     }
     .dg .links.mobile[hidden]{display:none!important}
+    .dg .links.mobile a{
+      padding:10px 0;
+      border-radius:10px;
+      color:#f9fafb;
+      border-bottom:1px solid rgba(148,163,184,.3);
+    }
+    .dg .links.mobile a:last-child{
+      border-bottom:none;
+    }
 
     /* ===== SECCIONES ===== */
     .dg section{
@@ -281,7 +281,10 @@
       padding:clamp(16px,3.6vw,24px);
       color:#132135;
     }
-    .dg .seccion h2{text-align:center}
+    .dg .seccion h2{
+      text-align:center;
+      margin-top:0;
+    }
 
     /* ===== TABLA ===== */
     .pricing-table{
@@ -306,7 +309,7 @@
       font-weight:700;
     }
 
-    /* ===== WHATSAPP ===== */
+    /* ===== WHATSAPP FLOAT ===== */
     .whatsapp-float{
       position:fixed;
       right:20px;
@@ -323,25 +326,37 @@
       text-decoration:none;
       transition:transform .15s ease;
     }
+    .whatsapp-float img{width:34px;height:34px}
     .whatsapp-float:hover{transform:scale(1.06)}
+
+    /* ===== DESKTOP: ocultar brand y centrar menú ===== */
+    @media (min-width:900px){
+      .dg nav .brand{
+        display:none;
+      }
+      .dg nav .nav-inner{
+        justify-content:center;
+      }
+    }
 
     @media (max-width:700px){
       .dg nav .hamburger{display:block}
       .dg nav .links:not(.mobile){display:none}
-      .dg .seccion{background:#fff;}
+      .dg .seccion{background:#ffffff;}
       .pricing-table{font-size:13px;}
     }
   </style>
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
   <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMWWJZG2"
       height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
 
   <div class="dg">
-    <img src="DigiAgro.png" class="logo-sticky">
+    <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
 
     <!-- NAV -->
     <nav>
@@ -384,36 +399,43 @@
       </p>
 
       <div class="hero-cta">
-        <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank">📲 Quiero mi demo</a>
+        <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">📲 Quiero mi demo</a>
         <a href="#planes" class="btn-secundaria">Ver precios</a>
       </div>
 
-      <div class="marquesina">🚜 Soluciones para distribuidores, acopios y agroservicios 🚜</div>
+      <div class="marquesina">
+        🚜 Soluciones para distribuidores, acopios y agroservicios 🚜
+      </div>
     </header>
 
     <section id="soluciones">
       <div class="seccion">
         <h2>💡 ¿Qué resolvemos en DigiAgro?</h2>
-        <p>En <strong>DigiAgro</strong> conectamos el agro con la tecnología para que puedas <strong>automatizar procesos</strong>, <strong>reducir errores</strong> y <strong>ganar tiempo</strong> en la operación diaria.</p>
+        <p>En <strong>DigiAgro</strong> conectamos el agro con la tecnología para que puedas <strong>automatizar procesos, reducir errores y ganar tiempo</strong> en la operación diaria.</p>
 
         <ul>
-          <li>🤖 Bots de Whatsapp con integraciones reales.</li>
-          <li>💸 Traza Agro SENASA automatizada.</li>
-          <li>📦 Digitalización de remitos y documentos con IA.</li>
-          <li>📊 Dashboards y reportes de ventas, stock y cobranzas.</li>
+          <li>🤖 <strong>Bots de Whatsapp</strong> para preguntas frecuentes e integraciones con tu negocio.</li>
+          <li>💸 <strong>Traza Agro SENASA:</strong> alta de envíos, productos y trazabilidad sin tipear todo a mano.</li>
+          <li>📦 <strong>Digitalización de remitos y documentos:</strong> sacás una foto y el bot extrae los datos.</li>
+          <li>📊 <strong>Dashboards y reportes:</strong> visibilidad de ventas, stock y cobranzas.</li>
         </ul>
 
         <p style="margin-top:10px; text-align:center;">
-          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank">🚀 Agendar demo sin costo</a>
+          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">
+            🚀 Agendar demo sin costo
+          </a>
         </p>
       </div>
     </section>
 
+    <!-- ======== SECCIÓN: PLANES ======== -->
     <section id="planes">
       <div class="seccion">
         <h2>💰 Planes para Bots de WhatsApp</h2>
         <p style="text-align:center;">
-          Planes simples para que puedas empezar rápido. Usualmente se comienza con el <strong>Básico</strong> e incrementa según volumen y automatizaciones.
+          Trabajamos con planes mensuales simples para que puedas empezar rápido.
+          Los negocios más chicos suelen arrancar con el <strong>Plan Básico</strong> y, a medida que crecen,
+          pasan a planes superiores.
         </p>
 
         <table class="pricing-table">
@@ -449,16 +471,20 @@
         </table>
 
         <p style="margin-top:14px; text-align:center;">
-          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank">💬 Consultar el mejor plan</a>
+          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">
+            💬 Consultar el mejor plan
+          </a>
         </p>
       </div>
     </section>
   </div>
 
-  <a class="whatsapp-float" href="https://wa.me/5491162763084" target="_blank">
+  <!-- ========= WhatsApp ========= -->
+  <a class="whatsapp-float" href="https://wa.me/5491162763084" target="_blank" rel="noopener">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" />
   </a>
 
+  <!-- ========= JS Menú Mobile ========= -->
   <script>
     (function(){
       const btn = document.querySelector('.dg .hamburger');
