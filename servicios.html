@@ -47,7 +47,7 @@
       max-height:520px;
       display:flex; flex-direction:column; justify-content:center; align-items:center;
       text-align:center; overflow:hidden; isolation:isolate;
-      padding:0 16px;
+      padding:80px 16px 0; /* espacio arriba para el nav fijo */
     }
     header video{
       position:absolute; inset:0; width:100%; height:100%;
@@ -86,49 +86,74 @@
     }
     .logo-sticky:hover{opacity:1; transform:scale(1.06)}
 
-    /* ===== Navegación ===== */
+    /* ===== Navegación (imitando index) ===== */
     nav{
-      background:var(--marron); color:#fff;
-      position:sticky; top:0; z-index:1200;
-      box-shadow:0 2px 8px rgba(0,0,0,.15);
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:1200;
+      background:linear-gradient(90deg,#102a43,#1b4332,#2d6a4f);
+      background-size:200% 100%;
+      box-shadow:0 2px 12px rgba(0,0,0,.35);
+      backdrop-filter:blur(10px);
+      animation:navGlow 14s ease-in-out infinite alternate;
     }
+    @keyframes navGlow{
+      from{background-position:0% 0}
+      to{background-position:100% 0}
+    }
+
     .nav-inner{
       max-width:1100px; margin:0 auto;
       display:flex; align-items:center; justify-content:center;
-      padding:8px 12px; position:relative; gap:12px;
+      padding:10px 12px; position:relative; gap:12px;
     }
     .links{
       display:flex; align-items:center; justify-content:center;
       gap:28px; flex-wrap:wrap; list-style:none; padding:0; margin:0;
-      font-weight:800; letter-spacing:.2px;
+      font-weight:800; letter-spacing:.04em;
+      text-transform:uppercase; font-size:12px;
     }
     .links a{
-      color:#fff; text-decoration:none;
-      padding:12px 8px; border-radius:10px; white-space:nowrap;
+      color:#f9fafb; text-decoration:none;
+      padding:8px 6px; border-radius:10px; white-space:nowrap;
+      opacity:.85;
+      transition:opacity .15s ease, background .15s ease, transform .1s ease;
     }
-    .links a:hover{ text-decoration:underline }
+    .links a:hover{
+      opacity:1;
+      background:rgba(255,255,255,.08);
+      transform:translateY(-1px);
+    }
 
     /* Botón hamburguesa (solo móvil) */
     .hamburger{
-      display:none; cursor:pointer; border:0; background:transparent; color:#fff;
-      padding:10px; position:absolute; right:8px; top:4px;
+      display:none; cursor:pointer; border:0; background:rgba(15,23,42,.4); color:#fff;
+      padding:8px; position:absolute; right:8px; top:4px;
+      border-radius:999px;
     }
     .hamburger svg{width:26px; height:26px}
 
-    /* Menú móvil desplegable */
+    /* Menú móvil desplegable (como index) */
     .links.mobile{
       display:flex;
       flex-direction:column; gap:6px;
       position:absolute; left:0; right:0; top:100%;
-      background:var(--marron); border-top:1px solid rgba(255,255,255,.15);
-      box-shadow:0 10px 18px rgba(0,0,0,.25); z-index:1202; padding:10px 16px 14px;
+      background:rgba(15,23,42,.96);
+      border-radius:0 0 16px 16px;
+      box-shadow:0 16px 30px rgba(0,0,0,.45);
+      z-index:1202; padding:10px 16px 14px;
+      border-top:1px solid rgba(255,255,255,.15);
     }
     .links.mobile[hidden]{display:none !important}
     .links.mobile a{
       color:#fff; text-decoration:none;
       padding:12px 0; border-radius:8px; font-weight:800;
+      border-bottom:1px solid rgba(148,163,184,.3);
     }
-    .links.mobile a:hover{ text-decoration:underline }
+    .links.mobile a:last-child{border-bottom:none}
+    .links.mobile a:hover{ text-decoration:none; background:rgba(148,163,184,.18) }
 
     /* ===== Sección servicios ===== */
     section{padding:28px 16px 40px; display:flex; justify-content:center}
@@ -226,7 +251,7 @@
     </div>
   </header>
 
-  <!-- ===== Nav centrada (igual que en el index) ===== -->
+  <!-- ===== Nav centrada (igual look que en el index) ===== -->
   <nav>
     <div class="nav-inner" role="navigation" aria-label="Principal">
       <ul class="links" id="desktopLinks">
@@ -395,4 +420,3 @@
   </script>
 </body>
 </html>
-
