@@ -4,159 +4,356 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DigiAgro | SENASA</title>
+
   <style>
     :root{
-      --verde:#2a5c2a; --marron:#6b4f2c;
+      --verde:#2a5c2a;
+      --marron:#6b4f2c;
+      --bgCard:rgba(255,255,255,.88);
+      --shadow:0 4px 10px rgba(0,0,0,.15);
+      --radius:14px;
+      --safe: env(safe-area-inset-bottom);
     }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
     body{
       margin:0;
-      font-family:Arial, sans-serif;
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
       background-image:url('fondo.png');
       background-size:cover;
       background-position:center;
       background-attachment:fixed;
       background-repeat:no-repeat;
+      padding-bottom:max(72px,var(--safe));
     }
 
-    .contenido{ background-color:transparent }
+    /* ===== NAV FIJO ARRIBA (igual resto del sitio) ===== */
+    nav{
+      position:fixed;
+      top:0;left:0;right:0;
+      z-index:1600;
+      background:linear-gradient(90deg,#102a43,#1b4332,#2d6a4f);
+      background-size:200% 100%;
+      animation:navGlow 14s ease-in-out infinite alternate;
+      box-shadow:0 2px 12px rgba(0,0,0,.35);
+      color:#fff;
+      backdrop-filter:blur(10px);
+    }
+    @keyframes navGlow{
+      from{background-position:0% 0}
+      to{background-position:100% 0}
+    }
+    nav .nav-inner{
+      max-width:1100px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px 12px;
+      position:relative;
+      gap:12px;
+    }
+    nav .links{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:28px;
+      list-style:none;
+      margin:0;
+      padding:0;
+      font-weight:800;
+      letter-spacing:.2px;
+      font-size:13px;
+      text-transform:uppercase;
+    }
+    nav .links a{
+      color:#fff;
+      text-decoration:none;
+      padding:10px 6px;
+      border-radius:10px;
+      white-space:nowrap;
+      opacity:.9;
+      transition:opacity .15s ease,background .15s ease,transform .1s ease;
+    }
+    nav .links a:hover{
+      opacity:1;
+      background:rgba(255,255,255,.08);
+      transform:translateY(-1px);
+    }
 
-    /* ====== HERO (igual al resto) ====== */
+    /* ===== HAMBURGUESA / MENÚ MOBILE ===== */
+    .hamburger{
+      display:none;
+      cursor:pointer;
+      border:0;
+      background:rgba(15,23,42,.4);
+      color:#fff;
+      padding:8px;
+      border-radius:999px;
+      position:absolute;
+      right:8px;
+      top:4px;
+    }
+    .hamburger svg{width:24px;height:24px}
+
+    .links.mobile{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      position:absolute;
+      left:0;
+      right:0;
+      top:100%;
+      background:rgba(15,23,42,.96);
+      border-top:1px solid rgba(255,255,255,.15);
+      box-shadow:0 16px 30px rgba(0,0,0,.45);
+      padding:12px 16px 18px;
+      backdrop-filter:blur(6px);
+      z-index:2000;
+    }
+    .links.mobile[hidden]{display:none!important}
+    .links.mobile a{
+      color:#fff;
+      padding:12px 0;
+      font-weight:700;
+      border-bottom:1px solid rgba(148,163,184,.25);
+      text-decoration:none;
+    }
+    .links.mobile a:last-child{border-bottom:none}
+
+    /* ===== HERO / HEADER ===== */
     header{
       position:relative;
-      min-height:60vh;            /* igual que Servicios/Contacto */
+      min-height:60vh;
       max-height:520px;
       overflow:hidden;
-      display:flex; flex-direction:column;
-      justify-content:center; align-items:center;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
       text-align:center;
       isolation:isolate;
+      padding:88px 16px 0; /* espacio para el nav fijo */
     }
     header video{
-      position:absolute; inset:0; width:100%; height:100%;
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
       object-fit:cover;
-      object-position:50% 40%;    /* 👈 encuadre; subí/bajá cambiando el 40% */
+      object-position:50% 40%;
       z-index:-2;
     }
-    /* Overlay para contraste y tapar pixelado leve */
     header::before{
-      content:""; position:absolute; inset:0; z-index:-1;
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-1;
       background:linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.2));
     }
-
     header h1{
-      color:#fff; margin:24px 12px 0;
-      font-size:clamp(28px,5vw,56px); font-weight:800;
+      color:#fff;
+      margin:24px 12px 0;
+      font-size:clamp(28px,5vw,56px);
+      font-weight:800;
       text-shadow:0 2px 14px rgba(0,0,0,.45);
       animation:fade .8s ease-out both;
     }
-    @keyframes fade{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
-
+    @keyframes fade{
+      from{opacity:0;transform:translateY(-10px)}
+      to{opacity:1;transform:translateY(0)}
+    }
     .marquesina{
-      position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
-      background:rgba(0,0,0,.5); color:#fff; padding:8px 14px; border-radius:999px;
-      backdrop-filter:blur(4px); max-width:92%;
-      font-weight:700; font-size:clamp(14px,3.2vw,20px)
+      position:absolute;
+      bottom:16px;
+      left:50%;
+      transform:translateX(-50%);
+      background:rgba(0,0,0,.5);
+      color:#fff;
+      padding:8px 14px;
+      border-radius:999px;
+      backdrop-filter:blur(4px);
+      max-width:92%;
+      font-weight:700;
+      font-size:clamp(14px,3.2vw,20px);
     }
 
-    /* Logo fijo */
+    /* ===== LOGO STICKY (mismo lugar que otras páginas) ===== */
     .logo-sticky{
-      position:fixed; bottom:14px; right:14px; height:64px; opacity:.7; z-index:1000;
+      position:fixed;
+      bottom:14px;
+      left:14px;
+      height:64px;
+      opacity:.7;
+      z-index:900;
       transition:transform .2s ease, opacity .2s ease;
     }
-    .logo-sticky:hover{opacity:1; transform:scale(1.06)}
-
-    /* NAV (idéntico) */
-    nav{
-      background:var(--marron); color:#fff; text-align:center;
-      padding:10px; box-shadow:0 2px 8px rgba(0,0,0,.15);
-      position:sticky; top:0; z-index:900;
+    .logo-sticky:hover{
+      opacity:1;
+      transform:scale(1.06);
     }
-    nav a{color:#fff; margin:0 15px; text-decoration:none; font-weight:bold}
-    nav a:hover{text-decoration:underline}
 
-    /* Layout contenido */
-    section{padding:40px 20px; display:flex; justify-content:center}
+    /* ===== CONTENIDO ===== */
+    section{
+      padding:40px 20px 60px;
+      display:flex;
+      justify-content:center;
+    }
     .flex-container{
-      display:flex; flex-wrap:wrap; max-width:1100px; gap:30px;
-      align-items:flex-start; justify-content:center;
+      display:flex;
+      flex-wrap:wrap;
+      max-width:1100px;
+      gap:30px;
+      align-items:flex-start;
+      justify-content:center;
     }
     .texto{
-      flex:1 1 400px; background:rgba(255,255,255,.85);
-      padding:25px; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,.1);
+      flex:1 1 400px;
+      background:var(--bgCard);
+      padding:25px;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
     }
-    .texto h2{color:var(--verde)}
+    .texto h2{
+      color:var(--verde);
+      margin-top:0;
+    }
     .texto ul{padding-left:20px}
 
-    .videos{flex:1 1 300px; display:flex; flex-direction:column; gap:20px}
-    .video-container{
-      background:rgba(255,255,255,.85); padding:15px; border-radius:10px;
-      box-shadow:0 4px 8px rgba(0,0,0,.1)
+    .videos{
+      flex:1 1 300px;
+      display:flex;
+      flex-direction:column;
+      gap:20px;
     }
-    .video-container h3{font-size:16px; color:var(--verde); margin-bottom:10px}
-    iframe{width:100%; height:180px; border:none; border-radius:8px}
+    .video-container{
+      background:var(--bgCard);
+      padding:15px;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .video-container h3{
+      font-size:16px;
+      color:var(--verde);
+      margin:0 0 10px;
+    }
+    iframe{
+      width:100%;
+      height:180px;
+      border:none;
+      border-radius:8px;
+    }
 
-    /* Mobile */
+    /* ===== RESPONSIVE ===== */
+    @media (max-width:900px){
+      .hamburger{display:inline-flex}
+      nav .nav-inner .links{display:none}
+    }
+
     @media (max-width:600px){
-      header{min-height:100vh}   /* fullscreen en móvil */
-      .logo-sticky{height:50px; bottom:12px; right:12px}
+      header{min-height:100vh}
+      .logo-sticky{height:50px;bottom:12px;left:12px}
+      iframe{height:190px}
+      section{padding-top:30px}
     }
   </style>
 </head>
 <body>
+
+  <!-- Logo fijo -->
   <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
 
-  <div class="contenido">
-    <header>
-      <video autoplay muted loop playsinline poster="poster.jpg">
-        <source src="senas.mp4" type="video/mp4">
-        Tu navegador no soporta videos HTML5.
-      </video>
-      <h1>DigiAgro</h1>
-      <div class="marquesina"><p>🚜 Optimizamos procesos para un agro más ágil y digital. 🚜</p></div>
-    </header>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner" role="navigation" aria-label="Principal">
+      <ul class="links" id="desktopLinks">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="senasa.html" aria-current="page">SENASA</a></li>
+      </ul>
 
-    <nav>
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Menú móvil -->
+    <div class="links mobile" id="mobileMenu" hidden>
       <a href="index.html">Inicio</a>
       <a href="servicios.html">Servicios</a>
       <a href="nosotros.html">Nosotros</a>
       <a href="contacto.html">Contacto</a>
       <a href="senasa.html" aria-current="page">SENASA</a>
-    </nav>
+    </div>
+  </nav>
 
-    <section>
-      <div class="flex-container">
+  <!-- HERO -->
+  <header>
+    <video autoplay muted loop playsinline poster="poster.jpg">
+      <source src="senas.mp4" type="video/mp4">
+      Tu navegador no soporta videos HTML5.
+    </video>
+    <h1>SENASA</h1>
+    <div class="marquesina">
+      🚜 Optimizamos tus procesos con SENASA para un agro más ágil y digital 🚜
+    </div>
+  </header>
 
-        <div class="texto">
-          <h2>📋 Informes SENASA fáciles y rápidos</h2>
-          <p>Con la APP DigiAgro simplificamos la gestión con SENASA:</p>
-          <ul>
-            <li>✅ Informá tus despachos en pocos clics.</li>
-            <li>✅ Consultá tus stocks por depósito de forma automática.</li>
-            <li>✅ Recibí envíos de tus proveedores o devoluciones.</li>
-            <li>✅ Adaptado para tus necesidades de negocios.</li>
-          </ul>
-          <p>Con nuestras herramientas digitales, la gestión agropecuaria nunca fue tan fácil y eficiente.</p>
-        </div>
+  <!-- CONTENIDO -->
+  <section>
+    <div class="flex-container">
 
-        <div class="videos">
-          <div class="video-container">
-            <h3>🚚 Nunca fue tan fácil informar un despacho como con DigiAgro</h3>
-            <iframe src="https://www.youtube.com/embed/6nw4V_pHQus" allowfullscreen></iframe>
-          </div>
-
-          <div class="video-container">
-            <h3>📦 Consultar stocks de SENASA por depósito en segundos</h3>
-            <iframe src="https://www.youtube.com/embed/4G8PF9yNvFA" allowfullscreen></iframe>
-          </div>
-        </div>
-
+      <div class="texto">
+        <h2>📋 Informes SENASA fáciles y rápidos</h2>
+        <p>Con la APP DigiAgro simplificamos la gestión con SENASA:</p>
+        <ul>
+          <li>✅ Informá tus despachos en pocos clics.</li>
+          <li>✅ Consultá tus stocks por depósito de forma automática.</li>
+          <li>✅ Recibí envíos de tus proveedores o devoluciones.</li>
+          <li>✅ Adaptado para tus necesidades de negocio.</li>
+        </ul>
+        <p>Con nuestras herramientas digitales, la gestión agropecuaria nunca fue tan fácil y eficiente.</p>
       </div>
-    </section>
-  </div>
-</body>
-</html>
+
+      <div class="videos">
+        <div class="video-container">
+          <h3>🚚 Nunca fue tan fácil informar un despacho como con DigiAgro</h3>
+          <iframe src="https://www.youtube.com/embed/6nw4V_pHQus" allowfullscreen></iframe>
+        </div>
+
+        <div class="video-container">
+          <h3>📦 Consultar stocks de SENASA por depósito en segundos</h3>
+          <iframe src="https://www.youtube.com/embed/4G8PF9yNvFA" allowfullscreen></iframe>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- JS menú móvil -->
+  <script>
+    (function(){
+      const btn = document.querySelector('.hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      btn?.addEventListener('click', () => {
+        const isOpen = !mobileMenu.hasAttribute('hidden');
+        if (isOpen) {
+          mobileMenu.setAttribute('hidden','');
+          btn.setAttribute('aria-expanded','false');
+        } else {
+          mobileMenu.removeAttribute('hidden');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    })();
+  </script>
 
 </body>
 </html>
-
-
