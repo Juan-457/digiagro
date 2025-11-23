@@ -8,9 +8,11 @@
   <style>
     :root{
       --verde:#2a5c2a;
+      --marron:#6b4f2c;
       --bgCard:rgba(255,255,255,.93);
       --radius:14px;
       --shadow:0 4px 10px rgba(0,0,0,.15);
+      --safe: env(safe-area-inset-bottom);
     }
 
     body{
@@ -21,176 +23,219 @@
       background-position:center;
       background-repeat:no-repeat;
       background-attachment:fixed;
+      padding-bottom:max(72px,var(--safe));
     }
-
-    /* ===== NAV FIJO IGUAL QUE HOMEPAGE ===== */
-    nav{
-      position:fixed;
-      top:0;
-      left:0;
-      right:0;
-      z-index:1200;
-      background:linear-gradient(90deg,#102a43,#1b4332,#2d6a4f);
-      background-size:200% 100%;
-      box-shadow:0 2px 12px rgba(0,0,0,.35);
-      backdrop-filter:blur(10px);
-      animation:navGlow 14s ease-in-out infinite alternate;
-    }
-    @keyframes navGlow{
-      from{background-position:0% 0}
-      to{background-position:100% 0}
-    }
-
-    .nav-inner{
-      max-width:1100px; margin:0 auto;
-      display:flex; align-items:center; justify-content:center;
-      padding:10px 12px; position:relative;
-    }
-    .links{
-      display:flex; align-items:center; justify-content:center;
-      gap:26px; flex-wrap:wrap; list-style:none; padding:0; margin:0;
-      font-weight:800; letter-spacing:.04em; text-transform:uppercase; font-size:12px;
-    }
-    .links a{
-      color:#f9fafb; text-decoration:none; padding:8px 6px;
-      border-radius:12px; opacity:.85;
-      transition:opacity .15s ease, background .15s ease, transform .1s ease;
-    }
-    .links a:hover{
-      opacity:1;
-      background:rgba(255,255,255,.08);
-      transform:translateY(-1px);
-    }
-
-    /* Hamburguesa */
-    .hamburger{
-      display:none; cursor:pointer; border:0;
-      background:rgba(15,23,42,.4); color:#fff;
-      padding:8px; position:absolute; right:8px; top:4px;
-      border-radius:999px;
-    }
-    .hamburger svg{width:26px;height:26px}
-
-    /* Menú móvil desplegable */
-    .links.mobile{
-      display:flex; flex-direction:column; gap:6px;
-      position:absolute; left:0; right:0; top:100%;
-      background:rgba(15,23,42,.96);
-      border-radius:0 0 16px 16px;
-      box-shadow:0 16px 30px rgba(0,0,0,.45);
-      z-index:1202; padding:10px 16px 14px;
-      border-top:1px solid rgba(255,255,255,.15);
-    }
-    .links.mobile[hidden]{display:none!important}
-    .links.mobile a{
-      color:#fff; text-decoration:none;
-      padding:12px 0; border-radius:8px; font-weight:800;
-      border-bottom:1px solid rgba(148,163,184,.3);
-    }
-    .links.mobile a:last-child{border-bottom:none}
 
     /* ===== HEADER ===== */
     header{
       position:relative;
       min-height:50vh;
       height:50svh;
+      max-height:550px;
       overflow:hidden;
       display:flex;
       flex-direction:column;
       justify-content:center;
       align-items:center;
       text-align:center;
-      padding:80px 16px 0; /* espacio para nav fijo */
       isolation:isolate;
+      padding:72px 16px 0;
     }
     header video{
-      position:absolute; inset:0; width:100%; height:100%;
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
       object-fit:cover;
       z-index:-2;
     }
     header::before{
-      content:""; position:absolute; inset:0; z-index:-1;
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-1;
       background:linear-gradient(to bottom,rgba(0,0,0,.55),rgba(0,0,0,.25));
     }
     header h1{
-      color:#fff; margin:4px;
-      font-size:clamp(36px,5vw,60px); font-weight:800;
+      color:#fff;
+      margin:4px;
+      font-size:clamp(36px,5vw,60px);
+      font-weight:800;
       text-shadow:0 2px 14px rgba(0,0,0,.5);
     }
     .marquesina{
-      margin-top:10px;background:rgba(0,0,0,.55);
-      padding:8px 18px;border-radius:999px;color:#fff;
-      font-weight:600;font-size:clamp(14px,3.5vw,18px);
+      margin-top:10px;
+      background:rgba(0,0,0,.55);
+      padding:8px 18px;
+      border-radius:999px;
+      color:#fff;
+      font-weight:600;
+      font-size:clamp(14px,3.5vw,18px);
     }
+
+    /* ===== NAV (igual que index/servicios) ===== */
+    nav{
+      background:var(--marron);
+      color:#fff;
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:1600;
+      box-shadow:0 2px 8px rgba(0,0,0,.15);
+    }
+    .nav-inner{
+      max-width:1100px; margin:0 auto;
+      display:flex; align-items:center; justify-content:center;
+      padding:8px 12px; position:relative; gap:12px;
+    }
+    .links{
+      display:flex; align-items:center; justify-content:center;
+      gap:28px; flex-wrap:wrap; list-style:none; padding:0; margin:0;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .links a{
+      color:#fff; text-decoration:none;
+      padding:12px 8px; border-radius:10px; white-space:nowrap;
+    }
+    .links a:hover{ text-decoration:underline }
+
+    /* Botón hamburguesa */
+    .hamburger{
+      display:none; cursor:pointer; border:0; background:transparent; color:#fff;
+      padding:10px; position:absolute; right:8px; top:4px;
+    }
+    .hamburger svg{width:26px; height:26px}
+
+    /* Menú móvil */
+    .links.mobile{
+      display:flex;
+      flex-direction:column; gap:6px;
+      position:absolute; left:0; right:0; top:100%;
+      background:rgba(15,23,42,.95);
+      border-top:1px solid rgba(255,255,255,.15);
+      box-shadow:0 10px 18px rgba(0,0,0,.35); z-index:2000;
+      padding:12px 16px 18px;
+      backdrop-filter:blur(6px);
+    }
+    .links.mobile[hidden]{display:none !important}
+    .links.mobile a{
+      color:#fff; text-decoration:none;
+      padding:12px 0;
+      border-bottom:1px solid rgba(148,163,184,.25);
+      font-weight:700; border-radius:0;
+    }
+    .links.mobile a:last-child{border-bottom:none}
 
     /* ===== CONTENIDO ===== */
     section{
-      padding:46px 14px 48px;
-      display:flex; justify-content:center; flex-direction:column; align-items:center;
+      padding:44px 14px 60px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
     }
     .seccion{
-      max-width:720px;width:min(720px,94%);
-      background:var(--bgCard);padding:26px 22px;
-      border-radius:var(--radius);box-shadow:var(--shadow);
-      animation:fadeIn .7s ease;color:#132135;
+      max-width:720px;
+      width:min(720px,94%);
+      margin:0 auto;
+      background:var(--bgCard);
+      padding:26px 22px;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      animation:fadeIn .7s ease;
+      color:#132135;
       font-size:clamp(15px,2.6vw,17px);
     }
-    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
     .seccion h2{
-      color:var(--verde);font-size:clamp(22px,4vw,30px);
-      font-weight:800;margin-top:0;margin-bottom:12px;
+      color:var(--verde);
+      font-size:clamp(22px,4vw,30px);
+      margin-top:0; margin-bottom:12px;
+      font-weight:800;
     }
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-    /* BOTONES */
-    .btn-row{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px}
-    .btn-contacto,.btn-secundario{
-      padding:10px 18px;border-radius:10px;text-decoration:none;
-      font-weight:700;font-size:14px;
-      display:inline-flex;justify-content:center;align-items:center;
-      border:2px solid transparent;cursor:pointer;transition:.15s;
+    .btn-row{
+      margin-top:24px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .btn-contacto,
+    .btn-secundario{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 18px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+      cursor:pointer; border:2px solid transparent;
+      transition:background .15s ease, color .15s ease, transform .1s ease, box-shadow .15s ease;
     }
     .btn-contacto{
-      background:#25D366;color:#fff;
+      background:#25D366; color:#fff;
       box-shadow:0 6px 14px rgba(0,0,0,.25);
     }
-    .btn-contacto:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(0,0,0,.3)}
-    .btn-secundario{background:#fff;color:var(--verde);border-color:var(--verde)}
-    .btn-secundario:hover{background:rgba(42,92,42,.06)}
+    .btn-contacto:hover{
+      transform:translateY(-1px);
+      box-shadow:0 8px 18px rgba(0,0,0,.3);
+    }
+    .btn-secundario{
+      background:#fff; color:var(--verde);
+      border-color:var(--verde);
+    }
+    .btn-secundario:hover{
+      background:rgba(42,92,42,.06);
+    }
 
-    /* LOGO STICKY */
+    /* ===== LOGO STICKY ===== */
     .logo-sticky{
-      position:fixed; bottom:14px; left:14px; height:64px;
-      opacity:.7; z-index:900; transition:.2s; cursor:pointer;
+      position:fixed; bottom:14px; left:14px;
+      height:64px; opacity:.7; z-index:900;
+      transition:.2s; cursor:pointer;
     }
     .logo-sticky:hover{opacity:1;transform:scale(1.06)}
 
-    /* WHATSAPP FLOAT */
+    /* ===== BOTÓN WHATSAPP ===== */
     .whatsapp-float{
       position:fixed; right:20px; bottom:22px; z-index:1300;
-      width:60px;height:60px;background:#25D366;border-radius:50%;
-      display:flex;align-items:center;justify-content:center;
-      box-shadow:0 4px 12px rgba(0,0,0,.25);transition:.2s;text-decoration:none;
+      width:60px; height:60px; background:#25D366;
+      border-radius:50%; display:flex; align-items:center; justify-content:center;
+      box-shadow:0 4px 12px rgba(0,0,0,.25);
+      transition:transform .2s ease; text-decoration:none;
     }
     .whatsapp-float img{width:34px;height:34px}
     .whatsapp-float:hover{transform:scale(1.08)}
 
     /* ===== MOBILE ===== */
-    @media (max-width:800px){
+    @media (max-width:900px){
       .hamburger{display:inline-flex}
       .nav-inner .links{display:none}
+    }
+    @media (max-width:700px){
+      header{min-height:46vh}
+      .seccion{padding:20px 16px}
       .btn-row{flex-direction:column}
-      .btn-contacto,.btn-secundario{width:100%}
+      .btn-contacto, .btn-secundario{width:100%}
     }
   </style>
 </head>
 <body>
 
-  <!-- Logo fijo -->
   <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
 
-  <!-- NAV -->
+  <!-- ===== HEADER ===== -->
+  <header>
+    <video autoplay muted loop playsinline poster="poster.jpg">
+      <source src="contacto.mp4" type="video/mp4">
+      Tu navegador no soporta videos HTML5.
+    </video>
+
+    <h1>Contacto</h1>
+    <div class="marquesina">🚜 Conectemos para digitalizar tu operación agro 🚜</div>
+  </header>
+
+  <!-- ===== NAV ===== -->
   <nav>
-    <div class="nav-inner">
+    <div class="nav-inner" role="navigation" aria-label="Principal">
       <ul class="links" id="desktopLinks">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="servicios.html">Servicios</a></li>
@@ -198,9 +243,8 @@
         <li><a href="contacto.html" aria-current="page">Contacto</a></li>
         <li><a href="senasa.html">SENASA</a></li>
       </ul>
-
       <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M3 12h18M3 18h18"/>
         </svg>
       </button>
@@ -215,45 +259,28 @@
     </div>
   </nav>
 
-  <!-- HEADER -->
-  <header>
-    <video autoplay muted loop playsinline poster="poster.jpg">
-      <source src="contacto.mp4" type="video/mp4">
-    </video>
-    <h1>Contacto</h1>
-    <div class="marquesina">🚜 Conectemos para digitalizar tu operación agro 🚜</div>
-  </header>
-
-  <!-- SECCIÓN CONTACTO -->
+  <!-- ===== CONTENIDO ===== -->
   <section>
     <div class="seccion">
       <h2>Hablemos de tu proyecto</h2>
       <p>¿Querés automatizar procesos, usar bots de WhatsApp o digitalizar documentos del agro?</p>
       <p>💬 Nuestro asistente <strong>Digibot</strong> atiende 24/7 por WhatsApp.</p>
-      <p>📲 Instagram: <a href="https://www.instagram.com/digiagrobot" target="_blank" rel="noopener"><strong>@digiagrobot</strong></a>.</p>
+      <p>📱 Instagram: <a href="https://www.instagram.com/digiagrobot" target="_blank"><strong>@digiagrobot</strong></a></p>
       <p>📧 También podés escribirnos a <a href="mailto:info@digiagro.com.ar">info@digiagro.com.ar</a>.</p>
 
       <div class="btn-row">
-        <a class="btn-contacto"
-           href="https://wa.me/5491162763084?text=Hola%20DigiAgro,%20quiero%20más%20información."
-           target="_blank" rel="noopener">
-          💬 Escribir por WhatsApp
-        </a>
-        <a class="btn-secundario" href="mailto:info@digiagro.com.ar">
-          ✉️ Enviar un correo
-        </a>
+        <a class="btn-contacto" href="https://wa.me/5491162763084?text=Hola%20DigiAgro,%20quiero%20más%20información." target="_blank">💬 Escribir por WhatsApp</a>
+        <a class="btn-secundario" href="mailto:info@digiagro.com.ar">✉️ Enviar un correo</a>
       </div>
     </div>
   </section>
 
-  <!-- BURBUJA WHATSAPP -->
-  <a id="whatsappButton" class="whatsapp-float"
-     href="https://wa.me/5491162763084?text=Hola%20DigiAgro,%20quiero%20más%20información."
-     target="_blank" rel="noopener">
+  <!-- ===== WHATSAPP FLOAT ===== -->
+  <a id="whatsappButton" class="whatsapp-float" href="https://wa.me/5491162763084?text=Hola%20DigiAgro,%20quiero%20más%20información." target="_blank" aria-label="Chatear por WhatsApp con DigiAgro">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
   </a>
 
-  <!-- JS menú móvil -->
+  <!-- ===== JS Tracking & Menú ===== -->
   <script>
     (function(){
       const btn = document.querySelector('.hamburger');
@@ -268,7 +295,19 @@
           btn.setAttribute('aria-expanded','true');
         }
       });
+
+      // Tracking botón WhatsApp
+      window.dataLayer = window.dataLayer || [];
+      document.getElementById('whatsappButton')?.addEventListener('click', function(){
+        window.dataLayer.push({
+          event:'click_whatsapp',
+          event_category:'engagement',
+          event_label:'wa_5491162763084',
+          value:1
+        });
+      });
     })();
   </script>
+
 </body>
 </html>
