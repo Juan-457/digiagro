@@ -10,20 +10,74 @@
       --verde:#2a5c2a; --marron:#6b4f2c;
       --bgCard:rgba(255,255,255,.93); --radius:14px;
       --shadow:0 4px 10px rgba(0,0,0,.15);
+      --safe: env(safe-area-inset-bottom);
     }
-    body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-      background-image:url('fondo.png');background-size:cover;background-position:center;
-      background-attachment:fixed;background-repeat:no-repeat;}
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      background-image:url('fondo.png');background-size:cover;
+      background-position:center;background-attachment:fixed;
+      background-repeat:no-repeat;padding-bottom:max(72px,var(--safe));
+    }
+
+    /* ===== NAV FIJO ARRIBA ===== */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:1600;
+      background:linear-gradient(90deg,#102a43,#1b4332,#2d6a4f);
+      background-size:200% 100%;animation:navGlow 14s ease-in-out infinite alternate;
+      box-shadow:0 2px 12px rgba(0,0,0,.35);color:#fff;backdrop-filter:blur(10px);
+    }
+    @keyframes navGlow{from{background-position:0% 0}to{background-position:100% 0}}
+
+    nav .nav-inner{
+      max-width:1100px;margin:0 auto;display:flex;align-items:center;
+      justify-content:center;padding:8px 12px;position:relative;gap:12px;
+    }
+    nav .links{
+      display:flex;align-items:center;justify-content:center;
+      gap:28px;list-style:none;margin:0;padding:0;font-weight:800;
+      letter-spacing:.2px;font-size:13px;text-transform:uppercase;
+    }
+    nav .links a{
+      color:#fff;text-decoration:none;padding:10px 6px;border-radius:10px;
+      white-space:nowrap;opacity:.9;transition:opacity .15s ease,background .15s ease,transform .1s ease;
+    }
+    nav .links a:hover{
+      opacity:1;background:rgba(255,255,255,.08);transform:translateY(-1px);
+    }
+
+    /* ===== Botón hamburguesa ===== */
+    .hamburger{
+      display:none;cursor:pointer;border:0;background:rgba(15,23,42,.4);color:#fff;
+      padding:8px;border-radius:999px;position:absolute;right:8px;top:4px;
+    }
+    .hamburger svg{width:24px;height:24px}
+
+    /* ===== Menú móvil ===== */
+    .links.mobile{
+      display:flex;flex-direction:column;gap:6px;position:absolute;left:0;right:0;top:100%;
+      background:rgba(15,23,42,.96);border-top:1px solid rgba(255,255,255,.15);
+      box-shadow:0 16px 30px rgba(0,0,0,.45);padding:12px 16px 18px;
+      backdrop-filter:blur(6px);z-index:2000;
+    }
+    .links.mobile[hidden]{display:none!important}
+    .links.mobile a{
+      color:#fff;padding:12px 0;font-weight:700;border-bottom:1px solid rgba(148,163,184,.25);
+    }
+    .links.mobile a:last-child{border-bottom:none}
 
     /* ===== HEADER ===== */
     header{
       position:relative;min-height:50vh;height:50svh;max-height:550px;
-      display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
-      isolation:isolate;padding:0 16px;
+      display:flex;flex-direction:column;justify-content:center;align-items:center;
+      text-align:center;padding:88px 16px 0;isolation:isolate;
     }
     header video{
-      position:absolute;inset:0;width:100%;height:100%;
-      object-fit:cover;z-index:-2;
+      position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;
     }
     header::before{
       content:"";position:absolute;inset:0;z-index:-1;
@@ -35,33 +89,22 @@
     }
     .marquesina{
       background:rgba(0,0,0,.55);padding:8px 18px;border-radius:999px;
-      color:#fff;font-weight:600;font-size:clamp(14px,3.5vw,18px);
-      margin-top:10px;
+      color:#fff;font-weight:600;font-size:clamp(14px,3.5vw,18px);margin-top:10px;
     }
-
-    /* ===== NAV ===== */
-    nav{
-      background:var(--marron);text-align:center;padding:12px;
-      box-shadow:0 2px 8px rgba(0,0,0,.15);
-    }
-    nav a{
-      color:#fff;margin:0 16px;text-decoration:none;font-weight:700;font-size:15px;
-    }
-    nav a:hover{text-decoration:underline}
 
     /* ===== CONTENT ===== */
     section{
-      display:flex;justify-content:center;align-items:center;flex-direction:column;
-      padding:44px 14px;
+      padding:44px 14px 60px;display:flex;justify-content:center;
+      align-items:center;flex-direction:column;
     }
     .seccion{
       width:min(920px,94%);background:var(--bgCard);border-radius:var(--radius);
-      box-shadow:var(--shadow);padding:30px 22px;animation:fadeIn .7s ease;
-      color:#132135;font-size:clamp(15px,2.6vw,17px);
+      box-shadow:var(--shadow);padding:30px 22px;color:#132135;
+      font-size:clamp(15px,2.6vw,17px);animation:fadeIn .7s ease;
     }
     .seccion h2{
       color:var(--verde);font-size:clamp(22px,4vw,30px);margin-top:0;
-      font-weight:800;margin-bottom:12px;
+      font-weight:800;margin-bottom:12px;text-align:left;
     }
     @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
@@ -73,18 +116,52 @@
     .logo-sticky:hover{opacity:1;transform:scale(1.06)}
 
     /* ===== MOBILE ===== */
+    @media (max-width:900px){
+      .hamburger{display:inline-flex}
+      nav .nav-inner .links{display:none}
+    }
     @media (max-width:700px){
       header{min-height:42vh}
       .seccion{padding:20px 16px}
-      nav a{margin:0 10px}
     }
   </style>
 </head>
 
 <body>
 
+  <!-- Logo fijo abajo -->
   <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
 
+  <!-- ===== NAV ===== -->
+  <nav>
+    <div class="nav-inner" role="navigation" aria-label="Principal">
+      <ul class="links" id="desktopLinks">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="nosotros.html" aria-current="page">Nosotros</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="senasa.html">SENASA</a></li>
+      </ul>
+
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Menú Móvil -->
+    <div class="links mobile" id="mobileMenu" hidden>
+      <a href="index.html">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="nosotros.html" aria-current="page">Nosotros</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="senasa.html">SENASA</a>
+    </div>
+  </nav>
+
+  <!-- ===== HEADER ===== -->
   <header>
     <video autoplay muted loop playsinline poster="poster.jpg">
       <source src="nosotros.mp4" type="video/mp4">
@@ -94,24 +171,35 @@
     <div class="marquesina">🚜 Digitalizando el agro de punta a punta 🚜</div>
   </header>
 
-  <nav>
-    <a href="index.html">Inicio</a>
-    <a href="servicios.html">Servicios</a>
-    <a href="nosotros.html" aria-current="page">Nosotros</a>
-    <a href="contacto.html">Contacto</a>
-    <a href="senasa.html">SENASA</a>
-  </nav>
-
+  <!-- ===== CONTENIDO ===== -->
   <section>
     <div class="seccion">
       <h2>¿Quiénes somos?</h2>
       <p>DigiAgro es una startup creada para conectar la operación agropecuaria con tecnología simple y práctica.</p>
       <p>Ayudamos a distribuidores, acopios, productores y pymes a mejorar procesos cotidianos mediante automatización, bots de WhatsApp y digitalización de documentos.</p>
-      <p>Creemos en soluciones que ahorren tiempo real en las tareas críticas del campo y la comercialización.</p>
+      <p>Creemos en soluciones que ahorren tiempo real en tareas críticas de campo y comercialización.</p>
       <p>Innovamos para que el agro sea más rápido, inteligente y eficiente.</p>
     </div>
   </section>
 
 </body>
-</html>
 
+<!-- ===== JS: menú móvil ===== -->
+<script>
+(function(){
+  const btn = document.querySelector('.hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  btn?.addEventListener('click', () => {
+    const isOpen = !mobileMenu.hasAttribute('hidden');
+    if (isOpen) {
+      mobileMenu.setAttribute('hidden','');
+      btn.setAttribute('aria-expanded','false');
+    } else {
+      mobileMenu.removeAttribute('hidden');
+      btn.setAttribute('aria-expanded','true');
+    }
+  });
+})();
+</script>
+
+</html>
