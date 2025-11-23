@@ -19,7 +19,6 @@
   <style>
     :root{
       --verde:#2a5c2a;
-      --marron:#6b4f2c;
       --bgCard: rgba(255,255,255,.96);
       --shadow:0 4px 10px rgba(0,0,0,.12);
       --radius:14px;
@@ -54,7 +53,7 @@
       overflow:hidden;
       isolation:isolate;
       padding:0 16px;
-      padding-top:20px;
+      padding-top:10px; /* << ajustado */
     }
     .dg header video{
       position:absolute;
@@ -124,7 +123,6 @@
       cursor:pointer;
       border:2px solid transparent;
       transition:background .15s ease, color .15s ease, transform .1s ease, box-shadow .15s ease;
-      -webkit-tap-highlight-color:transparent;
     }
     .dg .btn-primaria{
       background:#25D366;
@@ -136,9 +134,9 @@
       box-shadow:0 9px 24px rgba(0,0,0,.4);
     }
 
-    /* Botón “Ver precios” en violeta que resalte */
+    /* Botón “Ver precios” violeta */
     .dg .btn-secundaria{
-      background:#7c3aed;           /* violeta intenso */
+      background:#7c3aed;           
       color:#fff;
       border-color:#a855f7;
       box-shadow:0 6px 18px rgba(88,28,135,.45);
@@ -164,7 +162,7 @@
       font-size:clamp(14px,3.2vw,20px);
     }
 
-    /* ===== NAV MODERNO FIJO ARRIBA ===== */
+    /* ===== NAV FIJO ARRIBA ===== */
     .dg nav{
       position:fixed;
       top:0;
@@ -174,9 +172,10 @@
       background:linear-gradient(90deg,#102a43,#1b4332,#2d6a4f);
       background-size:200% 100%;
       box-shadow:0 2px 12px rgba(0,0,0,.35);
-      border-bottom:1px solid rgba(255,255,255,.08);
       backdrop-filter:blur(10px);
       animation:navGlow 14s ease-in-out infinite alternate;
+      /* 👇 quitamos el borde que generaba la línea */
+      border:none;  
     }
     @keyframes navGlow{
       from{background-position:0% 0}
@@ -230,10 +229,6 @@
       top:4px;
       z-index:1203;
     }
-    .dg nav .hamburger svg{
-      width:24px;
-      height:24px;
-    }
 
     /* ===== MENÚ MOBILE DESPLEGABLE ===== */
     .dg .links.mobile{
@@ -277,44 +272,6 @@
       padding:clamp(16px,3.6vw,24px);
       color:#132135;
     }
-    .dg .seccion h2{
-      color:var(--verde);
-      font-size:clamp(20px,3.6vw,28px);
-      margin-top:0;
-    }
-    .dg .seccion p,
-    .dg .seccion li{
-      font-size:clamp(14px,2.8vw,16px);
-      color:#132135;
-    }
-
-    /* ===== TABLA DE PLANES ===== */
-    .dg .pricing-note{
-      font-size:13px;
-      color:#555;
-      margin-top:10px;
-    }
-    .dg .pricing-table{
-      width:100%;
-      border-collapse:collapse;
-      margin-top:10px;
-      font-size:14px;
-    }
-    .dg .pricing-table th,
-    .dg .pricing-table td{
-      border:1px solid #d9e6d9;
-      padding:8px 6px;
-      text-align:center;
-    }
-    .dg .pricing-table th{
-      background:var(--verde);
-      color:#fff;
-      font-weight:700;
-    }
-    .dg .pricing-table .highlight{
-      background:rgba(42,92,42,0.06);
-      font-weight:700;
-    }
 
     /* ===== WHATSAPP FLOAT ===== */
     .whatsapp-float{
@@ -340,7 +297,6 @@
       .dg nav .hamburger{display:block}
       .dg nav .links:not(.mobile){display:none}
       .dg .seccion{background:#ffffff;}
-      .dg .pricing-table{font-size:13px;}
     }
   </style>
 </head>
@@ -348,8 +304,7 @@
 <body>
   <!-- Google Tag Manager (noscript) -->
   <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMWWJZG2"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMWWJZG2" height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
 
   <div class="dg">
@@ -358,7 +313,7 @@
     <!-- NAV ARRIBA -->
     <nav>
       <div class="nav-inner">
-        <ul class="links" id="desktopLinks" aria-label="Navegación principal">
+        <ul class="links" id="desktopLinks">
           <li><a href="#planes">Planes</a></li>
           <li><a href="servicios.html">Servicios</a></li>
           <li><a href="nosotros.html">Nosotros</a></li>
@@ -392,7 +347,7 @@
       </p>
 
       <div class="hero-cta">
-        <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">📲 Quiero mi demo</a>
+        <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank">📲 Quiero mi demo</a>
         <a href="#planes" class="btn-secundaria">Ver precios</a>
       </div>
 
@@ -414,12 +369,12 @@
         </ul>
 
         <p style="margin-top:10px;">
-          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">🚀 Agendar demo sin costo</a>
+          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank">🚀 Agendar demo sin costo</a>
         </p>
       </div>
     </section>
 
-    <!-- ======== SECCIÓN: PLANES Y PRECIOS ======== -->
+    <!-- ======== SECCIÓN: PLANES ======== -->
     <section id="planes">
       <div class="seccion">
         <h2>💰 Planes para Bots de WhatsApp</h2>
@@ -429,7 +384,6 @@
           pasan a planes superiores.
         </p>
 
-        <p><strong>Planes de referencia (USD/mes):</strong></p>
         <table class="pricing-table">
           <thead>
             <tr>
@@ -462,28 +416,20 @@
           </tbody>
         </table>
 
-        <p class="pricing-note">
-          Los valores son de referencia y pueden ajustarse según el volumen de consultas,
-          la cantidad de integraciones y las necesidades puntuales de tu negocio.
-        </p>
-
         <p style="margin-top:14px;">
-          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">
-            💬 Hablar por WhatsApp sobre el mejor plan para mi negocio
-          </a>
+          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank">💬 Consultar el mejor plan</a>
         </p>
       </div>
     </section>
   </div>
 
-  <!-- ========= Burbuja de WhatsApp (con tracking) ========= -->
-  <a id="whatsappButton" class="whatsapp-float" href="https://wa.me/5491162763084" target="_blank" rel="noopener">
+  <!-- ========= WhatsApp ========= -->
+  <a class="whatsapp-float" href="https://wa.me/5491162763084" target="_blank">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" />
   </a>
 
-  <!-- ========= JS: menú móvil + tracking WhatsApp ========= -->
+  <!-- ========= JS Menú Mobile ========= -->
   <script>
-    // Toggle menú móvil
     (function(){
       const btn = document.querySelector('.dg .hamburger');
       const mobileMenu = document.getElementById('mobileMenu');
@@ -502,3 +448,4 @@
 
 </body>
 </html>
+
