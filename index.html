@@ -8,7 +8,7 @@
 
   <!-- ====================== GOOGLE TAG MANAGER ====================== -->
   <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -25,8 +25,9 @@
       --safe: env(safe-area-inset-bottom);
     }
 
-    .dg *{box-sizing:border-box}
+    *{box-sizing:border-box}
     html{scroll-behavior:smooth}
+    body{margin:0;} /* importante para que no haya marco arriba */
 
     .dg{
       margin:0;
@@ -37,7 +38,7 @@
       background-position:center;
       background-repeat:no-repeat;
       background-attachment:fixed;
-      padding-top:70px; /* espacio para el menú fijo arriba */
+      padding-top:0; /* antes 70px: lo quitamos para que no genere separación */
       padding-bottom:max(80px,var(--safe));
     }
 
@@ -53,7 +54,7 @@
       overflow:hidden;
       isolation:isolate;
       padding:0 16px;
-      padding-top:10px; /* << ajustado */
+      padding-top:80px; /* dejamos espacio para que el texto no quede debajo del nav */
     }
     .dg header video{
       position:absolute;
@@ -123,6 +124,7 @@
       cursor:pointer;
       border:2px solid transparent;
       transition:background .15s ease, color .15s ease, transform .1s ease, box-shadow .15s ease;
+      -webkit-tap-highlight-color:transparent;
     }
     .dg .btn-primaria{
       background:#25D366;
@@ -136,7 +138,7 @@
 
     /* Botón “Ver precios” violeta */
     .dg .btn-secundaria{
-      background:#7c3aed;           
+      background:#7c3aed;
       color:#fff;
       border-color:#a855f7;
       box-shadow:0 6px 18px rgba(88,28,135,.45);
@@ -174,8 +176,7 @@
       box-shadow:0 2px 12px rgba(0,0,0,.35);
       backdrop-filter:blur(10px);
       animation:navGlow 14s ease-in-out infinite alternate;
-      /* 👇 quitamos el borde que generaba la línea */
-      border:none;  
+      border:none; /* sin borde para que no haya línea */
     }
     @keyframes navGlow{
       from{background-position:0% 0}
@@ -304,7 +305,8 @@
 <body>
   <!-- Google Tag Manager (noscript) -->
   <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMWWJZG2" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMWWJZG2"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
 
   <div class="dg">
@@ -347,7 +349,7 @@
       </p>
 
       <div class="hero-cta">
-        <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank">📲 Quiero mi demo</a>
+        <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">📲 Quiero mi demo</a>
         <a href="#planes" class="btn-secundaria">Ver precios</a>
       </div>
 
@@ -369,7 +371,7 @@
         </ul>
 
         <p style="margin-top:10px;">
-          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank">🚀 Agendar demo sin costo</a>
+          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">🚀 Agendar demo sin costo</a>
         </p>
       </div>
     </section>
@@ -417,14 +419,16 @@
         </table>
 
         <p style="margin-top:14px;">
-          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank">💬 Consultar el mejor plan</a>
+          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">
+            💬 Consultar el mejor plan
+          </a>
         </p>
       </div>
     </section>
   </div>
 
   <!-- ========= WhatsApp ========= -->
-  <a class="whatsapp-float" href="https://wa.me/5491162763084" target="_blank">
+  <a class="whatsapp-float" href="https://wa.me/5491162763084" target="_blank" rel="noopener">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" />
   </a>
 
@@ -448,4 +452,5 @@
 
 </body>
 </html>
+
 
