@@ -8,7 +8,7 @@
 
   <!-- ====================== GOOGLE TAG MANAGER ====================== -->
   <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l]=w[l]||[];w[l].push({'gtm.start':
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -27,7 +27,7 @@
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;} /* importante para que no haya marco arriba */
+    body{margin:0;}
 
     .dg{
       margin:0;
@@ -38,14 +38,14 @@
       background-position:center;
       background-repeat:no-repeat;
       background-attachment:fixed;
-      padding-top:0; /* antes 70px: lo quitamos para que no genere separación */
+      padding-top:0;
       padding-bottom:max(80px,var(--safe));
     }
 
     /* ===== HEADER ===== */
     .dg header{
       position:relative;
-       min-height: 100vh;
+      min-height:100vh; /* hero ocupa toda la pantalla */
       display:flex;
       flex-direction:column;
       justify-content:center;
@@ -54,7 +54,7 @@
       overflow:hidden;
       isolation:isolate;
       padding:0 16px;
-      padding-top:80px; /* dejamos espacio para que el texto no quede debajo del nav */
+      padding-top:80px; /* espacio para el nav fijo */
     }
     .dg header video{
       position:absolute;
@@ -176,7 +176,7 @@
       box-shadow:0 2px 12px rgba(0,0,0,.35);
       backdrop-filter:blur(10px);
       animation:navGlow 14s ease-in-out infinite alternate;
-      border:none; /* sin borde para que no haya línea */
+      border:none;
     }
     @keyframes navGlow{
       from{background-position:0% 0}
@@ -188,11 +188,23 @@
       margin:0 auto;
       display:flex;
       align-items:center;
-      justify-content:center;
+      justify-content:space-between; /* brand izquierda, menú derecha */
       gap:22px;
-      padding:10px 12px 12px;
+      padding:10px 12px 10px;
       position:relative;
     }
+
+    .dg nav .brand{
+      color:#f9fafb;
+      font-weight:800;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-size:13px;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
     .dg nav .links{
       display:flex;
       gap:22px;
@@ -218,17 +230,20 @@
       background:rgba(255,255,255,.08);
       transform:translateY(-1px);
     }
+
     .dg nav .hamburger{
       display:none;
       cursor:pointer;
       border:0;
-      background:transparent;
+      background:rgba(15,23,42,.4);
       color:#fff;
-      padding:10px;
-      position:absolute;
-      right:8px;
-      top:4px;
-      z-index:1203;
+      padding:8px;
+      border-radius:999px;
+      margin-left:8px;
+    }
+    .dg nav .hamburger svg{
+      width:24px;
+      height:24px;
     }
 
     /* ===== MENÚ MOBILE DESPLEGABLE ===== */
@@ -273,6 +288,36 @@
       padding:clamp(16px,3.6vw,24px);
       color:#132135;
     }
+    .dg .seccion h2{
+      text-align:center;
+      margin-top:0;
+    }
+    .dg .seccion p{
+      text-align:left;
+    }
+
+    /* ===== TABLA DE PLANES ===== */
+    .pricing-table{
+      width:100%;
+      border-collapse:collapse;
+      margin:16px auto;
+      font-size:14px;
+    }
+    .pricing-table th,
+    .pricing-table td{
+      border:1px solid #d1d5db;
+      padding:8px 10px;
+      text-align:center;
+    }
+    .pricing-table th{
+      background:var(--verde);
+      color:#fff;
+      font-weight:700;
+    }
+    .pricing-table .highlight{
+      background:rgba(42,92,42,0.08);
+      font-weight:700;
+    }
 
     /* ===== WHATSAPP FLOAT ===== */
     .whatsapp-float{
@@ -298,6 +343,7 @@
       .dg nav .hamburger{display:block}
       .dg nav .links:not(.mobile){display:none}
       .dg .seccion{background:#ffffff;}
+      .pricing-table{font-size:13px;}
     }
   </style>
 </head>
@@ -315,6 +361,8 @@
     <!-- NAV ARRIBA -->
     <nav>
       <div class="nav-inner">
+        <div class="brand">DigiAgro</div>
+
         <ul class="links" id="desktopLinks">
           <li><a href="#planes">Planes</a></li>
           <li><a href="servicios.html">Servicios</a></li>
@@ -322,12 +370,14 @@
           <li><a href="contacto.html">Contacto</a></li>
           <li><a href="senasa.html">SENASA</a></li>
         </ul>
+
         <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M3 12h18M3 18h18"/>
           </svg>
         </button>
       </div>
+
       <div class="links mobile" id="mobileMenu" hidden>
         <a href="#planes">Planes</a>
         <a href="servicios.html">Servicios</a>
@@ -370,8 +420,10 @@
           <li>📊 <strong>Dashboards y reportes:</strong> visibilidad de ventas, stock y cobranzas.</li>
         </ul>
 
-        <p style="margin-top:10px;">
-          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">🚀 Agendar demo sin costo</a>
+        <p style="margin-top:10px; text-align:center;">
+          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">
+            🚀 Agendar demo sin costo
+          </a>
         </p>
       </div>
     </section>
@@ -380,7 +432,7 @@
     <section id="planes">
       <div class="seccion">
         <h2>💰 Planes para Bots de WhatsApp</h2>
-        <p>
+        <p style="text-align:center;">
           Trabajamos con planes mensuales simples para que puedas empezar rápido.
           Los negocios más chicos suelen arrancar con el <strong>Plan Básico</strong> y, a medida que crecen,
           pasan a planes superiores.
@@ -418,7 +470,7 @@
           </tbody>
         </table>
 
-        <p style="margin-top:14px;">
+        <p style="margin-top:14px; text-align:center;">
           <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">
             💬 Consultar el mejor plan
           </a>
@@ -452,5 +504,3 @@
 
 </body>
 </html>
-
-
