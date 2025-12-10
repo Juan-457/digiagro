@@ -6,6 +6,7 @@
   <title>DigiAgro</title>
   <meta name="color-scheme" content="light dark" />
 
+  <!-- ====================== GOOGLE TAG MANAGER ====================== -->
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -13,6 +14,7 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-NMWWJZG2');
   </script>
+  <!-- ================================================================= -->
 
   <style>
     :root{
@@ -39,6 +41,7 @@
       padding-bottom:max(80px,var(--safe));
     }
 
+    /* ===== HEADER ===== */
     .dg header{
       position:relative;
       min-height:100vh;
@@ -50,9 +53,8 @@
       overflow:hidden;
       isolation:isolate;
       padding:0 16px;
-      padding-top:80px;
+      padding-top:80px; /* espacio para el nav fijo */
     }
-
     .dg header video{
       position:absolute;
       inset:0;
@@ -62,7 +64,6 @@
       object-position:center;
       z-index:-2;
     }
-
     .dg header::before{
       content:"";
       position:absolute;
@@ -70,7 +71,6 @@
       z-index:-1;
       background:linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.25));
     }
-
     .dg header h1{
       color:#fff;
       margin:24px 12px 8px;
@@ -78,7 +78,6 @@
       font-weight:800;
       text-shadow:0 2px 14px rgba(0,0,0,.45);
     }
-
     .dg header .hero-subtitle{
       color:#f5f5f5;
       max-width:640px;
@@ -87,7 +86,6 @@
       font-weight:500;
       text-shadow:0 2px 10px rgba(0,0,0,.5);
     }
-
     .dg header .hero-cta{
       display:flex;
       flex-wrap:wrap;
@@ -96,6 +94,7 @@
       margin-bottom:42px;
     }
 
+    /* ===== LOGO ABAJO IZQUIERDA ===== */
     .dg .logo-sticky{
       position:fixed;
       bottom:24px;
@@ -105,12 +104,12 @@
       z-index:900;
       transition:transform .2s ease, opacity .2s ease;
     }
-
     .dg .logo-sticky:hover{
       opacity:.95;
       transform:scale(1.03);
     }
 
+    /* ===== BOTONES ===== */
     .dg .btn-primaria,
     .dg .btn-secundaria{
       display:inline-flex;
@@ -123,13 +122,16 @@
       text-decoration:none;
       cursor:pointer;
       border:2px solid transparent;
-      transition:background .15s ease, color .15s ease, transform .1s ease;
+      transition:background .15s ease, color .15s ease, transform .1s ease, box-shadow .15s ease;
     }
-
     .dg .btn-primaria{
       background:#25D366;
       color:#fff;
       box-shadow:0 6px 18px rgba(0,0,0,.35);
+    }
+    .dg .btn-primaria:hover{
+      transform:translateY(-1px);
+      box-shadow:0 9px 24px rgba(0,0,0,.4);
     }
 
     .dg .btn-secundaria{
@@ -138,7 +140,28 @@
       border-color:#a855f7;
       box-shadow:0 6px 18px rgba(88,28,135,.45);
     }
+    .dg .btn-secundaria:hover{
+      background:#a855f7;
+      box-shadow:0 9px 24px rgba(88,28,135,.6);
+      transform:translateY(-1px);
+    }
 
+    .dg .marquesina{
+      position:absolute;
+      bottom:16px;
+      left:50%;
+      transform:translateX(-50%);
+      background:rgba(0,0,0,.5);
+      color:#fff;
+      padding:8px 14px;
+      border-radius:999px;
+      backdrop-filter:blur(4px);
+      max-width:92%;
+      font-weight:700;
+      font-size:clamp(14px,3.2vw,20px);
+    }
+
+    /* ===== NAV ARRIBA ===== */
     .dg nav{
       position:fixed;
       top:0;
@@ -151,7 +174,6 @@
       backdrop-filter:blur(10px);
       animation:navGlow 14s ease-in-out infinite alternate;
     }
-
     @keyframes navGlow{
       from{background-position:0% 0}
       to{background-position:100% 0}
@@ -162,11 +184,88 @@
       margin:0 auto;
       display:flex;
       align-items:center;
-      justify-content:space-between;
+      justify-content:space-between; /* mobile: brand + links/hamburger */
       gap:22px;
       padding:10px 12px 10px;
     }
 
+    .dg nav .brand{
+      color:#f9fafb;
+      font-weight:600;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-size:13px;
+      opacity:.9;
+      margin-left:12px;
+    }
+
+    .dg nav .links{
+      display:flex;
+      gap:22px;
+      list-style:none;
+      margin:0;
+      padding:0;
+      font-weight:700;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      font-size:12px;
+    }
+    .dg nav .links a{
+      color:#f9fafb;
+      padding:8px 6px;
+      border-radius:999px;
+      text-decoration:none;
+      opacity:.85;
+      transition:opacity .15s ease, background .15s ease, transform .1s ease;
+    }
+    .dg nav .links a:hover{
+      opacity:1;
+      background:rgba(255,255,255,.08);
+      transform:translateY(-1px);
+    }
+
+    .dg nav .hamburger{
+      display:none;
+      cursor:pointer;
+      border:0;
+      background:rgba(15,23,42,.4);
+      color:#fff;
+      padding:8px;
+      border-radius:999px;
+      margin-left:8px;
+    }
+    .dg nav .hamburger svg{
+      width:24px;
+      height:24px;
+    }
+
+    /* ===== MENÚ MOBILE ===== */
+    .dg .links.mobile{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      position:absolute;
+      left:0;
+      right:0;
+      top:100%;
+      background:rgba(15,23,42,.96);
+      border-radius:0 0 16px 16px;
+      box-shadow:0 16px 30px rgba(0,0,0,.45);
+      padding:10px 16px 14px;
+      z-index:1202;
+    }
+    .dg .links.mobile[hidden]{display:none!important}
+    .dg .links.mobile a{
+      padding:10px 0;
+      border-radius:10px;
+      color:#f9fafb;
+      border-bottom:1px solid rgba(148,163,184,.3);
+    }
+    .dg .links.mobile a:last-child{
+      border-bottom:none;
+    }
+
+    /* ===== SECCIONES ===== */
     .dg section{
       display:flex;
       justify-content:center;
@@ -174,7 +273,6 @@
       flex-direction:column;
       padding:36px 16px;
     }
-
     .dg .seccion{
       width:min(920px,92%);
       background:var(--bgCard);
@@ -183,23 +281,90 @@
       padding:clamp(16px,3.6vw,24px);
       color:#132135;
     }
+    .dg .seccion h2{
+      text-align:center;
+      margin-top:0;
+    }
+
+    /* ===== TABLA ===== */
+    .pricing-table{
+      width:100%;
+      border-collapse:collapse;
+      margin:16px auto;
+      font-size:14px;
+    }
+    .pricing-table th,
+    .pricing-table td{
+      border:1px solid #d1d5db;
+      padding:8px 10px;
+      text-align:center;
+    }
+    .pricing-table th{
+      background:var(--verde);
+      color:#fff;
+      font-weight:700;
+    }
+    .pricing-table .highlight{
+      background:rgba(42,92,42,0.08);
+      font-weight:700;
+    }
+
+    /* ===== WHATSAPP FLOAT ===== */
+    .whatsapp-float{
+      position:fixed;
+      right:20px;
+      bottom:24px;
+      z-index:1300;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:64px;
+      height:64px;
+      background:#25D366;
+      border-radius:50%;
+      box-shadow:0 6px 16px rgba(0,0,0,.25);
+      text-decoration:none;
+      transition:transform .15s ease;
+    }
+    .whatsapp-float img{width:34px;height:34px}
+    .whatsapp-float:hover{transform:scale(1.06)}
+
+    /* ===== DESKTOP: ocultar brand y centrar menú ===== */
+    @media (min-width:900px){
+      .dg nav .brand{
+        display:none;
+      }
+      .dg nav .nav-inner{
+        justify-content:center;
+      }
+    }
+
+    @media (max-width:700px){
+      .dg nav .hamburger{display:block}
+      .dg nav .links:not(.mobile){display:none}
+      .dg .seccion{background:#ffffff;}
+      .pricing-table{font-size:13px;}
+    }
   </style>
 </head>
 
 <body>
-
+  <!-- Google Tag Manager (noscript) -->
   <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMWWJZG2"
       height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
 
   <div class="dg">
-    <img src="DigiAgro.png" class="logo-sticky">
+    <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky">
 
+    <!-- NAV -->
     <nav>
       <div class="nav-inner">
         <div class="brand">DigiAgro</div>
+
         <ul class="links" id="desktopLinks">
+          <!-- Quitado el link a #planes -->
           <li><a href="servicios.html">Servicios</a></li>
           <li><a href="nosotros.html">Nosotros</a></li>
           <li><a href="contacto.html">Contacto</a></li>
@@ -214,6 +379,7 @@
       </div>
 
       <div class="links mobile" id="mobileMenu" hidden>
+        <!-- Quitado el link a #planes -->
         <a href="servicios.html">Servicios</a>
         <a href="nosotros.html">Nosotros</a>
         <a href="contacto.html">Contacto</a>
@@ -228,11 +394,13 @@
 
       <h1>Bots y automatización para el agro</h1>
       <p class="hero-subtitle">
-        Automatizamos <strong>SENASA, facturación, remitos y consultas en WhatsApp</strong> para que tu equipo trabaje más rápido y con menos errores.
+        Automatizamos <strong>SENASA, facturación, remitos y consultas en WhatsApp</strong>
+        para que tu equipo trabaje más rápido y con menos errores.
       </p>
 
       <div class="hero-cta">
         <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">📲 Quiero mi demo</a>
+        <a href="#planes" class="btn-secundaria">Ver precios</a>
       </div>
 
       <div class="marquesina">
@@ -243,40 +411,72 @@
     <section id="soluciones">
       <div class="seccion">
         <h2>💡 ¿Qué resolvemos en DigiAgro?</h2>
-        <p>En DigiAgro conectamos el agro con tecnología para automatizar procesos, reducir errores y ganar tiempo.</p>
+        <p>En <strong>DigiAgro</strong> conectamos el agro con la tecnología para que puedas <strong>automatizar procesos, reducir errores y ganar tiempo</strong> en la operación diaria.</p>
+
         <ul>
-          <li>🤖 Bots integrados a tu negocio</li>
-          <li>💸 Traza Agro SENASA automatizada</li>
-          <li>📦 Digitalización de documentos</li>
-          <li>📊 Reportes automáticos</li>
+          <li>🤖 <strong>Bots de Whatsapp</strong> para preguntas frecuentes e integraciones con tu negocio.</li>
+          <li>💸 <strong>Traza Agro SENASA:</strong> alta de envíos, productos y trazabilidad sin tipear todo a mano.</li>
+          <li>📦 <strong>Digitalización de remitos y documentos:</strong> sacás una foto y el bot extrae los datos.</li>
+          <li>📊 <strong>Dashboards y reportes:</strong> visibilidad de ventas, stock y cobranzas.</li>
         </ul>
-        <p style="text-align:center;margin-top:12px;">
-          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank">🚀 Agendar demo sin costo</a>
+
+        <p style="margin-top:10px; text-align:center;">
+          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">
+            🚀 Agendar demo sin costo
+          </a>
         </p>
       </div>
     </section>
 
+    <!-- ======== SECCIÓN: PLANES ======== -->
+    <!-- Sección eliminada
+    <section id="planes">
+      ...
+    </section>
+    -->
   </div>
 
-  <a class="whatsapp-float" href="https://wa.me/5491162763084" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"/>
+  <!-- ========= WhatsApp ========= -->
+  <a class="whatsapp-float" href="https://wa.me/5491162763084" target="_blank" rel="noopener">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" />
   </a>
 
+  <!-- ========= JS Menú Mobile ========= -->
   <script>
     (function(){
       const btn = document.querySelector('.dg .hamburger');
-      const menu = document.getElementById('mobileMenu');
-      btn?.addEventListener('click',()=>{
-        const open = !menu.hasAttribute('hidden');
-        open ? menu.setAttribute('hidden','') : menu.removeAttribute('hidden');
+      const mobileMenu = document.getElementById('mobileMenu');
+      btn?.addEventListener('click', () => {
+        const isOpen = !mobileMenu.hasAttribute('hidden');
+        if (isOpen) {
+          mobileMenu.setAttribute('hidden','');
+          btn.setAttribute('aria-expanded','false');
+        } else {
+          mobileMenu.removeAttribute('hidden');
+          btn.setAttribute('aria-expanded','true');
+        }
       });
     })();
   </script>
+  <!-- ========= FOOTER ========= -->
+  <footer style="background:#0f1e1b; color:#d9e0dd; padding:22px 12px; text-align:center; font-family:system-ui, sans-serif; font-size:14px; margin-top:40px;">
+    <div style="max-width:900px; margin:auto;">
+      <p style="margin:6px 0; opacity:.85;">
+        © 2025 DigiAgro — Automatización y bots para el agro
+      </p>
 
-<footer style="background:#0f1e1b;color:#d9e0dd;padding:22px;text-align:center;">
-  © 2025 DigiAgro — Automatización y bots para el agro
-</footer>
+      <p style="margin:8px 0;">
+        <a href="privacidad.html" style="color:#6cf899; text-decoration:none; font-weight:600;">Política de Privacidad</a> |
+        <a href="eliminar-datos.html" style="color:#6cf899; text-decoration:none; font-weight:600;">Eliminar Datos</a>
+      </p>
+
+      <p style="margin:6px 0; font-size:13px; opacity:.6;">
+        WhatsApp · Bots · SENASA · Facturación · Reportes
+      </p>
+    </div>
+  </footer>
 
 </body>
 </html>
+
 
