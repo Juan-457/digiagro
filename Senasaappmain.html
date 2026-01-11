@@ -2,10 +2,138 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Sensa – Acceso</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Senasa – Panel Principal</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #020815;
+      color: #e9f6ff;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.65) saturate(1.2);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(2, 12, 30, 0.85), rgba(6, 32, 56, 0.45));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: min(960px, 90vw);
+      padding: 64px 40px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      border-radius: 28px;
+      background: rgba(8, 24, 48, 0.45);
+      border: 1px solid rgba(120, 189, 255, 0.25);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 24px 60px rgba(0, 10, 35, 0.65);
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 3vw, 3rem);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 1.6vw, 1.2rem);
+      color: rgba(220, 240, 255, 0.8);
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 18px;
+      width: 100%;
+    }
+
+    .action-button {
+      padding: 14px 20px;
+      border-radius: 18px;
+      border: 1px solid rgba(120, 200, 255, 0.45);
+      color: #e8f7ff;
+      background: linear-gradient(135deg, rgba(22, 90, 145, 0.55), rgba(10, 36, 80, 0.6));
+      box-shadow: inset 0 0 22px rgba(115, 195, 255, 0.35), 0 16px 28px rgba(1, 8, 26, 0.5);
+      backdrop-filter: blur(14px);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+    }
+
+    .action-button:hover {
+      transform: translateY(-3px) scale(1.02);
+      border-color: rgba(170, 230, 255, 0.8);
+      box-shadow: inset 0 0 28px rgba(150, 220, 255, 0.45), 0 20px 36px rgba(0, 12, 36, 0.6);
+    }
+
+    .action-button:focus-visible {
+      outline: 2px solid rgba(190, 235, 255, 0.9);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 640px) {
+      .hero-content {
+        padding: 48px 24px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Sensa – Acceso correcto</h1>
-  <p>Si ves esto, Cloudflare Access funcionó.</p>
+  <section class="hero">
+    <video autoplay muted loop playsinline poster="fondo.jpg">
+      <source src="hero.mp4" type="video/mp4">
+      Tu navegador no soporta video en HTML5.
+    </video>
+    <div class="hero-content">
+      <div>
+        <h1 class="hero-title">Senasa App</h1>
+        <p class="hero-subtitle">Panel principal con acceso rápido a operaciones clave.</p>
+      </div>
+      <div class="actions">
+        <button class="action-button" type="button">Actividades</button>
+        <button class="action-button" type="button">Depositos</button>
+        <button class="action-button" type="button">Recibir</button>
+        <button class="action-button" type="button">Buscar</button>
+        <button class="action-button" type="button">Configuracion</button>
+      </div>
+    </div>
+  </section>
 </body>
 </html>
