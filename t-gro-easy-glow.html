@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>T-Gro Easy Glow | DigiAgro</title>
+  <meta name="color-scheme" content="light" />
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+
+  <style>
+    :root{
+      --verde:#2a5c2a;
+      --marron:#6b4f2c;
+      --bgCard:rgba(255,255,255,.94);
+      --shadow:0 4px 12px rgba(0,0,0,.12);
+      --radius:16px;
+      --safe: env(safe-area-inset-bottom);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      line-height:1.5;
+      background-image:url('fondo.png');
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      background-attachment:fixed;
+      color:#1f2937;
+      padding-bottom:max(72px,var(--safe));
+    }
+
+    /* ===== NAV ===== */
+    nav{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:1600;
+      background:linear-gradient(90deg,#102a43,#1b4332,#2d6a4f);
+      background-size:200% 100%;
+      box-shadow:0 2px 12px rgba(0,0,0,.35);
+      color:#fff;
+      animation:navGlow 14s ease-in-out infinite alternate;
+      backdrop-filter:blur(10px);
+    }
+    @keyframes navGlow{
+      from{background-position:0% 0}
+      to{background-position:100% 0}
+    }
+    nav .nav-inner{
+      max-width:1100px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px 12px;
+      position:relative;
+      gap:12px;
+    }
+    nav .links{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:28px;
+      flex-wrap:wrap;
+      list-style:none;
+      padding:0;
+      margin:0;
+      font-weight:800;
+      letter-spacing:.2px;
+      font-size:13px;
+      text-transform:uppercase;
+    }
+    nav .links a{
+      color:#fff;
+      text-decoration:none;
+      padding:10px 6px;
+      border-radius:10px;
+      white-space:nowrap;
+      opacity:.9;
+      transition:opacity .15s ease, background .15s ease, transform .1s ease;
+    }
+    nav .links a:hover{
+      opacity:1;
+      background:rgba(255,255,255,.08);
+      transform:translateY(-1px);
+    }
+    .hamburger{
+      display:none;
+      cursor:pointer;
+      border:0;
+      background:rgba(15,23,42,.4);
+      color:#fff;
+      padding:8px;
+      border-radius:999px;
+      position:absolute;
+      right:8px;
+      top:4px;
+    }
+    .hamburger svg{width:24px;height:24px}
+    .links.mobile{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      position:absolute;
+      left:0;
+      right:0;
+      top:100%;
+      background:rgba(15,23,42,.96);
+      border-top:1px solid rgba(255,255,255,.15);
+      box-shadow:0 16px 30px rgba(0,0,0,.45);
+      z-index:2000;
+      padding:12px 16px 18px;
+      backdrop-filter:blur(6px);
+    }
+    .links.mobile[hidden]{display:none!important}
+    .links.mobile a{
+      color:#fff;
+      text-decoration:none;
+      padding:12px 0;
+      border-bottom:1px solid rgba(148,163,184,.25);
+      font-weight:700;
+    }
+    .links.mobile a:last-child{border-bottom:none}
+
+    /* ===== HERO ===== */
+    header{
+      position:relative;
+      min-height:60vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:100px 16px 40px;
+      isolation:isolate;
+      overflow:hidden;
+    }
+    header::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to right, rgba(0,0,0,.6), rgba(0,0,0,.25)),
+        url('https://storage.googleapis.com/gemini-generative-ai-public-data/images/b8017325-a135-4d66-8566-f3883f314f33');
+      background-size:cover;
+      background-position:center;
+      z-index:-1;
+    }
+    .hero-inner{
+      max-width:760px;
+      color:#fff;
+    }
+    .hero-tag{
+      display:inline-block;
+      font-weight:700;
+      letter-spacing:.12em;
+      font-size:12px;
+      text-transform:uppercase;
+      color:#d4f8dd;
+      background:rgba(15,23,42,.55);
+      padding:6px 14px;
+      border-radius:999px;
+    }
+    header h1{
+      font-size:clamp(34px,5vw,54px);
+      margin:18px 0 12px;
+      font-weight:800;
+      text-shadow:0 2px 14px rgba(0,0,0,.45);
+    }
+    header p{
+      font-size:clamp(16px,2.5vw,20px);
+      margin:0 auto 22px;
+      color:#e7f6ee;
+      max-width:680px;
+    }
+
+    /* ===== GLOBAL ===== */
+    section{
+      padding:36px 16px 50px;
+      display:flex;
+      justify-content:center;
+    }
+    .wrap{
+      width:min(1100px, 100%);
+    }
+    .section-title{
+      color:var(--verde);
+      font-size:clamp(24px,3.6vw,34px);
+      margin:0 0 8px;
+      font-weight:800;
+    }
+    .section-subtitle{
+      margin:0 0 20px;
+      color:#475569;
+      font-size:clamp(15px,2.4vw,18px);
+    }
+    .card{
+      background:var(--bgCard);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:18px;
+      border:1px solid rgba(148,163,184,.25);
+    }
+    .btn-primary{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 22px;
+      border-radius:999px;
+      font-weight:800;
+      text-decoration:none;
+      color:#fff;
+      background:var(--verde);
+      transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+    }
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 18px rgba(0,0,0,.18);background:#245324}
+    .btn-light{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 22px;
+      border-radius:999px;
+      font-weight:800;
+      text-decoration:none;
+      color:#1b4332;
+      background:#fff;
+      border:2px solid rgba(27,67,50,.2);
+      transition:transform .15s ease, box-shadow .15s ease;
+    }
+    .btn-light:hover{transform:translateY(-2px);box-shadow:0 10px 18px rgba(0,0,0,.15)}
+
+    /* ===== BENEFITS ===== */
+    .benefits-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+      gap:16px;
+    }
+    .benefit-card{
+      text-align:center;
+    }
+    .benefit-icon{
+      width:54px;
+      height:54px;
+      border-radius:50%;
+      background:rgba(42,92,42,.12);
+      color:var(--verde);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:26px;
+      margin:0 auto 10px;
+    }
+    .benefit-card h3{
+      margin:6px 0 6px;
+      font-size:18px;
+      color:#0f172a;
+    }
+    .benefit-card p{margin:0;color:#4b5563;font-size:14px}
+
+    /* ===== RESULTS ===== */
+    .tabs{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-bottom:18px;
+    }
+    .tab-button{
+      border:none;
+      padding:10px 18px;
+      border-radius:999px;
+      font-weight:700;
+      background:#e2e8f0;
+      color:#334155;
+      cursor:pointer;
+      transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+    }
+    .tab-button.active{
+      background:var(--verde);
+      color:#fff;
+    }
+    .tab-button:hover{transform:translateY(-1px);box-shadow:0 8px 14px rgba(0,0,0,.12)}
+
+    .chart-box{
+      background:#fff;
+      padding:18px;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      border:1px solid rgba(148,163,184,.25);
+    }
+    #chart-footer{
+      text-align:center;
+      color:#475569;
+      margin:12px 0 0;
+      font-weight:600;
+    }
+
+    /* ===== SCIENCE ===== */
+    .science-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+      gap:16px;
+    }
+    .science-card h3{color:#1b4332;margin-top:0}
+
+    /* ===== APPLICATION ===== */
+    .app-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+      gap:18px;
+      align-items:center;
+    }
+    .gallery-container{
+      cursor:pointer;
+      position:relative;
+      overflow:hidden;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .gallery-container img{display:block;width:100%;height:auto}
+    .gallery-overlay{
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,.35);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      opacity:0;
+      transition:opacity .2s ease;
+    }
+    .gallery-container:hover .gallery-overlay{opacity:1}
+
+    /* ===== SPECS ===== */
+    table{width:100%;border-collapse:collapse}
+    td{padding:12px 14px;font-size:14px;color:#334155}
+    tr+tr td{border-top:1px solid rgba(148,163,184,.3)}
+    td:first-child{font-weight:700;width:35%}
+
+    /* ===== TRUST ===== */
+    .trust{
+      text-align:center;
+    }
+    .trust img{max-width:160px;opacity:.8}
+
+    /* ===== CTA ===== */
+    .cta-section{
+      background:linear-gradient(120deg,#1b4332,#2a5c2a);
+      color:#fff;
+      border-radius:var(--radius);
+      padding:30px 22px;
+      text-align:center;
+      box-shadow:var(--shadow);
+    }
+    .cta-section p{color:#e2f5ea}
+
+    /* ===== FOOTER ===== */
+    footer{
+      background:#0f172a;
+      color:#cbd5f5;
+      text-align:center;
+      padding:18px 12px;
+    }
+
+    /* ===== LOGO ===== */
+    .logo-sticky{
+      position:fixed;
+      bottom:14px;
+      left:14px;
+      height:64px;
+      opacity:.7;
+      z-index:900;
+      transition:transform .2s ease, opacity .2s ease;
+    }
+    .logo-sticky:hover{opacity:1;transform:scale(1.06)}
+
+    /* ===== MODAL ===== */
+    #imageModal{
+      display:none;
+      position:fixed;
+      z-index:2000;
+      inset:0;
+      background-color:rgba(0,0,0,.9);
+      align-items:center;
+      justify-content:center;
+    }
+    #modalImage{
+      max-width:82%;
+      max-height:82%;
+      transition:transform .3s ease;
+      cursor:zoom-in;
+    }
+    #modalImage.zoomed{transform:scale(1.5);cursor:zoom-out}
+    .modal-nav{
+      cursor:pointer;
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      padding:16px;
+      color:white;
+      font-weight:bold;
+      font-size:30px;
+      user-select:none;
+    }
+    .modal-nav.prev{left:10px}
+    .modal-nav.next{right:10px}
+    .close-modal{
+      position:absolute;
+      top:15px;
+      right:30px;
+      color:#f1f1f1;
+      font-size:40px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    @media (max-width:900px){
+      .hamburger{display:inline-flex}
+      nav .nav-inner .links{display:none}
+    }
+  </style>
+</head>
+<body>
+  <img src="DigiAgro.png" alt="Logo DigiAgro" class="logo-sticky" />
+
+  <nav>
+    <div class="nav-inner" role="navigation" aria-label="Principal">
+      <ul class="links" id="desktopLinks">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="senasa.html">SENASA</a></li>
+      </ul>
+
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="links mobile" id="mobileMenu" hidden>
+      <a href="index.html">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="senasa.html">SENASA</a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="hero-inner">
+      <span class="hero-tag">EL PRIMER INOCULANTE PARA MAÍZ</span>
+      <h1>Inocular y Lubricar en un Solo Paso.</h1>
+      <p>T-Gro Easy Glow revoluciona la inoculación del Maíz con su tecnología exclusiva que fusiona un potente inoculante biológico con un lubricante de alto rendimiento. Directo en la sembradora, sin complicaciones.</p>
+      <a href="#contacto" class="btn-light">Solicitar Asesoramiento</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="beneficios">
+      <div class="wrap">
+        <h2 class="section-title">Optimice su Siembra. Potencie su Cosecha.</h2>
+        <p class="section-subtitle">T-Gro Easy Glow es una herramienta integral que mejora la eficiencia en el campo y la salud de sus cultivos desde el día uno.</p>
+
+        <div class="benefits-grid">
+          <div class="card benefit-card">
+            <div class="benefit-icon">🌱</div>
+            <h3>Mejor Emergencia y Stand</h3>
+            <p>Asegura una densidad de plantación uniforme, contribuyendo a alcanzar el potencial óptimo de las plantas.</p>
+          </div>
+          <div class="card benefit-card">
+            <div class="benefit-icon">✨</div>
+            <h3>Inocular y Lubricar en 1 Paso</h3>
+            <p>Nuestra tecnología única en talco y grafito combina la inoculación con la lubricación, ahorrando tiempo y simplificando la siembra.</p>
+          </div>
+          <div class="card benefit-card">
+            <div class="benefit-icon">🛡️</div>
+            <h3>Protección Radicular</h3>
+            <p>Coloniza la rizosfera, protegiendo las raíces de patógenos del suelo y mejorando la tolerancia al estrés.</p>
+          </div>
+          <div class="card benefit-card">
+            <div class="benefit-icon">📈</div>
+            <h3>Aumento de Rinde</h3>
+            <p>Plantas más sanas, con un sistema radicular superior y resilientes al estrés se traducen en un mayor potencial de rendimiento.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resultados">
+      <div class="wrap">
+        <h2 class="section-title">Resultados Comprobados en Maíz</h2>
+        <p class="section-subtitle">Más de 20 ensayos en diferentes regiones han comprobado los aumentos consistentes en la productividad.</p>
+
+        <div id="tab-buttons" class="tabs">
+          <button class="tab-button active" data-crop="maiz_23_24_vertico">Maíz 23-24 (Vertico)</button>
+          <button class="tab-button" data-crop="maiz_23_24_barrow">Maíz 23-24 (Barrow)</button>
+          <button class="tab-button" data-crop="maiz_23_24_pergamino">Maíz 23-24 (Pergamino)</button>
+          <button class="tab-button" data-crop="maiz_24_25_barrow">Maíz 24-25 (Barrow)</button>
+          <button class="tab-button" data-crop="maiz_24_25_pergamino">Maíz 24-25 (Pergamino)</button>
+        </div>
+
+        <div class="chart-box">
+          <div style="height:360px;">
+            <canvas id="resultsChart"></canvas>
+          </div>
+          <p id="chart-footer"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-funciona">
+      <div class="wrap">
+        <h2 class="section-title">La Ciencia Detrás de T-Gro Easy Glow</h2>
+        <p class="section-subtitle">El ingrediente activo es la <strong>cepa exclusiva kd</strong> de <i>Trichoderma asperellum</i>, seleccionada rigurosamente tras un screening de más de 1000 cepas por su excepcional capacidad de colonización y promoción del crecimiento.</p>
+
+        <div class="science-grid">
+          <div class="card science-card">
+            <h3>Competencia y Parasitismo</h3>
+            <p><i>T. asperellum</i> es un colonizador agresivo. Crece rápidamente y ocupa espacio en la zona de las raíces, superando a los hongos patógenos en la competencia por nutrientes. Además, parasita a otros hongos dañinos: se enrosca alrededor de sus hifas, secreta enzimas que penetran sus paredes celulares y finalmente los destruye.</p>
+          </div>
+          <div class="card science-card">
+            <h3>Resistencia Sistémica (SAR)</h3>
+            <p>La presencia de <i>T. asperellum</i> activa la Resistencia Sistémica Adquirida (SAR) de la planta. Esto es como una vacuna: la planta entra en un estado de inmunidad mejorada. En respuesta al hongo benéfico, produce sustancias que fortalecen las defensas en toda la planta, haciéndola más resistente a futuras infecciones.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="aplicacion">
+      <div class="wrap">
+        <div class="app-grid">
+          <div id="gallery-trigger" class="text-center">
+            <div class="gallery-container">
+              <img src="https://placehold.co/500x400/F0FDF4/166534?text=Tolva+de+Sembradora" alt="Aplicación en sembradora" />
+              <div class="gallery-overlay">
+                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <span style="color:#1b4332;font-weight:800;">APLICACIÓN SIMPLE Y EFECTIVA</span>
+            <h2 class="section-title" style="margin-top:6px;">Directo en la Tolva. Sin Complicaciones.</h2>
+            <p>T-Gro Easy Glow se añade simplemente a la tolva de semillas. A medida que el tractor se mueve, la agitación de la tolva garantiza una distribución uniforme del polvo por toda la tolva, cubriendo las semillas de manera eficiente.</p>
+            <p>La dosis recomendada es de <strong>2 gramos por kg de semilla</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="especificaciones">
+      <div class="wrap">
+        <h2 class="section-title">Especificaciones Técnicas</h2>
+        <div class="card" style="overflow-x:auto;">
+          <table>
+            <tbody>
+              <tr>
+                <td>Ingrediente Activo</td>
+                <td>Hongo benéfico <i>Trichoderma asperellum</i> (cepa exclusiva kd)</td>
+              </tr>
+              <tr>
+                <td>Concentración</td>
+                <td>&gt; 1,2 × 10⁹ esporas por gramo</td>
+              </tr>
+              <tr>
+                <td>Formulación</td>
+                <td>Polvo seco a base de grafito y talco (Inoculante + Lubricante)</td>
+              </tr>
+              <tr>
+                <td>Dosis Recomendada</td>
+                <td>2 gramos por kg de semilla de Maíz</td>
+              </tr>
+              <tr>
+                <td>Cultivos</td>
+                <td>Maíz y otros.</td>
+              </tr>
+              <tr>
+                <td>Presentación</td>
+                <td>Bolsa de 1Kg</td>
+              </tr>
+              <tr>
+                <td>Almacenamiento</td>
+                <td>2 años a temperatura de heladera (4-10°C), 6 meses a temperatura ambiente.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="confianza">
+      <div class="wrap">
+        <div class="card trust">
+          <img src="https://placehold.co/150x50/cccccc/888888?text=Andermatt+Logo" alt="Logo Andermatt" />
+          <h2 class="section-title">Un Producto de Confianza</h2>
+          <p>T-Gro Easy Glow es desarrollado por Andermatt, líder en soluciones biológicas para la agricultura con sede en Suiza y el mayor productor mundial de insecticidas a base de virus. Un portfolio de soluciones compatibles con la producción orgánica que garantizan calidad y resultados.</p>
+          <a href="https://www.andermatt.com" target="_blank" rel="noopener noreferrer" class="btn-primary">Conocer más sobre Andermatt</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="wrap">
+        <div class="cta-section">
+          <h2 style="margin-top:0;">¿Listo para Ver la Diferencia?</h2>
+          <p>Nuestro equipo de expertos está listo para ayudarle a diseñar un plan de aplicación a la medida de sus necesidades. Contáctenos hoy y dé el primer paso hacia una cosecha más eficiente y rentable.</p>
+          <a href="mailto:info@digiagro.com.ar" class="btn-light">Contactar a un Experto</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 T-Gro Easy Glow – DigiAgro. Todos los derechos reservados.</p>
+    <p style="margin:6px 0 0;font-size:13px;">Potenciando la agricultura del futuro, hoy.</p>
+  </footer>
+
+  <div id="imageModal" class="flex">
+    <span class="close-modal">&times;</span>
+    <span class="modal-nav prev">&#10094;</span>
+    <img id="modalImage" alt="Galería de aplicación" />
+    <span class="modal-nav next">&#10095;</span>
+  </div>
+
+  <script>
+    (function(){
+      const btn = document.querySelector('.hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      btn?.addEventListener('click', () => {
+        const isOpen = !mobileMenu.hasAttribute('hidden');
+        if (isOpen) {
+          mobileMenu.setAttribute('hidden','');
+          btn.setAttribute('aria-expanded','false');
+        } else {
+          mobileMenu.removeAttribute('hidden');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    })();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      Chart.register(ChartDataLabels);
+      const chartData = {
+        maiz_23_24_vertico: { labels: ['Testigo', 'T-Gro EG 1gr/kg', 'T-Gro EG 2gr/kg'], data: [5149, 5816, 6232], dataLabels: ['ab', '12,95% bc\n+667Kg', '21,03% c\n+1083Kg'], label: 'Rinde (Kg/ha)', footer: 'Vertico SRL. Entre Ríos' },
+        maiz_23_24_barrow: { labels: ['Testigo', 'T-Gro EG 1gr/kg', 'T-Gro EG 2gr/kg'], data: [4463, 4693, 4995], dataLabels: ['b', '5,2% b\n+230Kg', '11,9% a\n+532Kg'], label: 'Rinde (Kg/ha)', footer: 'Ch. Experimental Barrow - INTA Tres Arroyos. Ing Agr (MSc) Martín Zamora' },
+        maiz_23_24_pergamino: { labels: ['Testigo', 'T-Gro EG 1gr/kg', 'T-Gro EG 2gr/kg'], data: [9792, 10154, 10881], dataLabels: ['b', '3,7% b\n+362Kg', '11,1% a\n+1089Kg'], label: 'Rinde (Kg/ha)', footer: 'INTA Pergamino - Gustavo N. Ferraris' },
+        maiz_24_25_barrow: { labels: ['Testigo', 'T-Gro EG 1gr/kg', 'T-Gro EG 2gr/kg'], data: [8591, 9390, 9874], dataLabels: ['b', '9,3% b\n+799Kg', '14,93% a\n+1283Kg'], label: 'Rinde (Kg/ha)', footer: 'Ch. Experimental Barrow - INTA Tres Arroyos. Ing Agr (MSc) Martín Zamora' },
+        maiz_24_25_pergamino: { labels: ['Testigo', 'T-Gro EG 1gr/kg', 'T-Gro EG 2gr/kg'], data: [8939, 9216, 10231], dataLabels: ['c', '3,10% b\n+277Kg', '14,45% a\n+1292Kg'], label: 'Rinde (Kg/ha)', footer: 'INTA Pergamino - Gustavo N. Ferrari' }
+      };
+      const tabButtons = document.querySelectorAll('.tab-button');
+      const chartFooter = document.getElementById('chart-footer');
+      const ctx = document.getElementById('resultsChart').getContext('2d');
+      let resultsChart = null;
+
+      function updateChart(crop) {
+        const data = chartData[crop];
+        if (!data) return;
+        if (resultsChart) { resultsChart.destroy(); }
+        const maxValue = Math.max(...data.data);
+        const newYMax = Math.ceil((maxValue + 1000) / 1000) * 1000;
+        resultsChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: data.labels,
+            datasets: [{
+              label: data.label,
+              data: data.data,
+              backgroundColor: ['rgba(107, 114, 128, 0.6)', 'rgba(22, 163, 74, 0.6)', 'rgba(34, 197, 94, 0.6)'],
+              borderColor: ['rgba(107, 114, 128, 1)', 'rgba(22, 163, 74, 1)', 'rgba(34, 197, 94, 1)'],
+              borderWidth: 2,
+              borderRadius: 6
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: { callbacks: { label: (context) => `${context.dataset.label}: ${context.parsed.y} kg/ha` } },
+              datalabels: {
+                color: '#1f2937',
+                font: { weight: 'bold', size: 13 },
+                anchor: 'end',
+                align: 'top',
+                offset: 5,
+                formatter: (value, context) => data.dataLabels[context.dataIndex],
+                textAlign: 'center'
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: newYMax,
+                grid: { color: '#e5e7eb' },
+                ticks: { color: '#374151' }
+              },
+              x: {
+                grid: { display: false },
+                ticks: { color: '#374151', font: { size: 12, weight: 'bold' } }
+              }
+            }
+          }
+        });
+        chartFooter.textContent = data.footer;
+      }
+
+      tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          updateChart(button.dataset.crop);
+        });
+      });
+      updateChart('maiz_23_24_vertico');
+
+      const galleryImages = [
+        { src: 'https://placehold.co/1200x800/F0FDF4/166534?text=1.+Producto+en+Tolva' },
+        { src: 'https://placehold.co/1200x800/E0F2F1/00796B?text=2.+Semilla+Tratada' },
+        { src: 'https://placehold.co/1200x800/E3F2FD/1E88E5?text=3.+Siembra+en+Campo' },
+        { src: 'https://placehold.co/1200x800/F1F8E9/689F38?text=4.+Planta+Emergiendo' }
+      ];
+      let currentImageIndex = 0;
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImage');
+      const galleryTrigger = document.getElementById('gallery-trigger');
+
+      function openModal(index) {
+        currentImageIndex = index;
+        modalImg.src = galleryImages[currentImageIndex].src;
+        modal.style.display = 'flex';
+        modalImg.classList.remove('zoomed');
+      }
+
+      function closeModal() {
+        modal.style.display = 'none';
+      }
+
+      function changeImage(direction) {
+        currentImageIndex += direction;
+        if (currentImageIndex >= galleryImages.length) {
+          currentImageIndex = 0;
+        } else if (currentImageIndex < 0) {
+          currentImageIndex = galleryImages.length - 1;
+        }
+        modalImg.src = galleryImages[currentImageIndex].src;
+        modalImg.classList.remove('zoomed');
+      }
+
+      galleryTrigger.addEventListener('click', () => openModal(0));
+      document.querySelector('.close-modal').addEventListener('click', closeModal);
+      document.querySelector('.modal-nav.prev').addEventListener('click', () => changeImage(-1));
+      document.querySelector('.modal-nav.next').addEventListener('click', () => changeImage(1));
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+      modalImg.addEventListener('click', (e) => {
+        e.stopPropagation();
+        modalImg.classList.toggle('zoomed');
+      });
+    });
+  </script>
+</body>
+</html>
