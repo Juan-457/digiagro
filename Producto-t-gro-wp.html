@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Producto T-Gro | DigiAgro</title>
+  <meta name="description" content="Producto T-Gro de DigiAgro para el agro argentino." />
+  <style>
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      background:#f6f7f8;
+      color:#1f2a1f;
+    }
+    main{
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 20px 120px;
+    }
+    h1{font-size:2.2rem;margin-bottom:12px}
+    p{line-height:1.6;margin:0 0 16px}
+
+    .whatsapp-float{
+      position:fixed;
+      width:56px;
+      height:56px;
+      bottom:28px;
+      right:22px;
+      background:#25d366;
+      color:#fff;
+      border-radius:50%;
+      text-align:center;
+      box-shadow:0 12px 24px rgba(0,0,0,.2);
+      z-index:9999;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:transform .2s ease;
+    }
+    .whatsapp-float img{width:34px;height:34px}
+    .whatsapp-float:hover{transform:scale(1.08)}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Producto T-Gro</h1>
+    <p>
+      Esta página reúne la información clave del producto T-Gro y sus beneficios
+      para el agro argentino.
+    </p>
+    <p>
+      Si querés conocer más, escribinos y coordinamos una demo personalizada.
+    </p>
+  </main>
+
+  <!-- ========= Burbuja de WhatsApp ========= -->
+  <a class="whatsapp-float"
+     href="https://wa.me/5491162763084?text=Hola%20DigiAgro,%20quiero%20info%20sobre%20T-Gro."
+     target="_blank"
+     rel="noopener"
+     aria-label="Chatear por WhatsApp con DigiAgro">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+  </a>
+</body>
+</html>
