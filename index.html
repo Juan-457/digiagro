@@ -236,6 +236,34 @@
       font-size:clamp(14px,3.2vw,20px);
     }
 
+    .services-pillars{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:12px;
+      margin:16px 0 8px;
+    }
+    .pillar-card{
+      background:linear-gradient(135deg,#f8fffa,#e9f7ef);
+      border:1px solid #d3eadb;
+      border-radius:12px;
+      padding:14px;
+      box-shadow:0 8px 18px rgba(15,23,42,.08);
+    }
+    .pillar-card h3{
+      margin:0 0 6px;
+      font-size:17px;
+      color:#184e2f;
+    }
+    .pillar-card p{
+      margin:0;
+      font-size:14px;
+      color:#1f2937;
+    }
+    .pillar-card.star{
+      background:linear-gradient(135deg,#fff8e1,#ffe7a3);
+      border-color:#f5c76c;
+    }
+
     /* ===== NAV ARRIBA ===== */
     .dg nav{
       position:fixed;
@@ -450,10 +478,10 @@
         <div class="brand">DigiAgro</div>
 
         <ul class="links" id="desktopLinks">
-          <li><a href="servicios.html">Servicios</a></li>
-          <li><a href="nosotros.html">Nosotros</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
-          <li><a href="senasa.html">SENASA</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#senasa">SENASA</a></li>
           <li><a href="Senasaappmain.html" class="nav-app">App</a></li>
         </ul>
 
@@ -465,10 +493,10 @@
       </div>
 
       <div class="links mobile" id="mobileMenu" hidden>
-        <a href="servicios.html">Servicios</a>
-        <a href="nosotros.html">Nosotros</a>
-        <a href="contacto.html">Contacto</a>
-        <a href="senasa.html">SENASA</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#senasa">SENASA</a>
         <a href="Senasaappmain.html" class="nav-app">App</a>
       </div>
     </nav>
@@ -479,17 +507,17 @@
       </video>
 
       <div class="hero-tag">
-        Posicionamiento digital y datos para el agro argentino
+        Soluciones digitales para empresas del agro argentino
       </div>
 
       <div class="hero-bubbles">
         <div class="hero-bubble hero-bubble-main">
-          <h1>Posicioná tus productos agro digitalmente</h1>
+          <h1>Tu empresa agro, más visible y automatizada</h1>
         </div>
         <div class="hero-bubble">
           <p class="hero-subtitle">
-            Diseñamos soluciones para <strong>trazabilidad, BI y comercialización digital</strong>:
-            más visibilidad para tus productos, más control operativo y decisiones basadas en datos.
+            Impulsamos <strong>desarrollo web, trazabilidad en Sensa, bots de WhatsApp y posicionamiento de productos en Fauno</strong>
+            para que vendas mejor, operes con menos fricción y escales con datos.
           </p>
         </div>
       </div>
@@ -499,29 +527,77 @@
       </div>
 
       <div class="marquesina">
-        🚜 Trazabilidad + BI + posicionamiento digital para empresas del agro 🚜
+        🚀 Desarrollo web + Sensa + bots de WhatsApp + Fauno para crecer en agro 🚀
       </div>
     </header>
 
-    <section id="soluciones">
+    <section id="servicios">
       <div class="seccion">
         <h2>💡 ¿Qué resolvemos en DigiAgro?</h2>
         <p>
           En <strong>DigiAgro</strong> ayudamos a empresas agro a <strong>mejorar su posicionamiento digital,
-          ordenar su trazabilidad y gestionar el negocio con BI</strong>.
+          ordenar su trazabilidad y gestionar el negocio con automatización inteligente</strong>.
         </p>
 
+        <div class="services-pillars">
+          <article class="pillar-card">
+            <h3>🌐 Desarrollo web</h3>
+            <p>Diseñamos webs orientadas a conversión para mostrar catálogos, captar clientes y potenciar tu marca.</p>
+          </article>
+          <article class="pillar-card">
+            <h3>🧾 Trazabilidad en Sensa</h3>
+            <p>Implementamos la solución de trazabilidad en Sensa para ordenar registros, envíos y cumplimiento.</p>
+          </article>
+          <article class="pillar-card">
+            <h3>🤖 Bots de WhatsApp</h3>
+            <p>Automatizamos atención comercial, respuestas frecuentes y seguimiento para no perder oportunidades.</p>
+          </article>
+          <article class="pillar-card star">
+            <h3>⭐ Posicionamiento en Fauno</h3>
+            <p>Nuestra solución estrella: destacamos tus productos en Fauno para aumentar alcance y ventas.</p>
+          </article>
+        </div>
+
         <ul>
-          <li>🌐 <strong>Posicionamiento digital de productos agro:</strong> presencia web, catálogos y estrategia de captación comercial.</li>
-          <li>💸 <strong>Traza Agro SENASA:</strong> alta de envíos, productos y trazabilidad con menos carga manual y menos errores.</li>
-          <li>📦 <strong>Digitalización documental:</strong> remitos, facturas y comprobantes ordenados para una operación más ágil.</li>
-          <li>📊 <strong>BI y tableros de gestión:</strong> ventas, stock, logística y cobranzas para decidir con información en tiempo real.</li>
+          <li>🌐 <strong>Desarrollo web comercial:</strong> sitios modernos y claros para vender servicios y productos agro.</li>
+          <li>💸 <strong>Solución de trazabilidad en Sensa:</strong> menos carga manual, menos errores y más control operativo.</li>
+          <li>🤖 <strong>Bots de WhatsApp:</strong> automatización de consultas, turnos, seguimiento y cierre comercial.</li>
+          <li>⭐ <strong>Posicionamiento de productos en Fauno:</strong> estrategia integral para convertir visibilidad en ventas.</li>
         </ul>
 
         <p style="margin-top:10px; text-align:center;">
           <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">
             🚀 Agendar demo sin costo
           </a>
+        </p>
+      </div>
+    </section>
+
+
+    <section id="nosotros">
+      <div class="seccion">
+        <h2>👩‍🌾 Nosotros</h2>
+        <p><strong>DigiAgro</strong> es una startup que conecta operación agropecuaria y tecnología simple para lograr crecimiento comercial con procesos más ordenados.</p>
+        <p>Trabajamos con distribuidores, acopios y pymes para mejorar visibilidad digital, automatizar tareas y tomar decisiones con información clara.</p>
+      </div>
+    </section>
+
+    <section id="senasa">
+      <div class="seccion">
+        <h2>📑 SENASA y trazabilidad</h2>
+        <p>Te acompañamos en la implementación de trazabilidad en Sensa y en la gestión operativa vinculada a flujos SENASA para reducir errores y tiempos de carga.</p>
+        <p style="margin-top:10px; text-align:center;">
+          <a href="Senasaappmain.html" class="btn-secundaria">🔗 Ir a la App SENASA</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="seccion">
+        <h2>📲 Contacto</h2>
+        <p>¿Querés implementar desarrollo web, bots de WhatsApp, trazabilidad en Sensa o posicionar productos en Fauno?</p>
+        <p style="margin-top:10px; text-align:center;">
+          <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">Hablar por WhatsApp</a>
         </p>
       </div>
     </section>
@@ -577,6 +653,7 @@
           <span>UmanoAI</span>
         </a>
       </p>
+
 
       <p style="margin:6px 0; font-size:13px; opacity:.6;">
         Agro digital · Trazabilidad SENASA · BI · Comercialización · Automatización
