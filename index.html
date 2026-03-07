@@ -372,6 +372,31 @@
       margin-top:0;
     }
 
+    .dg .servicios-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+      margin:18px 0 4px;
+    }
+    .dg .servicio-card{
+      background:#fff;
+      border:1px solid rgba(16,42,67,.12);
+      border-radius:14px;
+      padding:14px 14px 12px;
+      box-shadow:0 8px 18px rgba(16,42,67,.08);
+    }
+    .dg .servicio-card h3{
+      margin:0 0 6px;
+      font-size:16px;
+      color:#12303e;
+    }
+    .dg .servicio-card p{
+      margin:0;
+      font-size:14px;
+      color:#263745;
+      line-height:1.45;
+    }
+
     /* ===== TABLA ===== */
     .pricing-table{
       width:100%;
@@ -429,6 +454,7 @@
       .dg nav .hamburger{display:block}
       .dg nav .links:not(.mobile){display:none}
       .dg .seccion{background:#ffffff;}
+      .dg .servicios-grid{grid-template-columns:1fr}
       .pricing-table{font-size:13px;}
     }
   </style>
@@ -511,12 +537,24 @@
           ordenar su trazabilidad y gestionar el negocio con BI</strong>.
         </p>
 
-        <ul>
-          <li>🌐 <strong>Posicionamiento digital de productos agro:</strong> presencia web, catálogos y estrategia de captación comercial.</li>
-          <li>💸 <strong>Traza Agro SENASA:</strong> alta de envíos, productos y trazabilidad con menos carga manual y menos errores.</li>
-          <li>📦 <strong>Digitalización documental:</strong> remitos, facturas y comprobantes ordenados para una operación más ágil.</li>
-          <li>📊 <strong>BI y tableros de gestión:</strong> ventas, stock, logística y cobranzas para decidir con información en tiempo real.</li>
-        </ul>
+        <div class="servicios-grid" role="list" aria-label="Servicios principales de DigiAgro">
+          <article class="servicio-card" role="listitem">
+            <h3>🌐 Posicionamiento digital de productos agro</h3>
+            <p>Presencia web, catálogos y estrategia de captación comercial para generar más oportunidades.</p>
+          </article>
+          <article class="servicio-card" role="listitem">
+            <h3>💸 Traza Agro SENASA</h3>
+            <p>Alta de envíos, productos y trazabilidad con menos carga manual, menos errores y mejor control.</p>
+          </article>
+          <article class="servicio-card" role="listitem">
+            <h3>📦 Digitalización documental</h3>
+            <p>Remitos, facturas y comprobantes ordenados para una operación más ágil y trazable.</p>
+          </article>
+          <article class="servicio-card" role="listitem">
+            <h3>📊 BI y tableros de gestión</h3>
+            <p>Ventas, stock, logística y cobranzas en tiempo real para decidir con datos concretos.</p>
+          </article>
+        </div>
 
         <p style="margin-top:10px; text-align:center;">
           <a href="https://wa.me/5491162763084" class="btn-primaria" target="_blank" rel="noopener">
